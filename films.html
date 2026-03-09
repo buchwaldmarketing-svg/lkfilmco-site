@@ -21,6 +21,7 @@
     <a href="/about">About</a>
     <a href="/contact" class="n-cta">Inquire</a>
   </div>
+  <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-spacer"></div>
@@ -33,37 +34,37 @@
       <p class="films-sub">Every film is a real story. No scripts. No direction. Just your day, as it happened.</p>
     </div>
     <div class="films-grid">
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div><div class="fc-play"></div>
-        <div class="fc-ov"><span class="fc-venue">The Hillside Estate · Dallas</span><h3 class="fc-name">Meghan + Tyler</h3></div>
+        <div class="fc-ov"><span class="fc-tag">Highlight Film</span><span class="fc-venue">The Hillside Estate · Dallas</span><h3 class="fc-name">Meghan + Tyler</h3></div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div><div class="fc-play"></div>
-        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Christy + Brian</h3></div>
+        <div class="fc-ov"><span class="fc-tag">Highlight Film</span><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Christy + Brian</h3></div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div><div class="fc-play"></div>
-        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Allison + Ross</h3></div>
+        <div class="fc-ov"><span class="fc-tag">Highlight Film</span><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Allison + Ross</h3></div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div><div class="fc-play"></div>
-        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Emma + Bryce</h3></div>
+        <div class="fc-ov"><span class="fc-tag">Super 8 Film</span><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Emma + Bryce</h3></div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div><div class="fc-play"></div>
-        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Demi + Keaton</h3></div>
+        <div class="fc-ov"><span class="fc-tag">Highlight Film</span><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Demi + Keaton</h3></div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div><div class="fc-play"></div>
-        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Madeline + Brock</h3></div>
+        <div class="fc-ov"><span class="fc-tag">Ceremony Edit</span><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Madeline + Brock</h3></div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div><div class="fc-play"></div>
-        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Hayden + Phage</h3></div>
+        <div class="fc-ov"><span class="fc-tag">Full Documentary</span><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Hayden + Phage</h3></div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div><div class="fc-play"></div>
-        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Kendall + Mitch</h3></div>
+        <div class="fc-ov"><span class="fc-tag">Highlight Film</span><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Kendall + Mitch</h3></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:40px" class="rv">
@@ -81,9 +82,29 @@
   <div class="f-bot"><span>© 2026 LK Film Co.</span><span>Dallas, TX · Available worldwide</span></div>
 </footer>
 
+<div class="modal-ov" id="yt-modal" role="dialog" aria-modal="true" aria-label="Film preview">
+  <button class="modal-close" id="yt-close" aria-label="Close film">&#215;</button>
+  <div class="modal-wrap">
+    <iframe id="yt-frame" src="" allow="autoplay;encrypted-media" allowfullscreen title="Wedding film"></iframe>
+  </div>
+</div>
+
 <script>
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}}),{threshold:.08});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+const ham=document.querySelector('.n-ham');
+const nLinks=document.querySelector('.n-links');
+if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
+
+const modal=document.getElementById('yt-modal');
+const frame=document.getElementById('yt-frame');
+const closeBtn=document.getElementById('yt-close');
+function closeModal(){modal.classList.remove('open');frame.src='';document.body.style.overflow='';}
+document.querySelectorAll('.fc[data-yt]').forEach(card=>{card.addEventListener('click',()=>{frame.src='https://www.youtube.com/embed/'+card.dataset.yt+'?autoplay=1&rel=0';modal.classList.add('open');document.body.style.overflow='hidden';});});
+closeBtn.addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>

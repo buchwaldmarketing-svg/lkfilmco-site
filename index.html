@@ -31,6 +31,7 @@
     <a href="/about">About</a>
     <a href="#contact" class="n-cta">Inquire</a>
   </div>
+  <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- HERO -->
@@ -54,34 +55,38 @@
       <h2>Recent Work</h2>
     </div>
     <div class="films-grid">
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div>
         <div class="fc-play"></div>
         <div class="fc-ov">
+          <span class="fc-tag">Highlight Film</span>
           <span class="fc-venue">The Hillside Estate · Dallas</span>
           <h3 class="fc-name">Meghan + Tyler</h3>
         </div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div>
         <div class="fc-play"></div>
         <div class="fc-ov">
+          <span class="fc-tag">Highlight Film</span>
           <span class="fc-venue">Dallas, TX</span>
           <h3 class="fc-name">Christy + Brian</h3>
         </div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div>
         <div class="fc-play"></div>
         <div class="fc-ov">
+          <span class="fc-tag">Highlight Film</span>
           <span class="fc-venue">Dallas, TX</span>
           <h3 class="fc-name">Emma + Bryce</h3>
         </div>
       </div>
-      <div class="fc rv">
+      <div class="fc rv" data-yt="djv3t_AvqGo">
         <div class="fc-bg"></div>
         <div class="fc-play"></div>
         <div class="fc-ov">
+          <span class="fc-tag">Highlight Film</span>
           <span class="fc-venue">Dallas, TX</span>
           <h3 class="fc-name">Demi + Keaton</h3>
         </div>
@@ -136,30 +141,31 @@
       <h2>Let's talk about your day.</h2>
       <p>Currently accepting 2025 + 2026 events. Fill out the form below, or get in touch directly.</p>
     </div>
-    <form class="c-form rv" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form class="c-form rv" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <div class="fr">
-        <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name" name="name"></div>
-        <div class="fg"><label>Partner's Name</label><input type="text" placeholder="Partner's name" name="partner"></div>
+        <div class="fg"><label for="c-name">Your Name</label><input id="c-name" type="text" placeholder="Full name" name="name" required></div>
+        <div class="fg"><label for="c-partner">Partner's Name</label><input id="c-partner" type="text" placeholder="Partner's name" name="partner"></div>
       </div>
       <div class="fr">
-        <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" name="email"></div>
-        <div class="fg"><label>Phone</label><input type="tel" placeholder="(555) 555-5555" name="phone"></div>
+        <div class="fg"><label for="c-email">Email</label><input id="c-email" type="email" placeholder="your@email.com" name="email" required></div>
+        <div class="fg"><label for="c-phone">Phone</label><input id="c-phone" type="tel" placeholder="(555) 555-5555" name="phone"></div>
       </div>
       <div class="fr">
-        <div class="fg"><label>Wedding Date</label><input type="text" placeholder="MM / DD / YYYY" name="date"></div>
-        <div class="fg"><label>Venue</label><input type="text" placeholder="Venue name & city"></div>
+        <div class="fg"><label for="c-date">Wedding Date</label><input id="c-date" type="date" name="date"></div>
+        <div class="fg"><label for="c-venue">Venue</label><input id="c-venue" type="text" placeholder="Venue name & city" name="venue"></div>
       </div>
       <div class="fr">
-        <div class="fg"><label>Estimated Guest Count</label><input type="text" placeholder="Approx. number" name="guests"></div>
-        <div class="fg"><label>How'd you find us?</label>
-          <select><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Wedding Planner</option><option>Venue Referral</option><option>Friend / Family</option><option>Other</option></select>
+        <div class="fg"><label for="c-guests">Estimated Guest Count</label><input id="c-guests" type="text" placeholder="Approx. number" name="guests"></div>
+        <div class="fg"><label for="c-source">How'd you find us?</label>
+          <select id="c-source" name="source"><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Wedding Planner</option><option>Venue Referral</option><option>Friend / Family</option><option>Other</option></select>
         </div>
       </div>
-      <div class="fg"><label>Tell me about your vision</label><textarea placeholder="The mood, the details, the moments that matter most to you."></textarea></div>
+      <div class="fg"><label for="c-message">Tell me about your vision</label><textarea id="c-message" name="message" placeholder="The mood, the details, the moments that matter most to you."></textarea></div>
       <button type="submit" class="c-sub">Check Availability</button>
+      <div class="form-msg" id="form-msg" aria-live="polite"></div>
     </form>
     <div class="c-info rv">
-      <p><a href="/cdn-cgi/l/email-protection#771518181c1e191004371b1c111e1b1a14185914181a"><span class="__cf_email__" data-cfemail="20424f4f4b494e4753604c4b46494c4d434f0e434f4d">[email&#160;protected]</span></a></p>
+      <p><a href="mailto:bookings@lkfilmco.com">bookings@lkfilmco.com</a></p>
       <p><a href="tel:2145774801">214-577-4801</a> · feel free to text</p>
     </div>
   </div>
@@ -190,10 +196,45 @@
   </div>
 </footer>
 
+<div class="modal-ov" id="yt-modal" role="dialog" aria-modal="true" aria-label="Film preview">
+  <button class="modal-close" id="yt-close" aria-label="Close film">&#215;</button>
+  <div class="modal-wrap">
+    <iframe id="yt-frame" src="" allow="autoplay;encrypted-media" allowfullscreen title="Wedding film"></iframe>
+  </div>
+</div>
+
 <script>
+// Loader
 addEventListener('load',()=>setTimeout(()=>document.getElementById('ld').classList.add('out'),700));
+
+// Scroll reveal
 const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:0.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// Hamburger
+const ham=document.querySelector('.n-ham');
+const nLinks=document.querySelector('.n-links');
+if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open)});}
+
+// Modal
+const modal=document.getElementById('yt-modal');
+const frame=document.getElementById('yt-frame');
+const closeBtn=document.getElementById('yt-close');
+function closeModal(){modal.classList.remove('open');frame.src='';document.body.style.overflow='';}
+if(modal){
+  document.querySelectorAll('.fc[data-yt]').forEach(card=>{card.addEventListener('click',()=>{frame.src='https://www.youtube.com/embed/'+card.dataset.yt+'?autoplay=1&rel=0';modal.classList.add('open');document.body.style.overflow='hidden';});});
+  closeBtn.addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+}
+
+// Select color shift
+document.querySelectorAll('.fg select').forEach(sel=>{sel.addEventListener('change',function(){this.classList.toggle('has-value',this.value!=='');});});
+
+// Form async submit
+const form=document.getElementById('contact-form');
+const msg=document.getElementById('form-msg');
+if(form&&msg){form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('.c-sub');btn.textContent='Sending...';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();msg.textContent="Got it \u2014 I'll be in touch within 24 hours.";msg.className='form-msg success';btn.textContent='Sent';}else{throw new Error();}}catch{msg.textContent='Something went wrong. Email me directly at bookings@lkfilmco.com';msg.className='form-msg error';btn.textContent='Check Availability';btn.disabled=false;}});}
 </script>
 </body>
 </html>

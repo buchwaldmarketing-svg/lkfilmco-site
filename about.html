@@ -20,6 +20,7 @@
     <a href="/about" style="color:var(--fg)">About</a>
     <a href="/contact" class="n-cta">Inquire</a>
   </div>
+  <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-spacer"></div>
@@ -40,6 +41,11 @@
     </div>
   </div>
 </section>
+
+<div class="mid-cta rv">
+  <p>Based in Dallas. Filming worldwide. Currently booking 2025 + 2026.</p>
+  <a href="/contact" class="btn btn-accent">Check My Availability</a>
+</div>
 
 <!-- What You Get -->
 <section style="background:var(--bg);padding:64px 20px">
@@ -77,6 +83,9 @@
 <script>
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}}),{threshold:.08});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const ham=document.querySelector('.n-ham');
+const nLinks=document.querySelector('.n-links');
+if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
 </script>
 </body>
 </html>
