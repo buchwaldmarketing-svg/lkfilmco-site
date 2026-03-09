@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inquire | LK Film Co. — Dallas Wedding Filmmaker</title>
+<meta name="description" content="Ready to book your Dallas wedding filmmaker? Fill out the form to check availability or contact Lee Kounas at bookings@lkfilmco.com.">
+<link rel="canonical" href="https://www.lkfilmco.com/contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="n-logo">LK Film Co.</a>
+  <div class="n-links">
+    <a href="/films">Films</a>
+    <a href="/about">About</a>
+    <a href="/contact" class="n-cta" style="border-color:var(--accent);color:var(--fg)">Inquire</a>
+  </div>
+</nav>
+
+<div class="page-spacer"></div>
+
+<section class="contact" style="background:var(--cream)">
+  <div class="inner">
+    <div class="c-top rv">
+      <span class="lbl">Inquire</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--fg2)">Let's talk about your day.</h2>
+      <p style="font-family:var(--sans);font-size:.78rem;color:var(--muted);font-weight:300;margin-top:12px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7">Currently accepting 2025 + 2026 events. Fill out the form below, or reach out directly at <a href="mailto:bookings@lkfilmco.com" style="color:var(--fg);border-bottom:1px solid var(--accent);text-decoration:none">bookings@lkfilmco.com</a></p>
+    </div>
+
+    <form class="c-form rv" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="fr">
+        <div class="fg"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required></div>
+        <div class="fg"><label>Partner's Name</label><input type="text" name="partner" placeholder="Partner's name"></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required></div>
+        <div class="fg"><label>Phone</label><input type="tel" name="phone" placeholder="(555) 555-5555"></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>Wedding Date</label><input type="text" name="date" placeholder="MM / DD / YYYY"></div>
+        <div class="fg"><label>Venue</label><input type="text" name="venue" placeholder="Venue name & city"></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>Estimated Guest Count</label><input type="text" name="guests" placeholder="Approx. number"></div>
+        <div class="fg"><label>How'd you find us?</label>
+          <select name="source"><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Wedding Planner</option><option>Venue Referral</option><option>Friend / Family</option><option>The Knot</option><option>Other</option></select>
+        </div>
+      </div>
+      <div class="fg"><label>Tell me about your vision</label><textarea name="message" placeholder="The mood, the details, the moments that matter most to you."></textarea></div>
+      <button type="submit" class="c-sub">Check Availability</button>
+    </form>
+
+    <div class="c-info rv">
+      <p><a href="mailto:bookings@lkfilmco.com">bookings@lkfilmco.com</a></p>
+      <p><a href="tel:2145774801">214-577-4801</a> · feel free to text</p>
+      <p style="margin-top:12px;color:var(--muted);font-size:.6rem;letter-spacing:.15em">DALLAS, TX · AVAILABLE WORLDWIDE</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-top">
+    <div class="f-brand"><h3>LK Film Co.</h3><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
+    <div class="f-col"><h4>Explore</h4><a href="/films">Films</a><a href="/about">About</a><a href="/contact">Contact</a></div>
+    <div class="f-col"><h4>Follow Along</h4><a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a></div>
+  </div>
+  <div class="f-bot"><span>© 2026 LK Film Co.</span><span>Dallas, TX · Available worldwide</span></div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

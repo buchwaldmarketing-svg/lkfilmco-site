@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wedding Films | LK Film Co. — Dallas Wedding Filmmaker</title>
+<meta name="description" content="Watch cinematic wedding films by Dallas filmmaker Lee Kounas. From The Hillside Estate to Hotel Crescent Court — authentic stories captured naturally.">
+<link rel="canonical" href="https://www.lkfilmco.com/films">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="n-logo">LK Film Co.</a>
+  <div class="n-links">
+    <a href="/films" style="color:var(--fg)">Films</a>
+    <a href="/about">About</a>
+    <a href="/contact" class="n-cta">Inquire</a>
+  </div>
+</nav>
+
+<div class="page-spacer"></div>
+
+<section class="films" style="background:var(--cream)">
+  <div class="inner">
+    <div class="films-head rv">
+      <span class="lbl">Portfolio</span>
+      <h2>Wedding Films</h2>
+      <p class="films-sub">Every film is a real story. No scripts. No direction. Just your day, as it happened.</p>
+    </div>
+    <div class="films-grid">
+      <div class="fc rv">
+        <div class="fc-bg"></div><div class="fc-play"></div>
+        <div class="fc-ov"><span class="fc-venue">The Hillside Estate · Dallas</span><h3 class="fc-name">Meghan + Tyler</h3></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-bg"></div><div class="fc-play"></div>
+        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Christy + Brian</h3></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-bg"></div><div class="fc-play"></div>
+        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Allison + Ross</h3></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-bg"></div><div class="fc-play"></div>
+        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Emma + Bryce</h3></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-bg"></div><div class="fc-play"></div>
+        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Demi + Keaton</h3></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-bg"></div><div class="fc-play"></div>
+        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Madeline + Brock</h3></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-bg"></div><div class="fc-play"></div>
+        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Hayden + Phage</h3></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-bg"></div><div class="fc-play"></div>
+        <div class="fc-ov"><span class="fc-venue">Dallas, TX</span><h3 class="fc-name">Kendall + Mitch</h3></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="rv">
+      <a href="/contact" class="btn btn-accent">Inquire About Your Date</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-top">
+    <div class="f-brand"><h3>LK Film Co.</h3><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
+    <div class="f-col"><h4>Explore</h4><a href="/films">Films</a><a href="/about">About</a><a href="/contact">Contact</a></div>
+    <div class="f-col"><h4>Follow Along</h4><a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a></div>
+  </div>
+  <div class="f-bot"><span>© 2026 LK Film Co.</span><span>Dallas, TX · Available worldwide</span></div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
