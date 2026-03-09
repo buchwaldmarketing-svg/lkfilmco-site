@@ -42,7 +42,8 @@ section{padding:64px 20px}
 /* HERO */
 .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--fg2)}
 .hero-vid{position:absolute;inset:0;z-index:1}
-.hero-vid iframe{width:100%;height:100%;border:none;pointer-events:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:177.78vh;min-height:56.25vw}
+#yt-hero{position:absolute;inset:0;pointer-events:none}
+.hero-vid iframe{width:100%;height:100%;border:none;pointer-events:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1.08);min-width:177.78vh;min-height:56.25vw}
 .hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(42,37,33,.15) 0%,rgba(42,37,33,.4) 100%);z-index:2}
 .hero-c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 20px 11vh;text-align:center}
 .hero h1{font-family:var(--serif);font-size:clamp(2.4rem,7vw,5rem);font-weight:300;color:var(--cream);line-height:1.08;opacity:0;animation:up .8s ease .4s forwards}

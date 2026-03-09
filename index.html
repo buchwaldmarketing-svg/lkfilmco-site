@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
 
@@ -37,7 +38,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-vid">
-    <iframe src="https://www.youtube.com/embed/djv3t_AvqGo?autoplay=1&mute=1&loop=1&playlist=djv3t_AvqGo&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&vq=hd1080" allow="autoplay;encrypted-media" allowfullscreen loading="lazy" title="LK Film Co. Wedding Reel"></iframe>
+    <div id="yt-hero"></div>
   </div>
   <div class="hero-ov"></div>
   <div class="hero-c">
@@ -92,7 +93,6 @@
         </div>
       </div>
     </div>
-    <div class="films-more rv"><a href="/films">View All Films →</a></div>
   </div>
 </section>
 
@@ -118,7 +118,7 @@
         <h2>Lee Kounas.<br><em>Your shadow on the day.</em></h2>
         <p>I get what I need without you being forced into anything. No awkward poses. No interruptions. Just a quiet presence capturing what's real.</p>
         <p>Couples always say it felt like <strong>me and the photographer were an actual team</strong> instead of separate. That's by design.</p>
-        <p>Trusted by planners like <strong>Weddings by Yuri</strong> and <strong>Each and Every Detail</strong>. Filming since 2020.</p>
+        <p>Filming since 2020.</p>
         <a href="/about" class="tl">More about Lee</a>
       </div>
     </div>
@@ -128,7 +128,7 @@
 <!-- INVESTMENT -->
 <section class="invest rv">
   <span class="lbl">Investment</span>
-  <h2>Collections begin at $3,500</h2>
+  <h2>Collections begin at $2,500</h2>
   <p>Custom proposals for every couple.</p>
   <a href="#contact" class="btn btn-accent">Request Pricing Guide</a>
 </section>
@@ -159,6 +159,9 @@
         <div class="fg"><label for="c-source">How'd you find us?</label>
           <select id="c-source" name="source"><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Wedding Planner</option><option>Venue Referral</option><option>Friend / Family</option><option>Other</option></select>
         </div>
+      </div>
+      <div class="fg"><label for="c-budget">Estimated Budget</label>
+        <select id="c-budget" name="budget"><option value="">Select a range</option><option>$2,500 – $3,500</option><option>$3,500 – $5,000</option><option>$5,000 – $7,500</option><option>$7,500+</option></select>
       </div>
       <div class="fg"><label for="c-message">Tell me about your vision</label><textarea id="c-message" name="message" placeholder="The mood, the details, the moments that matter most to you."></textarea></div>
       <button type="submit" class="c-sub">Check Availability</button>
@@ -206,6 +209,12 @@
 <script>
 // Loader
 addEventListener('load',()=>setTimeout(()=>document.getElementById('ld').classList.add('out'),700));
+
+// Hero video — loops first 18 seconds
+var ytHero;
+function onYouTubeIframeAPIReady(){
+  ytHero=new YT.Player('yt-hero',{videoId:'djv3t_AvqGo',playerVars:{autoplay:1,mute:1,controls:0,showinfo:0,rel:0,modestbranding:1,playsinline:1,iv_load_policy:3,end:18},events:{onReady:function(e){e.target.playVideo();},onStateChange:function(e){if(e.data===YT.PlayerState.ENDED){ytHero.seekTo(0);ytHero.playVideo();}}}});
+}
 
 // Scroll reveal
 const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:0.12});
