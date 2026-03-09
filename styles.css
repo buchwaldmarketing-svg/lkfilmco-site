@@ -92,7 +92,6 @@ section{padding:64px 20px}
 .about-wrap{display:grid;gap:36px;align-items:center}
 @media(min-width:680px){.about-wrap{grid-template-columns:5fr 7fr;gap:48px}}
 .about-img{aspect-ratio:3/4;background:var(--latte);position:relative;max-height:400px}
-.about-img::after{content:'L K';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:3rem;letter-spacing:.5em;color:var(--accent);opacity:.35;font-weight:300}
 .about-txt h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:300;line-height:1.25;margin-bottom:14px;color:var(--fg2)}
 .about-txt h2 em{font-style:italic}
 .about-txt p{font-family:var(--sans);font-size:.8rem;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:10px;max-width:440px}
