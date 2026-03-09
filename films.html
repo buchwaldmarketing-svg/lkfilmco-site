@@ -34,7 +34,7 @@
       <p class="films-sub">Every film is a real story. No scripts. No direction. Just your day, as it happened.</p>
     </div>
     <div class="films-grid">
-      <div class="fc rv" data-yt="djv3t_AvqGo">
+      <div class="fc rv" data-yt="hz5DnoWlTeI">
         <div class="fc-bg"></div><div class="fc-play"></div>
         <div class="fc-ov"><span class="fc-tag">Highlight Film</span><span class="fc-venue">The Hillside Estate · Dallas</span><h3 class="fc-name">Meghan + Tyler</h3></div>
       </div>
@@ -96,6 +96,12 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
+
+// Auto-set YouTube thumbnails as card backgrounds
+document.querySelectorAll('.fc[data-yt]').forEach(card=>{
+  const bg=card.querySelector('.fc-bg');
+  if(bg)bg.style.backgroundImage='url(https://img.youtube.com/vi/'+card.dataset.yt+'/maxresdefault.jpg)';
+});
 
 const modal=document.getElementById('yt-modal');
 const frame=document.getElementById('yt-frame');

@@ -56,7 +56,7 @@
       <h2>Recent Work</h2>
     </div>
     <div class="films-grid">
-      <div class="fc rv" data-yt="djv3t_AvqGo">
+      <div class="fc rv" data-yt="hz5DnoWlTeI">
         <div class="fc-bg"></div>
         <div class="fc-play"></div>
         <div class="fc-ov">
@@ -236,6 +236,12 @@ if(modal){
   modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 }
+
+// Auto-set YouTube thumbnails as card backgrounds
+document.querySelectorAll('.fc[data-yt]').forEach(card=>{
+  const bg=card.querySelector('.fc-bg');
+  if(bg)bg.style.backgroundImage='url(https://img.youtube.com/vi/'+card.dataset.yt+'/maxresdefault.jpg)';
+});
 
 // Select color shift
 document.querySelectorAll('.fg select').forEach(sel=>{sel.addEventListener('change',function(){this.classList.toggle('has-value',this.value!=='');});});
