@@ -46,8 +46,7 @@ section{padding:64px 20px}
 #yt-hero iframe{position:absolute !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important;border:none !important;pointer-events:none !important}
 .hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(42,37,33,.15) 0%,rgba(42,37,33,.4) 100%);z-index:2}
 .hero-c{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 20px 11vh;text-align:center}
-.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,7vw,5rem);font-weight:300;color:var(--cream);line-height:1.08;opacity:0;animation:up .8s ease .4s forwards}
-.hero h1 em{font-style:italic}
+.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,7vw,5rem);font-weight:300;color:var(--cream);line-height:1.08;letter-spacing:.12em;opacity:0;animation:up .8s ease .4s forwards}
 .hero-sub{font-family:var(--sans);font-size:.6rem;color:rgba(253,251,248,.45);letter-spacing:.22em;text-transform:uppercase;font-weight:300;margin-top:14px;opacity:0;animation:up .7s ease .7s forwards}
 .hero-btn{margin-top:24px;opacity:0;animation:up .7s ease .9s forwards}
 .hero-btn a{font-family:var(--sans);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);text-decoration:none;font-weight:300;padding:11px 30px;border:1px solid rgba(194,171,142,.5);transition:.3s}
