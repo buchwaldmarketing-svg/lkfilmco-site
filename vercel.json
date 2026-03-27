@@ -3,6 +3,10 @@
     { "source": "/films", "destination": "/films.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/pricing", "destination": "/pricing.html" }
+    { "source": "/pricing", "destination": "/pricing.html" },
+    { "source": "/faq", "destination": "/faq.html" },
+    { "source": "/journal", "destination": "/journal.html" },
+    { "source": "/venues", "destination": "/venues/index.html" },
+    { "source": "/venues/hillside-estate-dallas", "destination": "/venues/hillside-estate-dallas.html" }
   ]
 }
