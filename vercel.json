@@ -7,6 +7,7 @@
     { "source": "/faq", "destination": "/faq.html" },
     { "source": "/journal", "destination": "/journal.html" },
     { "source": "/venues", "destination": "/venues/index.html" },
-    { "source": "/venues/hillside-estate-dallas", "destination": "/venues/hillside-estate-dallas.html" }
+    { "source": "/venues/hillside-estate-dallas", "destination": "/venues/hillside-estate-dallas.html" },
+    { "source": "/investment", "destination": "/investment.html" }
   ]
 }
