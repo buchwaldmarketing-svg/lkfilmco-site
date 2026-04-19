@@ -21,11 +21,36 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','250305885896733');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=250305885896733&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+<style>
+  .promo-bar{position:fixed;top:0;left:0;right:0;z-index:101;background:#1A1714;color:#FDFBF8;padding:10px 40px 10px 20px;text-align:center;font-family:'Karla',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:300}
+  .promo-bar a{color:#C2AB8E;text-decoration:none;border-bottom:1px solid #C2AB8E;padding-bottom:1px;margin-left:8px;font-weight:500}
+  .promo-bar a:hover{color:#FDFBF8;border-color:#FDFBF8}
+  .promo-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(253,251,248,.5);font-size:.9rem;cursor:pointer;padding:4px 8px;line-height:1}
+  .promo-close:hover{color:#FDFBF8}
+  body.promo-visible nav{top:38px}
+  body.promo-visible .hero{padding-top:38px}
+  @media(max-width:600px){.promo-bar{font-size:.58rem;letter-spacing:.1em;padding:8px 34px 8px 14px}}
+  .hero-cred{position:absolute;bottom:3vh;left:0;right:0;text-align:center;z-index:4;font-family:'Karla',sans-serif;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(253,251,248,.55);font-weight:300;padding:0 20px}
+  .hero-cred span{color:#C2AB8E}
+</style>
 <script src="https://www.youtube.com/iframe_api"></script>
 </head>
-<body>
+<body class="promo-visible">
 
 <div class="ld" id="ld"><span>LK Film Co.</span></div>
+
+<!-- PROMO BAR -->
+<div class="promo-bar" id="promo-bar">
+  $1,500 wedding films · only 5 dates left for 2026<a href="/special">See the offer →</a>
+  <button class="promo-close" id="promo-close" aria-label="Close">×</button>
+</div>
 
 <!-- NAV — Films, About, Contact are clickable pages -->
 <nav>
@@ -49,8 +74,9 @@
   <div class="hero-c">
     <h1>YOUR STORY,<br>IN MOTION.</h1>
     <p class="hero-sub">Dallas Wedding Filmmaker</p>
-    <div class="hero-btn"><a href="#contact">Check Availability</a></div>
+    <div class="hero-btn"><a href="#contact">Check My Date</a></div>
   </div>
+  <div class="hero-cred"><span>◆</span> Filming Since 2020 &nbsp; <span>◆</span> Dallas–Fort Worth &nbsp; <span>◆</span> Booking 2026 + 2027</div>
 </section>
 
 <!-- APPROACH -->
@@ -259,6 +285,12 @@ if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('op
 
 // Select color shift
 document.querySelectorAll('.fg select').forEach(sel=>{sel.addEventListener('change',function(){this.classList.toggle('has-value',this.value!=='');});});
+
+// Promo bar dismiss
+const promoBar=document.getElementById('promo-bar');
+const promoClose=document.getElementById('promo-close');
+if(sessionStorage.getItem('promoClosed')==='1'){document.body.classList.remove('promo-visible');if(promoBar)promoBar.style.display='none';}
+if(promoClose){promoClose.addEventListener('click',()=>{document.body.classList.remove('promo-visible');promoBar.style.display='none';sessionStorage.setItem('promoClosed','1');});}
 
 // Form async submit
 const form=document.getElementById('contact-form');
