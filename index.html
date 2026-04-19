@@ -39,6 +39,11 @@ fbq('init','250305885896733');fbq('track','PageView');
   @media(max-width:600px){.promo-bar{font-size:.58rem;letter-spacing:.1em;padding:8px 34px 8px 14px}}
   .hero-cred{position:absolute;bottom:3vh;left:0;right:0;text-align:center;z-index:4;font-family:'Karla',sans-serif;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(253,251,248,.55);font-weight:300;padding:0 20px}
   .hero-cred span{color:#C2AB8E}
+  #yt-hero{opacity:0;transition:opacity .8s ease}
+  #yt-hero.playing{opacity:1}
+  .hero-vid::before{content:'';position:absolute;inset:0;background:#1A1714;z-index:1}
+  .hero-vid{z-index:1}
+  #yt-hero{z-index:2}
 </style>
 <script src="https://www.youtube.com/iframe_api"></script>
 </head>
@@ -268,10 +273,10 @@ fbq('init','250305885896733');fbq('track','PageView');
 // Loader
 addEventListener('load',()=>setTimeout(()=>document.getElementById('ld').classList.add('out'),700));
 
-// Hero video — loops first 18 seconds
+// Hero video — loops first 18 seconds, fades in on play to hide YT chrome
 var ytHero;
 function onYouTubeIframeAPIReady(){
-  ytHero=new YT.Player('yt-hero',{videoId:'djv3t_AvqGo',playerVars:{autoplay:1,mute:1,controls:0,showinfo:0,rel:0,modestbranding:1,playsinline:1,iv_load_policy:3,end:18},events:{onReady:function(e){e.target.playVideo();},onStateChange:function(e){if(e.data===YT.PlayerState.ENDED){ytHero.seekTo(0);ytHero.playVideo();}}}});
+  ytHero=new YT.Player('yt-hero',{videoId:'djv3t_AvqGo',playerVars:{autoplay:1,mute:1,controls:0,showinfo:0,rel:0,modestbranding:1,playsinline:1,iv_load_policy:3,disablekb:1,fs:0,cc_load_policy:0,end:18},events:{onReady:function(e){e.target.setPlaybackQuality('hd1080');e.target.playVideo();},onStateChange:function(e){if(e.data===YT.PlayerState.PLAYING){document.getElementById('yt-hero').classList.add('playing');ytHero.setPlaybackQuality('hd1080');}if(e.data===YT.PlayerState.ENDED){ytHero.seekTo(0);ytHero.playVideo();}}}});
 }
 
 // Scroll reveal
