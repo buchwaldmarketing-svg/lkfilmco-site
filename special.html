@@ -28,8 +28,9 @@ fbq('track','ViewContent',{content_name:'$1,500 Special Landing Page',content_ca
   @media(min-width:768px){.sp-nav{padding:20px 40px}}
   .sp-nav a{font-family:var(--serif);font-size:.9rem;letter-spacing:.25em;color:var(--fg2);text-decoration:none;font-weight:400;text-transform:uppercase}
 
-  .sp-hero{position:relative;min-height:88svh;overflow:hidden;background:linear-gradient(180deg,#1A1714 0%,#2E2924 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px}
-  .sp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(194,171,142,.08) 0%,transparent 70%);z-index:1}
+  .sp-hero{position:relative;min-height:88svh;overflow:hidden;background:#1A1714;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px}
+  .sp-hero-mp4{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;display:block}
+  .sp-hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,23,20,.55) 0%,rgba(26,23,20,.75) 100%);z-index:2}
   .sp-hero-c{position:relative;z-index:3;max-width:760px}
   .sp-badge{display:inline-block;font-family:var(--sans);font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);font-weight:400;margin-bottom:26px;padding:7px 16px;border:1px solid rgba(194,171,142,.5)}
   .sp-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,6vw,4.4rem);font-weight:300;color:var(--cream);line-height:1.1;letter-spacing:.04em;margin-bottom:18px}
@@ -127,6 +128,10 @@ fbq('track','ViewContent',{content_name:'$1,500 Special Landing Page',content_ca
 </nav>
 
 <section class="sp-hero">
+  <video class="sp-hero-mp4" id="sp-hero-mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture poster="/special-hero-poster.jpg">
+    <source src="/special-hero.mp4" type="video/mp4">
+  </video>
+  <div class="sp-hero-ov"></div>
   <div class="sp-hero-c">
     <span class="sp-badge">Only 5 Dates Left — 2026</span>
     <h1>A wedding film you'll<br><em>watch forever.</em></h1>
@@ -258,6 +263,10 @@ fbq('track','ViewContent',{content_name:'$1,500 Special Landing Page',content_ca
 <script>
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}}),{threshold:.08});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// Force hero video autoplay (iOS Safari)
+const spHeroVid=document.getElementById('sp-hero-mp4');
+if(spHeroVid){spHeroVid.muted=true;spHeroVid.setAttribute('muted','');spHeroVid.playsInline=true;const tryPlay=()=>spHeroVid.play().catch(()=>{});tryPlay();document.addEventListener('touchstart',tryPlay,{once:true,passive:true});document.addEventListener('click',tryPlay,{once:true});}
 
 const form=document.getElementById('contact-form');
 const msg=document.getElementById('form-msg');
