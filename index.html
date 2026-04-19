@@ -28,7 +28,6 @@ fbq('init','250305885896733');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=250305885896733&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel -->
-<link rel="preload" as="video" href="/hero.mp4" type="video/mp4">
 <style>
   .promo-bar{position:fixed;top:0;left:0;right:0;z-index:101;background:#1A1714;color:#FDFBF8;padding:10px 40px 10px 20px;text-align:center;font-family:'Karla',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:300}
   .promo-bar a{color:#C2AB8E;text-decoration:none;border-bottom:1px solid #C2AB8E;padding-bottom:1px;margin-left:8px;font-weight:500}
@@ -70,7 +69,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 <!-- HERO -->
 <section class="hero">
   <div class="hero-vid">
-    <video class="hero-mp4" id="hero-mp4" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture poster="/hero-poster.jpg">
+    <video class="hero-mp4" id="hero-mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture poster="/hero-poster.jpg">
       <source src="/hero.mp4" type="video/mp4">
     </video>
   </div>
@@ -269,8 +268,10 @@ fbq('init','250305885896733');fbq('track','PageView');
 </footer>
 
 <script>
-// Loader
-addEventListener('load',()=>setTimeout(()=>document.getElementById('ld').classList.add('out'),700));
+// Loader — fade out on DOMContentLoaded, don't wait for video
+const hideLoader=()=>{const ld=document.getElementById('ld');if(ld)ld.classList.add('out');};
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>setTimeout(hideLoader,400));}else{setTimeout(hideLoader,400);}
+setTimeout(hideLoader,2000); // hard fallback
 
 // Force hero video to play (iOS Safari autoplay fix)
 const heroVid=document.getElementById('hero-mp4');
