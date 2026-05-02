@@ -25,15 +25,23 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.lkfilmco.com/venues</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.lkfilmco.com/venues/hillside-estate-dallas</loc>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lkfilmco.com/journal</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lkfilmco.com/journal/wedding-videographer-cost-dallas</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lkfilmco.com/journal/what-to-look-for-dallas-wedding-videographer</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lkfilmco.com/journal/meghan-tyler-hillside-estate</loc>
     <priority>0.6</priority>
   </url>
 </urlset>
