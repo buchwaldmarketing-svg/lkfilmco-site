@@ -29,7 +29,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 20px;display:fl
 .n-links a:hover{color:var(--fg)}
 .n-links .n-cta{color:var(--fg2);padding:8px 20px;border:1px solid var(--latte);transition:all .3s}
 .n-links .n-cta:hover{background:var(--accent);border-color:var(--accent);color:#fff}
-@media(max-width:600px){.n-links a:not(.n-cta){display:none}}
+.n-links .n-ig{display:flex;align-items:center;color:var(--muted);padding:0}
+.n-links .n-ig:hover{color:var(--fg)}
+@media(max-width:600px){.n-links a:not(.n-cta):not(.n-ig){display:none}.n-links{gap:18px}}
 
 .page-spacer{height:64px}
 
