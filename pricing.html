@@ -43,6 +43,8 @@ fbq('init','250305885896733');fbq('track','PageView');
 .p-hero h1{font-family:var(--serif);font-size:clamp(2.6rem,6vw,4rem);font-weight:300;color:var(--fg2);line-height:1.12;margin-bottom:16px}
 .p-hero h1 em{font-style:italic}
 .p-hero p{font-family:var(--sans);font-size:.92rem;color:var(--muted);font-weight:300;line-height:1.8;max-width:540px;margin:0 auto}
+.p-hero-vid{max-width:380px;margin:40px auto 0;aspect-ratio:9/16;background:var(--latte);overflow:hidden;box-shadow:0 14px 40px rgba(42,37,33,.14)}
+.p-hero-vid video{width:100%;height:100%;object-fit:cover;display:block}
 
 /* PACKAGES */
 .packages{background:var(--cream);padding:64px 20px}
@@ -129,6 +131,11 @@ fbq('init','250305885896733');fbq('track','PageView');
     <span class="lbl">Investment</span>
     <h1>Just the moments<br><em>that matter.</em></h1>
     <p>Three ways to film your day. Same care, same eye, same delivery. Just different coverage.</p>
+    <div class="p-hero-vid">
+      <video autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture poster="/pricing-hero-poster.jpg">
+        <source src="/pricing-hero.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
 </section>
 
