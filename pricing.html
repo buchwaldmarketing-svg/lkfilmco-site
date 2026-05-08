@@ -38,8 +38,8 @@ fbq('init','250305885896733');fbq('track','PageView');
 </script>
 <style>
 /* PRICING PAGE */
-.p-hero{text-align:center;padding:120px 20px 64px;background:var(--bg)}
-@media(min-width:768px){.p-hero{padding:140px 40px 80px}}
+.p-hero{text-align:center;padding:120px 20px 40px;background:var(--bg)}
+@media(min-width:768px){.p-hero{padding:140px 40px 56px}}
 .p-hero h1{font-family:var(--serif);font-size:clamp(2.6rem,6vw,4rem);font-weight:300;color:var(--fg2);line-height:1.12;margin-bottom:16px}
 .p-hero h1 em{font-style:italic}
 .p-hero p{font-family:var(--sans);font-size:.92rem;color:var(--muted);font-weight:300;line-height:1.8;max-width:540px;margin:0 auto}
@@ -48,8 +48,9 @@ fbq('init','250305885896733');fbq('track','PageView');
 .p-hero-vid video{width:100%;height:100%;object-fit:cover;display:block}
 
 /* PACKAGES */
-.packages{background:var(--cream);padding:64px 20px}
-@media(min-width:768px){.packages{padding:96px 40px}}
+.packages{background:var(--cream);padding:48px 20px 64px}
+@media(min-width:768px){.packages{padding:64px 40px 96px}}
+.pkg-intro{max-width:620px;margin:0 auto 32px;text-align:center}
 .pkg-grid{max-width:1020px;margin:0 auto;display:grid;gap:24px}
 @media(min-width:720px){.pkg-grid{grid-template-columns:1fr 1fr 1fr;gap:20px}}
 .pkg{background:var(--bg);border:1px solid var(--warm);padding:36px 28px;display:flex;flex-direction:column}
@@ -142,6 +143,9 @@ fbq('init','250305885896733');fbq('track','PageView');
 
 <!-- PACKAGES -->
 <section class="packages">
+  <div class="pkg-intro rv">
+    <span class="lbl">Pick Yours</span>
+  </div>
   <div class="pkg-grid">
 
     <div class="pkg rv">
