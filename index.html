@@ -19,7 +19,7 @@
 <link rel="alternate icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#1A1714">
+<meta name="theme-color" content="#4A3B30">
 <meta property="og:title" content="Dallas Wedding Filmmaker | Cinematic Wedding Films | LK Film Co.">
 <meta property="og:description" content="Cinematic, documentary-style wedding films in Dallas, TX. Currently booking 2026 + 2027.">
 <meta property="og:type" content="website">
@@ -44,8 +44,8 @@ fbq('init','250305885896733');fbq('track','PageView');
 <!-- End Meta Pixel -->
 <style>
   .hero-cred{position:absolute;bottom:3vh;left:0;right:0;text-align:center;z-index:4;font-family:'Karla',sans-serif;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(253,251,248,.55);font-weight:300;padding:0 20px}
-  .hero-cred span{color:#C2AB8E}
-  .hero-vid{background:#1A1714}
+  .hero-cred span{color:#E4DED4}
+  .hero-vid{background:#000}
   .hero-mp4{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 </style>
 </head>
@@ -54,7 +54,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 <div class="ld" id="ld"><span>LK Film Co.</span></div>
 
 <!-- NAV — Films, About, Contact are clickable pages -->
-<nav>
+<nav class="n-clear" id="site-nav">
   <a href="/" class="n-logo">LK Film Co.</a>
   <div class="n-links">
     <a href="/films">Films</a>
@@ -111,9 +111,13 @@ fbq('init','250305885896733');fbq('track','PageView');
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
-<section class="test rv">
-  <div class="inner">
+<!-- TESTIMONIAL — full-bleed cinematic -->
+<section class="test">
+  <video class="test-vid" id="test-vid" autoplay muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture poster="/pricing-hero-poster.jpg">
+    <source data-src="/pricing-hero.mp4" type="video/mp4">
+  </video>
+  <div class="test-ov"></div>
+  <div class="inner test-c rv">
     <span class="lbl" style="text-align:center;display:block">Kind Words</span>
     <p class="test-q">"We just watched it like five times. It's so good. Love it. Thank you so much!!"</p>
     <span class="test-a">Christy + Brian</span>
@@ -182,6 +186,14 @@ fbq('init','250305885896733');fbq('track','PageView');
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="st-inner rv">
+    <p class="st-kicker">A photo holds the moment.</p>
+    <h2 class="st-line">A film holds <em>the feeling.</em></h2>
   </div>
 </section>
 
@@ -271,6 +283,19 @@ setTimeout(hideLoader,2000); // hard fallback
 // Force hero video to play (iOS Safari autoplay fix)
 const heroVid=document.getElementById('hero-mp4');
 if(heroVid){heroVid.muted=true;heroVid.setAttribute('muted','');heroVid.playsInline=true;const tryPlay=()=>heroVid.play().catch(()=>{});tryPlay();document.addEventListener('touchstart',tryPlay,{once:true,passive:true});document.addEventListener('click',tryPlay,{once:true});}
+
+// Transparent nav over hero — solidify after scrolling past the hero
+const siteNav=document.getElementById('site-nav');
+const heroSec=document.querySelector('.hero');
+if(siteNav&&heroSec){
+  const navToggle=()=>{siteNav.classList.toggle('n-clear',window.scrollY<heroSec.offsetHeight-70);};
+  window.addEventListener('scroll',navToggle,{passive:true});
+  navToggle();
+}
+
+// Lazy-load testimonial video when it nears the viewport
+const testVid=document.getElementById('test-vid');
+if(testVid){const tio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const s=testVid.querySelector('source');if(s&&!s.src){s.src=s.dataset.src;testVid.load();testVid.play().catch(()=>{});}tio.disconnect();}})},{rootMargin:'600px'});tio.observe(testVid);}
 
 // Scroll reveal
 const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:0.12});
