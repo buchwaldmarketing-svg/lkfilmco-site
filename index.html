@@ -293,9 +293,14 @@ if(siteNav&&heroSec){
   navToggle();
 }
 
-// Lazy-load testimonial video when it nears the viewport
+// Lazy-load testimonial video when it nears the viewport (muted before play for iOS)
 const testVid=document.getElementById('test-vid');
-if(testVid){const tio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const s=testVid.querySelector('source');if(s&&!s.src){s.src=s.dataset.src;testVid.load();testVid.play().catch(()=>{});}tio.disconnect();}})},{rootMargin:'600px'});tio.observe(testVid);}
+if(testVid){
+  const startTest=()=>{testVid.muted=true;testVid.playsInline=true;testVid.play().catch(()=>{});};
+  const tio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const s=testVid.querySelector('source');if(s&&!s.src){s.src=s.dataset.src;testVid.load();startTest();}tio.disconnect();}})},{rootMargin:'600px'});
+  tio.observe(testVid);
+  document.addEventListener('touchstart',()=>{const s=testVid.querySelector('source');if(s&&s.src&&testVid.paused)startTest();},{passive:true});
+}
 
 // Scroll reveal
 const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:0.12});

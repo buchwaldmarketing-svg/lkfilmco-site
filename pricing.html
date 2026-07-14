@@ -385,6 +385,9 @@ fbq('init','250305885896733');fbq('track','PageView');
 </footer>
 
 <script>
+// Force background videos to autoplay (iOS Safari / Low Power Mode fix)
+document.querySelectorAll('video[autoplay]').forEach(v=>{v.muted=true;v.setAttribute('muted','');v.playsInline=true;const p=()=>v.play().catch(()=>{});p();document.addEventListener('touchstart',p,{once:true,passive:true});document.addEventListener('click',p,{once:true});});
+
 // Scroll reveal
 const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:0.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
