@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/1500", "destination": "/1500.html" },
     { "source": "/films", "destination": "/films.html" },

@@ -78,7 +78,7 @@ section{padding:64px 20px}
 /* FILMS */
 .films{background:var(--cream)}
 .films-head{text-align:center;margin-bottom:36px}
-.films-head h2{font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:300;color:var(--fg2);margin-top:4px}
+.films-head h1,.films-head h2{font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:300;color:var(--fg2);margin-top:4px}
 .films-sub{font-family:var(--serif);font-size:1.05rem;color:var(--muted);font-weight:400;margin-top:8px;max-width:400px;margin-left:auto;margin-right:auto}
 .films-grid{display:grid;gap:28px}
 @media(min-width:520px){.films-grid{grid-template-columns:1fr 1fr;gap:28px}}
@@ -116,8 +116,8 @@ section{padding:64px 20px}
 .about-wrap{display:grid;gap:36px;align-items:center}
 @media(min-width:680px){.about-wrap{grid-template-columns:5fr 7fr;gap:48px}}
 .about-img{aspect-ratio:3/4;background:var(--latte);position:relative;max-height:400px}
-.about-txt h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:300;line-height:1.25;margin-bottom:14px;color:var(--fg2)}
-.about-txt h2 em{font-style:italic}
+.about-txt h1,.about-txt h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:300;line-height:1.25;margin-bottom:14px;color:var(--fg2)}
+.about-txt h1 em,.about-txt h2 em{font-style:italic}
 .about-txt p{font-family:var(--serif);font-size:1.12rem;line-height:1.85;color:var(--muted);font-weight:400;margin-bottom:10px;max-width:460px}
 .about-txt strong{color:var(--fg);font-weight:400}
 .tl{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg);text-decoration:none;font-weight:400;margin-top:10px;transition:gap .3s}
@@ -140,7 +140,7 @@ section{padding:64px 20px}
 /* CONTACT */
 .contact{background:var(--cream)}
 .c-top{text-align:center;margin-bottom:40px}
-.c-top h2{font-family:var(--sans);font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;font-weight:300;color:var(--fg2);margin-top:8px;margin-bottom:10px}
+.c-top h1,.c-top h2{font-family:var(--sans);font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;font-weight:300;color:var(--fg2);margin-top:8px;margin-bottom:10px}
 .c-top p{font-family:var(--serif);font-size:1.12rem;color:var(--muted);font-weight:400;line-height:1.85}
 .c-form{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:18px}
