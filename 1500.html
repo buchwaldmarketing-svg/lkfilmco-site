@@ -246,6 +246,8 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open)});}
+
+document.querySelectorAll('a.btn-accent, a.n-cta').forEach(a=>a.addEventListener('click',()=>{if(window.fbq)fbq('track','Contact',{content_name:document.title});if(window.gtag)gtag('event','cta_click',{link_text:a.textContent.trim()});}));
 </script>
 </body>
 </html>

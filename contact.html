@@ -124,7 +124,7 @@ document.querySelectorAll('.fg select').forEach(sel=>{sel.addEventListener('chan
 
 const form=document.getElementById('contact-form');
 const msg=document.getElementById('form-msg');
-if(form&&msg){form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('.c-sub');btn.textContent='Sending...';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();msg.textContent="Got it \u2014 I'll be in touch within 24 hours.";msg.className='form-msg success';btn.textContent='Sent';}else{throw new Error();}}catch{msg.textContent='Something went wrong. Email me directly at bookings@lkfilmco.com';msg.className='form-msg error';btn.textContent='Check Availability';btn.disabled=false;}});}
+if(form&&msg){form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('.c-sub');btn.textContent='Sending...';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();if(window.fbq)fbq('track','Lead',{content_name:'Contact Form'});if(window.gtag)gtag('event','generate_lead',{method:'contact_form'});msg.textContent="Got it. I'll be in touch within 24 hours.";msg.className='form-msg success';btn.textContent='Sent';}else{throw new Error();}}catch{msg.textContent='Something went wrong. Email me directly at bookings@lkfilmco.com';msg.className='form-msg error';btn.textContent='Check Availability';btn.disabled=false;}});}
 </script>
 </body>
 </html>
