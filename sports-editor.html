@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sports Photo Editor | LK Film Co.</title>
+<meta name="description" content="Browser-based sports photo editor. Tone, color, crop to social sizes, scorebar and player-card overlays. Everything stays on your device.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#17161A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#17161A;
+  --panel:#1E1D22;
+  --panel2:#26252B;
+  --line:#33323A;
+  --fg:#EDEBE7;
+  --muted:#9A968F;
+  --accent:#C2A27A;
+  --accent2:#E8DCC9;
+  --danger:#D2725E;
+  --serif:'Cormorant',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --rail:288px;
+}
+html,body{height:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--fg);font-size:14px;
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+  overscroll-behavior:none;
+}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{background:none;border:none;cursor:pointer}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#3A3942;border-radius:6px;border:3px solid var(--panel)}
+::-webkit-scrollbar-track{background:var(--panel)}
+
+/* ---------- SHELL ---------- */
+.app{display:grid;grid-template-rows:auto 1fr;height:100%}
+.bar{
+  display:flex;align-items:center;gap:14px;padding:0 16px;height:54px;
+  background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:nowrap
+}
+.brand{font-family:var(--serif);font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent2);white-space:nowrap}
+.brand em{font-style:normal;color:var(--muted)}
+.bar-sp{flex:1}
+.filename{
+  font-size:.68rem;letter-spacing:.08em;color:var(--muted);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:32vw
+}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1px solid var(--line);
+  border-radius:2px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg);background:var(--panel2);transition:background .2s,border-color .2s,color .2s;white-space:nowrap
+}
+.btn:hover:not(:disabled){background:#313037;border-color:#474651}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-p{background:var(--accent);border-color:var(--accent);color:#22201C;font-weight:600}
+.btn-p:hover:not(:disabled){background:var(--accent2);border-color:var(--accent2)}
+.btn-i{padding:8px 10px}
+.btn svg{width:13px;height:13px;flex:none}
+.btn .m{display:none}
+
+.main{display:grid;grid-template-columns:112px 1fr var(--rail);min-height:0}
+
+/* ---------- FILMSTRIP ---------- */
+.strip{
+  background:var(--panel);border-right:1px solid var(--line);
+  overflow-y:auto;overflow-x:hidden;padding:10px;display:flex;flex-direction:column;gap:10px
+}
+.thumb{
+  position:relative;width:100%;aspect-ratio:1;border:1px solid var(--line);border-radius:2px;
+  overflow:hidden;background:#0E0D10;cursor:pointer;flex:none;transition:border-color .2s
+}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.thumb .n{
+  position:absolute;top:3px;left:4px;font-size:.55rem;color:var(--fg);
+  background:rgba(10,9,12,.7);padding:1px 5px;border-radius:2px;letter-spacing:.06em
+}
+.thumb .x{
+  position:absolute;top:2px;right:2px;width:20px;height:20px;line-height:18px;text-align:center;
+  background:rgba(10,9,12,.72);color:var(--muted);font-size:15px;border-radius:2px;opacity:0;transition:opacity .2s
+}
+.thumb:hover .x{opacity:1}
+.thumb .x:hover{color:var(--danger)}
+.thumb .edited{position:absolute;bottom:3px;right:4px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.strip-add{
+  flex:none;border:1px dashed var(--line);border-radius:2px;color:var(--muted);padding:14px 4px;
+  font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s
+}
+.strip-add:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- STAGE ---------- */
+.stage{position:relative;min-width:0;display:flex;align-items:center;justify-content:center;padding:24px;background:
+  radial-gradient(circle at 50% 40%,#1D1C21 0%,#131217 100%)}
+.stage.drag{outline:2px dashed var(--accent);outline-offset:-12px}
+.holder{position:relative;max-width:100%;max-height:100%;line-height:0;box-shadow:0 18px 60px rgba(0,0,0,.55)}
+#view{max-width:100%;max-height:100%;display:block;touch-action:none;cursor:grab;border-radius:1px}
+#view.grabbing{cursor:grabbing}
+.grid{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .18s}
+.grid.on{opacity:1}
+.grid i{position:absolute;background:rgba(255,255,255,.32)}
+.grid i.v{top:0;bottom:0;width:1px}
+.grid i.h{left:0;right:0;height:1px}
+.badge{
+  position:absolute;top:12px;left:12px;padding:5px 9px;background:rgba(12,11,14,.72);
+  border:1px solid var(--line);border-radius:2px;font-size:.55rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);opacity:0;transition:opacity .18s;pointer-events:none
+}
+.badge.on{opacity:1}
+.stage-foot{
+  position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:8px;
+  font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);pointer-events:none
+}
+
+/* ---------- EMPTY ---------- */
+.empty{text-align:center;max-width:420px;padding:20px}
+.empty h1{font-family:var(--serif);font-size:1.9rem;font-weight:400;letter-spacing:.04em;margin-bottom:10px}
+.empty p{color:var(--muted);font-size:.84rem;line-height:1.7;margin-bottom:22px}
+.empty .drop{
+  border:1px dashed var(--line);border-radius:3px;padding:34px 20px;transition:border-color .2s
+}
+.empty .drop:hover{border-color:var(--accent)}
+.empty .hint{margin-top:18px;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#6E6A64}
+
+/* ---------- RAIL ---------- */
+.rail{background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.tabs{display:flex;border-bottom:1px solid var(--line);flex:none}
+.tabs button{
+  flex:1;padding:12px 2px;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);border-bottom:2px solid transparent;transition:color .2s,border-color .2s
+}
+.tabs button:hover{color:var(--fg)}
+.tabs button.on{color:var(--accent);border-bottom-color:var(--accent)}
+.pane{flex:1;overflow-y:auto;padding:16px 16px 40px}
+.pane[hidden]{display:none}
+.grp{margin-bottom:22px}
+.grp>h3{
+  font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:12px;display:flex;justify-content:space-between;align-items:center
+}
+.grp>h3 button{font-size:.52rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.grp>h3 button:hover{color:var(--fg)}
+
+.ctl{margin-bottom:13px}
+.ctl label{display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.06em;color:var(--muted);margin-bottom:5px}
+.ctl label b{color:var(--fg);font-weight:500;font-variant-numeric:tabular-nums}
+.ctl label b.mod{color:var(--accent)}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:16px;background:none;cursor:ew-resize;display:block
+}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--line);border-radius:2px}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--fg);
+  margin-top:-5px;border:none;transition:background .15s
+}
+input[type=range]:hover::-webkit-slider-thumb{background:var(--accent)}
+input[type=range]::-moz-range-track{height:2px;background:var(--line);border-radius:2px}
+input[type=range]::-moz-range-thumb{width:12px;height:12px;border:none;border-radius:50%;background:var(--fg)}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  padding:7px 10px;border:1px solid var(--line);border-radius:2px;font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);background:var(--panel2);transition:all .18s
+}
+.chip:hover{color:var(--fg);border-color:#4A4954}
+.chip.on{border-color:var(--accent);color:var(--accent);background:rgba(194,162,122,.1)}
+.chips.two .chip{flex:1 1 calc(50% - 3px)}
+.chips.three .chip{flex:1 1 calc(33.333% - 4px)}
+
+.fld{margin-bottom:11px}
+.fld>span{display:block;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.fld input[type=text],.fld select{
+  width:100%;padding:8px 9px;background:var(--panel2);border:1px solid var(--line);border-radius:2px;
+  font-size:.78rem;letter-spacing:.02em
+}
+.fld input[type=text]:focus,.fld select:focus{outline:none;border-color:var(--accent)}
+.row{display:flex;gap:8px}
+.row>*{flex:1;min-width:0}
+.swatches{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.sw{width:22px;height:22px;border-radius:2px;border:1px solid var(--line);padding:0}
+.sw.on{box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--accent)}
+input[type=color]{
+  width:32px;height:22px;padding:0;background:none;border:1px solid var(--line);border-radius:2px;cursor:pointer
+}
+.chk{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--muted);margin-bottom:9px;cursor:pointer}
+.chk input{accent-color:var(--accent);width:14px;height:14px;cursor:pointer}
+.chk:hover{color:var(--fg)}
+.note{font-size:.6rem;line-height:1.6;color:#6E6A64;letter-spacing:.02em}
+.kbd{
+  display:inline-block;padding:1px 5px;border:1px solid var(--line);border-radius:2px;
+  font-size:.55rem;color:var(--muted);background:var(--panel2)
+}
+
+.toast{
+  position:fixed;left:50%;bottom:22px;transform:translate(-50%,14px);background:var(--panel2);
+  border:1px solid var(--line);border-left:2px solid var(--accent);padding:10px 16px;border-radius:2px;
+  font-size:.7rem;letter-spacing:.04em;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;
+  z-index:50;max-width:80vw;box-shadow:0 10px 30px rgba(0,0,0,.5)
+}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.busy{
+  position:fixed;inset:0;background:rgba(12,11,14,.7);display:none;align-items:center;justify-content:center;
+  z-index:60;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2)
+}
+.busy.on{display:flex}
+
+@media(max-width:1100px){:root{--rail:252px}}
+@media(max-width:860px){
+  body{overflow:auto}
+  .app{height:auto;min-height:100%}
+  .main{grid-template-columns:1fr;grid-template-rows:minmax(240px,46vh) auto auto}
+  .stage{order:1;padding:14px;min-height:240px}
+  .strip{
+    order:2;flex-direction:row;border-right:none;border-top:1px solid var(--line);
+    overflow-x:auto;overflow-y:hidden;padding:8px
+  }
+  .strip .thumb,.strip-add{width:70px;flex:none}
+  .strip-add{padding:4px}
+  .rail{order:3;border-left:none;border-top:1px solid var(--line);max-height:none}
+  .pane{max-height:none}
+  .filename{display:none}
+  .bar{gap:6px;padding:0 10px}
+  .brand em{display:none}
+}
+@media(max-width:600px){
+  .bar{height:50px}
+  .brand{font-size:.68rem;letter-spacing:.18em}
+  .btn{padding:7px 9px;font-size:.55rem;letter-spacing:.1em;gap:5px}
+  .btn .w{display:none}
+  .btn .m{display:inline}
+  .stage{padding:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="bar">
+    <div class="brand">LK&nbsp;Film&nbsp;Co. <em>· Sports Editor</em></div>
+    <span class="filename" id="fname"></span>
+    <div class="bar-sp"></div>
+    <button class="btn btn-i" id="undo" title="Undo (Ctrl+Z)" disabled aria-label="Undo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+    </button>
+    <button class="btn btn-i" id="redo" title="Redo (Ctrl+Shift+Z)" disabled aria-label="Redo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+    </button>
+    <button class="btn" id="open">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+      <span class="w">Add photos</span>
+    </button>
+    <button class="btn" id="exportAll" disabled><span class="w">Export all</span><span class="m">All</span></button>
+    <button class="btn btn-p" id="export" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
+      <span class="w">Export</span>
+    </button>
+  </header>
+
+  <div class="main">
+    <aside class="strip" id="strip">
+      <button class="strip-add" id="stripAdd">+ Photos</button>
+    </aside>
+
+    <section class="stage" id="stage">
+      <div class="empty" id="empty">
+        <div class="drop" id="drop">
+          <h1>Sports Photo Editor</h1>
+          <p>Drop a few frames from the sideline. Tone and color them, crop to the size you post at, drop a scorebar or player card on top, export.</p>
+          <button class="btn btn-p" id="openBig">Choose photos</button>
+          <div class="hint">Drag &amp; drop · or paste with <span class="kbd">Ctrl</span>+<span class="kbd">V</span></div>
+        </div>
+        <p class="note" style="margin-top:20px">Nothing leaves this device. Every edit runs in your browser, no upload, no account.</p>
+      </div>
+
+      <div class="holder" id="holder" hidden>
+        <canvas id="view"></canvas>
+        <div class="grid" id="grid">
+          <i class="v" style="left:33.333%"></i><i class="v" style="left:66.666%"></i>
+          <i class="h" style="top:33.333%"></i><i class="h" style="top:66.666%"></i>
+        </div>
+        <div class="badge" id="badge">Original</div>
+      </div>
+      <div class="stage-foot" id="foot" hidden></div>
+    </section>
+
+    <aside class="rail">
+      <nav class="tabs" id="tabs">
+        <button data-tab="look" class="on">Look</button>
+        <button data-tab="crop">Crop</button>
+        <button data-tab="text">Text</button>
+        <button data-tab="out">Output</button>
+      </nav>
+
+      <!-- LOOK -->
+      <div class="pane" id="pane-look">
+        <div class="grp">
+          <h3>Presets <button id="presetReset">Reset all</button></h3>
+          <div class="chips" id="presets"></div>
+        </div>
+        <div class="grp">
+          <h3>Light</h3>
+          <div id="lightCtls"></div>
+        </div>
+        <div class="grp">
+          <h3>Color</h3>
+          <div id="colorCtls"></div>
+          <label class="chk"><input type="checkbox" id="mono"> Black &amp; white</label>
+        </div>
+        <div class="grp">
+          <h3>Finish</h3>
+          <div id="finishCtls"></div>
+        </div>
+      </div>
+
+      <!-- CROP -->
+      <div class="pane" id="pane-crop" hidden>
+        <div class="grp">
+          <h3>Aspect</h3>
+          <div class="chips three" id="aspects"></div>
+        </div>
+        <div class="grp">
+          <h3>Frame <button id="cropReset">Reset</button></h3>
+          <div id="cropCtls"></div>
+          <p class="note">Drag the photo to reposition. Scroll to zoom. Arrow keys nudge.</p>
+        </div>
+        <div class="grp">
+          <h3>Orientation</h3>
+          <div class="chips two">
+            <button class="chip" id="rotL">⟲ Rotate left</button>
+            <button class="chip" id="rotR">⟳ Rotate right</button>
+            <button class="chip" id="flip">⇄ Flip</button>
+            <button class="chip" id="gridToggle">Grid</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEXT -->
+      <div class="pane" id="pane-text" hidden>
+        <div class="grp">
+          <h3>Overlay</h3>
+          <div class="chips two" id="layouts"></div>
+        </div>
+        <div class="grp" id="textFields">
+          <h3>Fields</h3>
+          <div class="fld" id="f-team"><span>Team / player</span><input type="text" id="t-team" placeholder="Lions" maxlength="28"></div>
+          <div class="fld" id="f-num"><span>Number</span><input type="text" id="t-num" placeholder="12" maxlength="4"></div>
+          <div class="fld" id="f-line2"><span>Second line</span><input type="text" id="t-line2" placeholder="WR · Senior" maxlength="40"></div>
+          <div class="row" id="f-score">
+            <div class="fld"><span>Home</span><input type="text" id="t-home" placeholder="HOME 21" maxlength="18"></div>
+            <div class="fld"><span>Away</span><input type="text" id="t-away" placeholder="14 AWAY" maxlength="18"></div>
+          </div>
+          <div class="fld" id="f-detail"><span>Detail line</span><input type="text" id="t-detail" placeholder="Week 6 · District" maxlength="44"></div>
+        </div>
+        <div class="grp">
+          <h3>Style</h3>
+          <div class="fld"><span>Accent color</span>
+            <div class="swatches" id="swatches"></div>
+          </div>
+          <div id="textCtls"></div>
+          <div class="fld"><span>Position</span>
+            <div class="chips three" id="anchors"></div>
+          </div>
+          <label class="chk"><input type="checkbox" id="scrim" checked> Darken behind text</label>
+        </div>
+        <div class="grp">
+          <h3>Credit</h3>
+          <div class="fld"><span>Credit line</span><input type="text" id="t-credit" placeholder="© Photo by You" maxlength="40"></div>
+          <div id="creditCtls"></div>
+        </div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div class="pane" id="pane-out" hidden>
+        <div class="grp">
+          <h3>Format</h3>
+          <div class="chips three" id="formats"></div>
+          <div id="outCtls"></div>
+          <div class="fld"><span>Long edge (px)</span>
+            <div class="chips three" id="sizes"></div>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Batch</h3>
+          <div class="chips two">
+            <button class="chip" id="syncLook">Copy look</button>
+            <button class="chip" id="syncAll">Copy everything</button>
+          </div>
+          <p class="note" style="margin-top:10px">“Copy look” pushes tone, color and finish onto every loaded photo but leaves each crop and caption alone.</p>
+        </div>
+        <div class="grp">
+          <h3>Shortcuts</h3>
+          <p class="note">
+            <span class="kbd">B</span> hold to see the original ·
+            <span class="kbd">←</span> <span class="kbd">→</span> switch photo ·
+            <span class="kbd">[</span> <span class="kbd">]</span> rotate ·
+            <span class="kbd">G</span> grid ·
+            <span class="kbd">E</span> export ·
+            <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> undo
+          </p>
+        </div>
+        <div class="grp">
+          <h3>This photo</h3>
+          <p class="note" id="meta">—</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<input type="file" id="file" accept="image/*" multiple hidden>
+<div class="toast" id="toast"></div>
+<div class="busy" id="busy">Rendering…</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ============================ SPEC ============================ */
+
+const LOOK_KEYS = ['exposure','contrast','highlights','shadows','fade','saturation','temp','tint','split','clarity','grain','vignette','mono'];
+
+const SLIDERS = {
+  light:[
+    {k:'exposure',  label:'Exposure',   min:-100,max:100,def:0},
+    {k:'contrast',  label:'Contrast',   min:-100,max:100,def:0},
+    {k:'highlights',label:'Highlights', min:-100,max:100,def:0},
+    {k:'shadows',   label:'Shadows',    min:-100,max:100,def:0},
+    {k:'fade',      label:'Fade',       min:0,   max:100,def:0}
+  ],
+  color:[
+    {k:'saturation',label:'Saturation', min:-100,max:100,def:0},
+    {k:'temp',      label:'Warmth',     min:-100,max:100,def:0},
+    {k:'tint',      label:'Tint',       min:-100,max:100,def:0},
+    {k:'split',     label:'Teal / orange',min:-100,max:100,def:0}
+  ],
+  finish:[
+    {k:'clarity',   label:'Sharpen',    min:0,max:100,def:0},
+    {k:'grain',     label:'Grain',      min:0,max:100,def:0},
+    {k:'vignette',  label:'Vignette',   min:0,max:100,def:0}
+  ],
+  crop:[
+    {k:'zoom',      label:'Zoom',       min:100,max:400,def:100,fmt:v=>(v/100).toFixed(2)+'x'},
+    {k:'straighten',label:'Straighten', min:-100,max:100,def:0,fmt:v=>(v/10).toFixed(1)+'°'}
+  ],
+  text:[
+    {k:'textScale', label:'Text size',  min:50,max:200,def:100,fmt:v=>v+'%'}
+  ],
+  credit:[
+    {k:'creditScale',label:'Credit size',min:50,max:200,def:100,fmt:v=>v+'%'}
+  ],
+  out:[
+    {k:'quality',   label:'Quality',    min:50,max:100,def:92,fmt:v=>v+'%'}
+  ]
+};
+
+/* Presets tuned for the light you actually get at a game. */
+const PRESETS = [
+  {id:'none',   name:'None',      s:{}},
+  {id:'friday', name:'Friday Night', s:{exposure:8,contrast:26,shadows:18,highlights:-14,saturation:10,temp:16,split:22,clarity:22,grain:12,vignette:18}},
+  {id:'turf',   name:'Turf',      s:{contrast:22,saturation:26,shadows:12,highlights:-10,temp:-4,clarity:26,vignette:12}},
+  {id:'hardwood',name:'Hardwood', s:{exposure:4,contrast:18,shadows:22,highlights:-18,saturation:6,temp:12,clarity:20,grain:8}},
+  {id:'ice',    name:'Ice / Pool',s:{exposure:6,contrast:20,highlights:-22,shadows:10,saturation:-6,temp:-20,clarity:18,vignette:10}},
+  {id:'dusk',   name:'Dusk Kick', s:{exposure:-4,contrast:24,shadows:24,highlights:-8,saturation:14,temp:22,split:44,clarity:14,grain:14,vignette:24}},
+  {id:'press',  name:'Press Box', s:{mono:1,contrast:30,shadows:16,highlights:-12,clarity:28,grain:26,vignette:20}},
+  {id:'cloud',  name:'Overcast',  s:{exposure:10,contrast:30,shadows:20,highlights:-6,saturation:16,temp:10,clarity:24}}
+];
+
+const ASPECTS = [
+  {id:'orig',name:'Original',v:0},
+  {id:'1:1', name:'1:1',   v:1},
+  {id:'4:5', name:'4:5',   v:4/5},
+  {id:'9:16',name:'9:16',  v:9/16},
+  {id:'16:9',name:'16:9',  v:16/9},
+  {id:'3:2', name:'3:2',   v:3/2},
+  {id:'2:3', name:'2:3',   v:2/3},
+  {id:'5:4', name:'5:4',   v:5/4},
+  {id:'4:3', name:'4:3',   v:4/3}
+];
+
+const LAYOUTS = [
+  {id:'none',  name:'None'},
+  {id:'score', name:'Scorebar'},
+  {id:'player',name:'Player card'},
+  {id:'strip', name:'Name strip'}
+];
+
+const ANCHORS = [
+  {id:'tl',name:'Top L'},{id:'tc',name:'Top C'},{id:'tr',name:'Top R'},
+  {id:'bl',name:'Bot L'},{id:'bc',name:'Bot C'},{id:'br',name:'Bot R'}
+];
+
+const SWATCHES = ['#C2A27A','#E8E5DF','#D8342F','#1F5FBF','#F5A623','#1E9E6A','#7B2FB5','#111111'];
+const FORMATS = [{id:'jpeg',name:'JPG'},{id:'png',name:'PNG'},{id:'webp',name:'WebP'}];
+const SIZES = [{id:1080,name:'1080'},{id:1440,name:'1440'},{id:2048,name:'2048'},{id:2560,name:'2560'},{id:0,name:'Full'}];
+
+const PREVIEW_MAX = 1600;
+
+function defaults(){
+  const s = {
+    aspect:'orig', zoom:100, offX:0, offY:0, straighten:0, rot:0, flip:0,
+    layout:'none', team:'', num:'', line2:'', home:'', away:'', detail:'',
+    accent:'#C2A27A', textScale:100, anchor:'bl', scrim:1,
+    credit:'', creditScale:100, preset:'none'
+  };
+  for(const grp of ['light','color','finish']) SLIDERS[grp].forEach(d=>s[d.k]=d.def);
+  s.mono = 0;
+  return s;
+}
+
+/* ============================ STATE ============================ */
+
+const state = {
+  imgs:[],            // {id,name,el,w,h,thumb,s}
+  active:-1,
+  out:{format:'jpeg',quality:92,size:2048},
+  hist:[], hpos:-1,
+  showOrig:false, gridOn:false
+};
+
+const $ = id=>document.getElementById(id);
+const els = {};
+['strip','stripAdd','stage','empty','drop','holder','view','grid','badge','foot','file','toast','busy',
+ 'fname','open','openBig','export','exportAll','undo','redo','tabs','presets','presetReset','lightCtls',
+ 'colorCtls','finishCtls','mono','aspects','cropCtls','cropReset','rotL','rotR','flip','gridToggle',
+ 'layouts','swatches','textCtls','anchors','scrim','creditCtls','formats','sizes','outCtls','syncLook',
+ 'syncAll','meta','textFields'].forEach(k=>els[k]=$(k));
+
+const ctx = els.view.getContext('2d',{willReadFrequently:true});
+const cur = ()=> state.imgs[state.active] || null;
+
+/* ============================ UTILITIES ============================ */
+
+let toastT;
+function toast(msg){
+  els.toast.textContent = msg;
+  els.toast.classList.add('on');
+  clearTimeout(toastT);
+  toastT = setTimeout(()=>els.toast.classList.remove('on'),2200);
+}
+
+function clamp(v,a,b){ return v<a?a:v>b?b:v; }
+
+function busy(on,label){
+  els.busy.textContent = label || 'Rendering…';
+  els.busy.classList.toggle('on',!!on);
+}
+
+function aspectOf(id, fallback){
+  const a = ASPECTS.find(x=>x.id===id);
+  return (!a || !a.v) ? fallback : a.v;
+}
+
+/* ============================ HISTORY ============================ */
+
+function snapshot(){
+  return JSON.stringify({s:state.imgs.map(i=>i.s), out:state.out});
+}
+function pushHist(){
+  const snap = snapshot();
+  if(state.hist[state.hpos] === snap) return;
+  state.hist = state.hist.slice(0, state.hpos+1);
+  state.hist.push(snap);
+  if(state.hist.length > 60) state.hist.shift();
+  state.hpos = state.hist.length-1;
+  syncHistBtns();
+}
+function applyHist(){
+  const data = JSON.parse(state.hist[state.hpos]);
+  data.s.forEach((s,i)=>{ if(state.imgs[i]) state.imgs[i].s = s; });
+  state.out = data.out;
+  syncHistBtns(); syncUI(); render(); renderStrip();
+}
+function undo(){ if(state.hpos>0){ state.hpos--; applyHist(); } }
+function redo(){ if(state.hpos < state.hist.length-1){ state.hpos++; applyHist(); } }
+function syncHistBtns(){
+  els.undo.disabled = state.hpos<=0;
+  els.redo.disabled = state.hpos>=state.hist.length-1;
+}
+
+/* ============================ GEOMETRY ============================ */
+
+function geom(im, s){
+  const swap = (s.rot===90 || s.rot===270);
+  const eW = swap? im.h : im.w, eH = swap? im.w : im.h;
+  const A = aspectOf(s.aspect, eW/eH);
+  let bw, bh;
+  if(eW/eH > A){ bh = eH; bw = eH*A; } else { bw = eW; bh = eW/A; }
+  const z = s.zoom/100;
+  const cw = bw/z, ch = bh/z;
+  const slackX = Math.max(0,(eW-cw)/2), slackY = Math.max(0,(eH-ch)/2);
+  return {
+    eW, eH, cw, ch, slackX, slackY,
+    cx: eW/2 + slackX*(s.offX/100),
+    cy: eH/2 + slackY*(s.offY/100)
+  };
+}
+
+function straightenScale(w,h,th){
+  const c = Math.abs(Math.cos(th)), si = Math.abs(Math.sin(th));
+  return Math.max(c + (h/w)*si, c + (w/h)*si);
+}
+
+function outSize(g, longEdge){
+  const long = Math.max(g.cw,g.ch);
+  const k = longEdge ? Math.min(1, longEdge/long) : 1;
+  return {w: Math.max(2,Math.round(g.cw*k)), h: Math.max(2,Math.round(g.ch*k))};
+}
+
+function drawBase(c2, im, s, g, w, h){
+  c2.save();
+  c2.imageSmoothingEnabled = true;
+  c2.imageSmoothingQuality = 'high';
+  c2.translate(w/2, h/2);
+  const k = w/g.cw;
+  c2.scale(k,k);
+  const th = (s.straighten/10) * Math.PI/180;
+  if(th){ c2.rotate(th); const sc = straightenScale(g.cw,g.ch,th); c2.scale(sc,sc); }
+  c2.translate(-g.cx, -g.cy);
+  if(s.flip){ c2.translate(g.eW,0); c2.scale(-1,1); }
+  if(s.rot===90){ c2.translate(g.eW,0); c2.rotate(Math.PI/2); }
+  else if(s.rot===180){ c2.translate(g.eW,g.eH); c2.rotate(Math.PI); }
+  else if(s.rot===270){ c2.translate(0,g.eH); c2.rotate(-Math.PI/2); }
+  c2.drawImage(im.el,0,0);
+  c2.restore();
+}
+
+/* ============================ TONE + COLOR ============================ */
+
+function buildLUT(s){
+  const ex = Math.pow(2, s.exposure/60);
+  const ct = s.contrast/100;
+  const fd = s.fade/100;
+  const t = s.temp/100, ti = s.tint/100;
+  const mul = [1 + t*0.16 - ti*0.03, 1 + ti*0.09, 1 - t*0.16 - ti*0.03];
+  const lut = [new Uint8ClampedArray(256), new Uint8ClampedArray(256), new Uint8ClampedArray(256)];
+  for(let ch=0; ch<3; ch++){
+    const m = ex*mul[ch], out = lut[ch];
+    for(let i=0;i<256;i++){
+      let v = (i/255)*m;
+      if(ct>0) v += ct*((v*v*(3-2*v)) - v);
+      else if(ct<0) v += (-ct)*((0.5+(v-0.5)*0.55) - v);
+      if(fd) v = v*(1-0.24*fd) + 0.085*fd;
+      out[i] = v*255;
+    }
+  }
+  return lut;
+}
+
+/* Deterministic value noise so the preview grain matches the export. */
+function hashNoise(x,y){
+  let h = (x*1836311903) ^ (y*2971215073);
+  h = Math.imul(h ^ (h>>>15), 2246822519);
+  h ^= h>>>13;
+  return ((h>>>0)/4294967295) - 0.5;
+}
+
+function applyTone(c2, s, w, h){
+  const needsPixels = LOOK_KEYS.some(k => s[k]);
+  if(!needsPixels) return;
+
+  const img = c2.getImageData(0,0,w,h);
+  const d = img.data;
+  const [lr,lg,lb] = buildLUT(s);
+  const sh = s.shadows/100, hi = s.highlights/100, sp = s.split/100, sat = s.saturation/100;
+  const mono = !!s.mono;
+  const vig = s.vignette/100;
+  const gr = s.grain/100;
+  const gq = Math.max(1, Math.round(Math.max(w,h)/1400));
+  const cxp = w/2, cyp = h/2, maxD = cxp*cxp + cyp*cyp;
+
+  for(let y=0; y<h; y++){
+    const dy = (y-cyp), dy2 = dy*dy;
+    const gy = (y/gq)|0;
+    for(let x=0, i=y*w*4; x<w; x++, i+=4){
+      let r = lr[d[i]], g = lg[d[i+1]], b = lb[d[i+2]];
+
+      if(sh || hi || sp || sat || mono){
+        let l = (r*0.2126 + g*0.7152 + b*0.0722)/255;
+        if(sh){ const wgt = (1-l)*(1-l)*(1-l); const a = sh*72*wgt; r+=a; g+=a; b+=a; }
+        if(hi){ const wgt = l*l; const a = hi*70*wgt; r+=a; g+=a; b+=a; }
+        if(mono){ const y2 = r*0.2126 + g*0.7152 + b*0.0722; r=g=b=y2; }
+        if(sp){
+          l = (r*0.2126 + g*0.7152 + b*0.0722)/255;
+          const wh = l*l, ws = (1-l)*(1-l);
+          r += sp*(28*wh - 9*ws);
+          g += sp*(6*wh + 3*ws);
+          b += sp*(-26*wh + 24*ws);
+        }
+        if(sat && !mono){
+          const y2 = r*0.2126 + g*0.7152 + b*0.0722;
+          const f = 1+sat;
+          r = y2 + (r-y2)*f; g = y2 + (g-y2)*f; b = y2 + (b-y2)*f;
+        }
+      }
+
+      if(vig){
+        const dx = (x-cxp);
+        const nd = (dx*dx + dy2)/maxD;
+        const f = 1 - vig*0.9*Math.max(0,(nd-0.28)/0.72);
+        r*=f; g*=f; b*=f;
+      }
+      if(gr){
+        const n = hashNoise((x/gq)|0, gy) * gr * 46;
+        r+=n; g+=n; b+=n;
+      }
+
+      d[i]=r; d[i+1]=g; d[i+2]=b;
+    }
+  }
+  c2.putImageData(img,0,0);
+}
+
+/* Unsharp mask — run after tone so it sharpens what you actually see. */
+function applyClarity(c2, amount, w, h){
+  if(!amount) return;
+  const a = amount/100 * 1.4;
+  const img = c2.getImageData(0,0,w,h);
+  const d = img.data;
+  const src = new Uint8ClampedArray(d);
+  for(let y=1;y<h-1;y++){
+    for(let x=1;x<w-1;x++){
+      const i = (y*w+x)*4;
+      for(let c=0;c<3;c++){
+        const p = i+c;
+        const blur = (
+          src[p-w*4-4] + src[p-w*4] + src[p-w*4+4] +
+          src[p-4]     + src[p]     + src[p+4] +
+          src[p+w*4-4] + src[p+w*4] + src[p+w*4+4]
+        )/9;
+        d[p] = src[p] + (src[p]-blur)*a;
+      }
+    }
+  }
+  c2.putImageData(img,0,0);
+}
+
+/* ============================ OVERLAYS ============================ */
+
+function tracked(c2, text, x, y, sp, align){
+  const chars = Array.from(text);
+  let total = 0;
+  for(const ch of chars) total += c2.measureText(ch).width + sp;
+  total = Math.max(0, total - sp);
+  let px = align==='right' ? x-total : align==='center' ? x-total/2 : x;
+  for(const ch of chars){ c2.fillText(ch, px, y); px += c2.measureText(ch).width + sp; }
+  return total;
+}
+
+function anchorPos(anchor, w, h, pad){
+  const top = anchor[0]==='t';
+  const hx = anchor[1];
+  return {
+    top,
+    y: top ? pad : h-pad,
+    x: hx==='l' ? pad : hx==='r' ? w-pad : w/2,
+    align: hx==='l' ? 'left' : hx==='r' ? 'right' : 'center'
+  };
+}
+
+function scrimFor(c2, top, w, h){
+  const span = h*0.42;
+  const g = c2.createLinearGradient(0, top?0:h, 0, top?span:h-span);
+  g.addColorStop(0,'rgba(10,9,12,.72)');
+  g.addColorStop(1,'rgba(10,9,12,0)');
+  c2.fillStyle = g;
+  c2.fillRect(0, top?0:h-span, w, span);
+}
+
+function drawOverlay(c2, s, w, h){
+  const k = (w/1000) * (s.textScale/100);
+  const pad = Math.round(w*0.045);
+  const has = s.layout!=='none' && (s.team||s.num||s.home||s.away||s.detail||s.line2);
+
+  if(has){
+    const p = anchorPos(s.anchor, w, h, pad);
+    if(s.scrim) scrimFor(c2, p.top, w, h);
+    c2.save();
+    c2.textBaseline = 'alphabetic';
+    c2.shadowColor = 'rgba(8,7,10,.55)';
+    c2.shadowBlur = 10*k;
+    c2.shadowOffsetY = 1.5*k;
+
+    if(s.layout==='score'){
+      const size = 34*k;
+      const home = (s.home||'').toUpperCase(), away = (s.away||'').toUpperCase();
+      const baseY = p.top ? p.y + size : p.y;
+      c2.font = '700 '+size+'px Inter, system-ui, sans-serif';
+      const dash = '  –  ';
+      const wHome = c2.measureText(home).width;
+      const wDash = c2.measureText(dash).width;
+      const wAway = c2.measureText(away).width;
+      const total = wHome + wDash + wAway;
+      let x = p.align==='right' ? p.x-total : p.align==='center' ? p.x-total/2 : p.x + 9*k;
+      if(p.align==='left'){
+        c2.shadowBlur = 0;
+        c2.fillStyle = s.accent;
+        c2.fillRect(x - 9*k, baseY - size*0.82, 4*k, size*0.92);
+        c2.shadowBlur = 10*k;
+      }
+      c2.fillStyle = '#FFF';
+      c2.fillText(home, x, baseY); x += wHome;
+      c2.fillStyle = s.accent;
+      c2.fillText(dash, x, baseY); x += wDash;
+      c2.fillStyle = '#FFF';
+      c2.fillText(away, x, baseY);
+      if(s.detail){
+        c2.font = '500 '+(11.5*k)+'px Inter, system-ui, sans-serif';
+        c2.fillStyle = 'rgba(255,255,255,.82)';
+        const dy = p.top ? baseY + 20*k : baseY - size - 12*k;
+        tracked(c2, s.detail.toUpperCase(), p.align==='left'? p.x : p.x, dy, 2.6*k, p.align);
+      }
+    }
+
+    else if(s.layout==='player'){
+      const numSize = 92*k, nameSize = 26*k, subSize = 12.5*k;
+      /* Stack only the lines that exist, so the block always sits on the padding. */
+      const rows = [];
+      if(s.num)   rows.push({t:'num',   h:numSize*0.72, gap:nameSize*0.46});
+      if(s.team)  rows.push({t:'team',  h:nameSize*0.74, gap:subSize*0.72});
+      if(s.line2) rows.push({t:'line2', h:subSize*0.74, gap:0});
+      const tall = rows.reduce((a,r,i)=> a + r.h + (i<rows.length-1 ? r.gap : 0), 0);
+      let y = p.top ? p.y + rows[0].h : p.y - (tall - rows[0].h);
+      rows.forEach((r,i)=>{
+        if(r.t==='num'){
+          c2.font = '800 italic '+numSize+'px Inter, system-ui, sans-serif';
+          c2.fillStyle = s.accent;
+          const label = s.num.trim().charAt(0)==='#' ? s.num : '#'+s.num;
+          c2.textAlign = p.align;
+          c2.fillText(label, p.x, y);
+          c2.textAlign = 'left';
+        } else if(r.t==='team'){
+          c2.font = '600 '+nameSize+'px Inter, system-ui, sans-serif';
+          c2.fillStyle = '#FFF';
+          tracked(c2, s.team.toUpperCase(), p.x, y, 3.4*k, p.align);
+        } else {
+          c2.font = '400 '+subSize+'px Inter, system-ui, sans-serif';
+          c2.fillStyle = 'rgba(255,255,255,.8)';
+          tracked(c2, s.line2.toUpperCase(), p.x, y, 2.4*k, p.align);
+        }
+        y += r.gap + (rows[i+1] ? rows[i+1].h : 0);
+      });
+    }
+
+    else if(s.layout==='strip'){
+      const size = 20*k;
+      const baseY = p.top ? p.y + size : p.y;
+      const ruleY = p.top ? baseY - size*1.5 : baseY - size*1.9;
+      c2.shadowBlur = 0;
+      c2.fillStyle = s.accent;
+      const ruleW = Math.min(w-pad*2, 110*k);
+      c2.fillRect(p.align==='right'? p.x-ruleW : p.align==='center'? p.x-ruleW/2 : p.x, ruleY, ruleW, 2.4*k);
+      c2.shadowBlur = 10*k;
+      c2.font = '600 '+size+'px Inter, system-ui, sans-serif';
+      c2.fillStyle = '#FFF';
+      tracked(c2, (s.team||'').toUpperCase(), p.x, baseY, 3.6*k, p.align);
+      if(s.detail){
+        c2.font = '400 '+(11.5*k)+'px Inter, system-ui, sans-serif';
+        c2.fillStyle = 'rgba(255,255,255,.8)';
+        tracked(c2, s.detail.toUpperCase(), p.x, baseY + 17*k, 2.4*k, p.align);
+      }
+    }
+    c2.restore();
+  }
+
+  if(s.credit){
+    const ck = (w/1000)*(s.creditScale/100);
+    const bottomRightTaken = has && s.anchor==='br';
+    const y = bottomRightTaken ? Math.round(h*0.045) + 9*ck : h - Math.round(h*0.035);
+    c2.save();
+    c2.font = '500 '+(10*ck)+'px Inter, system-ui, sans-serif';
+    c2.shadowColor = 'rgba(8,7,10,.6)';
+    c2.shadowBlur = 6*ck;
+    c2.fillStyle = 'rgba(255,255,255,.9)';
+    const tw = tracked(c2, s.credit.toUpperCase(), w - Math.round(w*0.045), y, 2.2*ck, 'right');
+    c2.shadowBlur = 0;
+    c2.fillStyle = s.accent;
+    c2.beginPath();
+    c2.arc(w - Math.round(w*0.045) - tw - 8*ck, y - 3.5*ck, 2.4*ck, 0, Math.PI*2);
+    c2.fill();
+    c2.restore();
+  }
+}
+
+/* ============================ RENDER ============================ */
+
+function paint(c2, im, s, longEdge, skipEdits){
+  const g = geom(im, s);
+  const o = outSize(g, longEdge);
+  c2.canvas.width = o.w; c2.canvas.height = o.h;
+  c2.clearRect(0,0,o.w,o.h);
+  drawBase(c2, im, s, g, o.w, o.h);
+  if(!skipEdits){
+    applyTone(c2, s, o.w, o.h);
+    applyClarity(c2, s.clarity, o.w, o.h);
+    drawOverlay(c2, s, o.w, o.h);
+  }
+  return o;
+}
+
+let rafId = 0;
+function render(){
+  if(rafId) return;
+  rafId = requestAnimationFrame(()=>{ rafId = 0; renderNow(); });
+}
+
+function renderNow(){
+  const im = cur();
+  els.holder.hidden = !im;
+  els.empty.hidden = !!im;
+  els.foot.hidden = !im;
+  if(!im) return;
+
+  const box = els.stage.getBoundingClientRect();
+  const avail = Math.max(220, Math.min(box.width, box.height) - 48);
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const longEdge = Math.min(PREVIEW_MAX, Math.round(avail * dpr * 1.15));
+
+  const o = paint(ctx, im, im.s, longEdge, state.showOrig);
+
+  const fitW = Math.min(box.width - 48, (o.w/o.h) * (box.height - 48));
+  els.view.style.width = Math.max(80, Math.round(fitW)) + 'px';
+  els.view.style.height = 'auto';
+
+  const full = outSize(geom(im, im.s), state.out.size);
+  els.foot.textContent = full.w + ' × ' + full.h + '  ·  ' + im.s.aspect.replace('orig','original');
+  els.meta.textContent = im.name + ' — source ' + im.w + '×' + im.h + ', export ' +
+    full.w + '×' + full.h + ' ' + state.out.format.toUpperCase();
+}
+
+/* ============================ THUMBNAILS ============================ */
+
+const thumbC = document.createElement('canvas');
+const thumbX = thumbC.getContext('2d');
+
+function makeThumb(im){
+  const s = im.s;
+  const g = geom(im, s);
+  const o = outSize(g, 168);
+  thumbC.width = o.w; thumbC.height = o.h;
+  thumbX.clearRect(0,0,o.w,o.h);
+  drawBase(thumbX, im, s, g, o.w, o.h);
+  applyTone(thumbX, s, o.w, o.h);
+  return thumbC.toDataURL('image/jpeg',0.72);
+}
+
+let thumbQ = 0;
+function refreshThumb(){
+  const im = cur();
+  if(!im) return;
+  clearTimeout(thumbQ);
+  thumbQ = setTimeout(()=>{
+    im.thumb = makeThumb(im);
+    const node = els.strip.querySelector('[data-id="'+im.id+'"] img');
+    if(node) node.src = im.thumb;
+  }, 380);
+}
+
+function isEdited(s){
+  const d = defaults();
+  return Object.keys(d).some(k => k!=='preset' && String(s[k]) !== String(d[k]));
+}
+
+function renderStrip(){
+  els.strip.querySelectorAll('.thumb').forEach(n=>n.remove());
+  state.imgs.forEach((im,i)=>{
+    const el = document.createElement('div');
+    el.className = 'thumb' + (i===state.active?' on':'');
+    el.dataset.id = im.id;
+    el.innerHTML = '<img alt="" src="'+im.thumb+'"><span class="n">'+(i+1)+'</span>'+
+      '<button class="x" title="Remove" aria-label="Remove photo">×</button>'+
+      (isEdited(im.s)?'<span class="edited"></span>':'');
+    el.addEventListener('click', e=>{
+      if(e.target.classList.contains('x')){ removeImg(im.id); return; }
+      setActive(state.imgs.findIndex(x=>x.id===im.id));
+    });
+    els.strip.insertBefore(el, els.stripAdd);
+  });
+  els.export.disabled = !state.imgs.length;
+  els.exportAll.disabled = state.imgs.length < 2;
+}
+
+function setActive(i){
+  if(i<0 || i>=state.imgs.length) return;
+  state.active = i;
+  els.fname.textContent = state.imgs[i].name;
+  renderStrip(); syncUI(); render();
+}
+
+function removeImg(id){
+  const i = state.imgs.findIndex(x=>x.id===id);
+  if(i<0) return;
+  state.imgs.splice(i,1);
+  state.active = Math.min(state.active, state.imgs.length-1);
+  els.fname.textContent = cur() ? cur().name : '';
+  state.hist = []; state.hpos = -1; pushHist();
+  renderStrip(); syncUI(); render();
+}
+
+/* ============================ LOADING ============================ */
+
+let uid = 0;
+
+async function decode(file){
+  if(window.createImageBitmap){
+    try{ return await createImageBitmap(file,{imageOrientation:'from-image'}); }catch(e){}
+  }
+  return await new Promise((res,rej)=>{
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = ()=>{ URL.revokeObjectURL(url); res(img); };
+    img.onerror = ()=>{ URL.revokeObjectURL(url); rej(new Error('decode')); };
+    img.src = url;
+  });
+}
+
+async function addFiles(list){
+  const files = Array.from(list).filter(f=>f && (f.type.startsWith('image/') || /\.(jpe?g|png|webp|avif|gif|bmp)$/i.test(f.name||'')));
+  if(!files.length){ toast('No readable images in that drop.'); return; }
+  busy(true,'Loading…');
+  let failed = 0, first = -1;
+  for(const f of files){
+    try{
+      const el = await decode(f);
+      const im = {
+        id:'i'+(++uid), name:f.name||('frame-'+uid), el,
+        w: el.width||el.naturalWidth, h: el.height||el.naturalHeight,
+        s: defaults(), thumb:''
+      };
+      im.s.credit = $('t-credit').value || '';
+      im.thumb = makeThumb(im);
+      state.imgs.push(im);
+      if(first<0) first = state.imgs.length-1;
+    }catch(e){ failed++; }
+  }
+  busy(false);
+  if(failed) toast(failed+' file'+(failed>1?'s':'')+" couldn't be decoded (HEIC needs converting first).");
+  if(first>=0){
+    state.hist = []; state.hpos = -1;
+    if(state.active<0) setActive(first); else { renderStrip(); render(); }
+    pushHist();
+  }
+}
+
+/* ============================ EXPORT ============================ */
+
+const MIME = {jpeg:'image/jpeg', png:'image/png', webp:'image/webp'};
+const EXT  = {jpeg:'jpg', png:'png', webp:'webp'};
+
+function outName(im){
+  const base = (im.name||'frame').replace(/\.[^.]+$/,'').replace(/[^\w\-]+/g,'-').slice(0,60);
+  return base + '-lk.' + EXT[state.out.format];
+}
+
+const work = document.createElement('canvas');
+const workX = work.getContext('2d',{willReadFrequently:true});
+
+function toBlob(canvas){
+  return new Promise(res=>{
+    canvas.toBlob(b=>res(b), MIME[state.out.format],
+      state.out.format==='png' ? undefined : state.out.quality/100);
+  });
+}
+
+function save(blob, name){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 4000);
+}
+
+async function exportOne(im){
+  paint(workX, im, im.s, state.out.size, false);
+  const blob = await toBlob(work);
+  if(!blob) throw new Error('encode failed');
+  save(blob, outName(im));
+}
+
+async function doExport(){
+  const im = cur(); if(!im) return;
+  busy(true,'Exporting…');
+  await new Promise(r=>setTimeout(r,30));
+  try{ await exportOne(im); toast('Saved '+outName(im)); }
+  catch(e){ toast('Export failed: '+e.message); }
+  busy(false);
+}
+
+async function doExportAll(){
+  if(!state.imgs.length) return;
+  for(let i=0;i<state.imgs.length;i++){
+    busy(true,'Exporting '+(i+1)+' of '+state.imgs.length+'…');
+    await new Promise(r=>setTimeout(r,30));
+    try{ await exportOne(state.imgs[i]); }catch(e){}
+    await new Promise(r=>setTimeout(r,280));
+  }
+  busy(false);
+  toast('Exported '+state.imgs.length+' photos.');
+}
+
+/* ============================ CONTROL BUILDING ============================ */
+
+const sliderEls = {};
+
+function buildSliders(host, spec, store){
+  host.innerHTML = '';
+  spec.forEach(d=>{
+    const wrap = document.createElement('div');
+    wrap.className = 'ctl';
+    wrap.innerHTML = '<label><span>'+d.label+'</span><b></b></label>'+
+      '<input type="range" min="'+d.min+'" max="'+d.max+'" value="'+d.def+'" aria-label="'+d.label+'">';
+    const input = wrap.querySelector('input');
+    const val = wrap.querySelector('b');
+    sliderEls[d.k] = {input, val, d, store};
+    input.addEventListener('input', ()=>{
+      const target = store==='out' ? state.out : (cur() && cur().s);
+      if(!target) return;
+      target[d.k] = +input.value;
+      if(store!=='out' && ['exposure','contrast','highlights','shadows','fade','saturation','temp','tint','split','clarity','grain','vignette'].includes(d.k)){
+        cur().s.preset = 'none';
+        syncPresetChips();
+      }
+      showSlider(d.k);
+      render();
+      if(store!=='out') refreshThumb();
+    });
+    input.addEventListener('change', ()=>{ pushHist(); renderStrip(); });
+    input.addEventListener('dblclick', ()=>{
+      const target = store==='out' ? state.out : (cur() && cur().s);
+      if(!target) return;
+      target[d.k] = d.def; input.value = d.def;
+      showSlider(d.k); render(); pushHist(); refreshThumb();
+    });
+    host.appendChild(wrap);
+  });
+}
+
+function showSlider(k){
+  const e = sliderEls[k]; if(!e) return;
+  const target = e.store==='out' ? state.out : (cur() && cur().s);
+  if(!target) return;
+  const v = target[k];
+  e.input.value = v;
+  e.val.textContent = e.d.fmt ? e.d.fmt(v) : (v>0?'+':'')+v;
+  e.val.classList.toggle('mod', v !== e.d.def);
+}
+
+function buildChips(host, items, getter, setter, extraClass){
+  host.innerHTML = '';
+  items.forEach(it=>{
+    const b = document.createElement('button');
+    b.className = 'chip' + (extraClass||'');
+    b.textContent = it.name;
+    b.dataset.id = it.id;
+    b.addEventListener('click', ()=>{ setter(it.id); });
+    host.appendChild(b);
+  });
+  host._sync = ()=>{
+    const on = String(getter());
+    host.querySelectorAll('.chip').forEach(b=>b.classList.toggle('on', b.dataset.id===on));
+  };
+}
+
+function applyPreset(id){
+  const im = cur(); if(!im) return;
+  const p = PRESETS.find(x=>x.id===id); if(!p) return;
+  const d = defaults();
+  LOOK_KEYS.forEach(k=>{ im.s[k] = (k in p.s) ? p.s[k] : d[k]; });
+  im.s.preset = id;
+  syncUI(); render(); pushHist(); refreshThumb(); renderStrip();
+}
+
+function syncPresetChips(){ if(els.presets._sync) els.presets._sync(); }
+
+/* ============================ UI SYNC ============================ */
+
+function syncUI(){
+  const im = cur();
+  const s = im ? im.s : defaults();
+
+  Object.keys(sliderEls).forEach(k=>{
+    const e = sliderEls[k];
+    const v = e.store==='out' ? state.out[k] : s[k];
+    if(v === undefined) return;
+    e.input.value = v;
+    e.val.textContent = e.d.fmt ? e.d.fmt(v) : (v>0?'+':'')+v;
+    e.val.classList.toggle('mod', v !== e.d.def);
+    e.input.disabled = !im && e.store!=='out';
+  });
+
+  els.mono.checked = !!s.mono;
+  els.scrim.checked = !!s.scrim;
+  ['team','num','line2','home','away','detail','credit'].forEach(k=>{
+    const f = $('t-'+k); if(f) f.value = s[k] || '';
+  });
+  els.swatches.querySelectorAll('.sw').forEach(b=>b.classList.toggle('on', b.dataset.c === s.accent));
+  const picker = $('accentPick'); if(picker) picker.value = s.accent;
+
+  [els.presets, els.aspects, els.layouts, els.anchors, els.formats, els.sizes].forEach(h=>h._sync && h._sync());
+  els.flip.classList.toggle('on', !!s.flip);
+  els.gridToggle.classList.toggle('on', state.gridOn);
+  els.grid.classList.toggle('on', state.gridOn);
+
+  const lay = s.layout;
+  $('f-team').style.display  = (lay==='player'||lay==='strip') ? '' : 'none';
+  $('f-num').style.display   = (lay==='player') ? '' : 'none';
+  $('f-line2').style.display = (lay==='player') ? '' : 'none';
+  $('f-score').style.display = (lay==='score') ? '' : 'none';
+  $('f-detail').style.display= (lay==='score'||lay==='strip') ? '' : 'none';
+  els.textFields.style.display = lay==='none' ? 'none' : '';
+}
+
+/* ============================ WIRING ============================ */
+
+buildSliders(els.lightCtls,  SLIDERS.light,  'img');
+buildSliders(els.colorCtls,  SLIDERS.color,  'img');
+buildSliders(els.finishCtls, SLIDERS.finish, 'img');
+buildSliders(els.cropCtls,   SLIDERS.crop,   'img');
+buildSliders(els.textCtls,   SLIDERS.text,   'img');
+buildSliders(els.creditCtls, SLIDERS.credit, 'img');
+buildSliders(els.outCtls,    SLIDERS.out,    'out');
+
+buildChips(els.presets, PRESETS, ()=>cur()?cur().s.preset:'none', applyPreset);
+buildChips(els.aspects, ASPECTS, ()=>cur()?cur().s.aspect:'orig', id=>{
+  const im = cur(); if(!im) return;
+  im.s.aspect = id; im.s.offX = 0; im.s.offY = 0;
+  syncUI(); render(); pushHist(); refreshThumb();
+});
+buildChips(els.layouts, LAYOUTS, ()=>cur()?cur().s.layout:'none', id=>{
+  const im = cur(); if(!im) return;
+  im.s.layout = id;
+  if(id==='score' && !im.s.home && !im.s.away){ im.s.home = 'HOME 21'; im.s.away = '14 AWAY'; }
+  syncUI(); render(); pushHist(); refreshThumb();
+});
+buildChips(els.anchors, ANCHORS, ()=>cur()?cur().s.anchor:'bl', id=>{
+  const im = cur(); if(!im) return;
+  im.s.anchor = id; syncUI(); render(); pushHist();
+});
+buildChips(els.formats, FORMATS, ()=>state.out.format, id=>{
+  state.out.format = id; syncUI(); renderNow(); pushHist();
+});
+buildChips(els.sizes, SIZES, ()=>state.out.size, id=>{
+  state.out.size = +id; syncUI(); renderNow(); pushHist();
+});
+
+/* accent swatches + custom picker */
+SWATCHES.forEach(c=>{
+  const b = document.createElement('button');
+  b.className = 'sw'; b.style.background = c; b.dataset.c = c;
+  b.title = c; b.setAttribute('aria-label','Accent '+c);
+  b.addEventListener('click', ()=>{
+    const im = cur(); if(!im) return;
+    im.s.accent = c; syncUI(); render(); pushHist();
+  });
+  els.swatches.appendChild(b);
+});
+const pick = document.createElement('input');
+pick.type = 'color'; pick.id = 'accentPick'; pick.value = '#C2A27A';
+pick.title = 'Custom accent';
+pick.addEventListener('input', ()=>{
+  const im = cur(); if(!im) return;
+  im.s.accent = pick.value;
+  els.swatches.querySelectorAll('.sw').forEach(b=>b.classList.remove('on'));
+  render();
+});
+pick.addEventListener('change', pushHist);
+els.swatches.appendChild(pick);
+
+/* text fields */
+['team','num','line2','home','away','detail','credit'].forEach(k=>{
+  const f = $('t-'+k); if(!f) return;
+  f.addEventListener('input', ()=>{
+    const im = cur(); if(!im) return;
+    im.s[k] = f.value;
+    if(k==='credit') try{ localStorage.setItem('lk-credit', f.value); }catch(e){}
+    render();
+  });
+  f.addEventListener('change', pushHist);
+});
+
+els.mono.addEventListener('change', ()=>{
+  const im = cur(); if(!im) return;
+  im.s.mono = els.mono.checked ? 1 : 0;
+  im.s.preset = 'none';
+  syncPresetChips(); render(); pushHist(); refreshThumb(); renderStrip();
+});
+els.scrim.addEventListener('change', ()=>{
+  const im = cur(); if(!im) return;
+  im.s.scrim = els.scrim.checked ? 1 : 0;
+  render(); pushHist();
+});
+
+els.presetReset.addEventListener('click', ()=>{
+  const im = cur(); if(!im) return;
+  const keep = {credit:im.s.credit, creditScale:im.s.creditScale, accent:im.s.accent};
+  im.s = Object.assign(defaults(), keep);
+  syncUI(); render(); pushHist(); refreshThumb(); renderStrip();
+  toast('Photo reset.');
+});
+els.cropReset.addEventListener('click', ()=>{
+  const im = cur(); if(!im) return;
+  Object.assign(im.s, {aspect:'orig', zoom:100, offX:0, offY:0, straighten:0, rot:0, flip:0});
+  syncUI(); render(); pushHist(); refreshThumb();
+});
+
+function rotate(dir){
+  const im = cur(); if(!im) return;
+  im.s.rot = (im.s.rot + (dir>0?90:270)) % 360;
+  im.s.offX = 0; im.s.offY = 0;
+  render(); pushHist(); refreshThumb();
+}
+els.rotL.addEventListener('click', ()=>rotate(-1));
+els.rotR.addEventListener('click', ()=>rotate(1));
+els.flip.addEventListener('click', ()=>{
+  const im = cur(); if(!im) return;
+  im.s.flip = im.s.flip ? 0 : 1;
+  els.flip.classList.toggle('on', !!im.s.flip);
+  render(); pushHist(); refreshThumb();
+});
+els.gridToggle.addEventListener('click', ()=>{
+  state.gridOn = !state.gridOn;
+  els.gridToggle.classList.toggle('on', state.gridOn);
+  els.grid.classList.toggle('on', state.gridOn);
+});
+
+/* batch */
+els.syncLook.addEventListener('click', ()=>{
+  const im = cur(); if(!im || state.imgs.length<2) return;
+  state.imgs.forEach(o=>{
+    if(o===im) return;
+    LOOK_KEYS.forEach(k=>o.s[k] = im.s[k]);
+    o.s.preset = im.s.preset;
+  });
+  state.imgs.forEach(o=>{ if(o!==im) o.thumb = makeThumb(o); });
+  renderStrip(); pushHist();
+  toast('Look copied to '+(state.imgs.length-1)+' other photos.');
+});
+els.syncAll.addEventListener('click', ()=>{
+  const im = cur(); if(!im || state.imgs.length<2) return;
+  state.imgs.forEach(o=>{
+    if(o===im) return;
+    o.s = JSON.parse(JSON.stringify(im.s));
+    o.thumb = makeThumb(o);
+  });
+  renderStrip(); pushHist();
+  toast('All settings copied to '+(state.imgs.length-1)+' other photos.');
+});
+
+/* tabs */
+els.tabs.addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  els.tabs.querySelectorAll('button').forEach(x=>x.classList.toggle('on', x===b));
+  ['look','crop','text','out'].forEach(t=>{ $('pane-'+t).hidden = (t !== b.dataset.tab); });
+  const cropping = b.dataset.tab==='crop';
+  if(cropping && !state.gridOn){ state.gridOn = true; els.gridToggle.classList.add('on'); els.grid.classList.add('on'); }
+});
+
+/* file input + drops + paste */
+els.file.addEventListener('change', ()=>{ addFiles(els.file.files); els.file.value=''; });
+[els.open, els.openBig, els.stripAdd].forEach(b=>{
+  b.addEventListener('click', e=>{ e.stopPropagation(); els.file.click(); });
+});
+els.drop.addEventListener('click', ()=>els.file.click());
+['dragenter','dragover'].forEach(ev=>document.addEventListener(ev, e=>{
+  e.preventDefault(); els.stage.classList.add('drag');
+}));
+['dragleave','drop'].forEach(ev=>document.addEventListener(ev, e=>{
+  e.preventDefault();
+  if(ev==='drop' || e.target===document.documentElement) els.stage.classList.remove('drag');
+}));
+document.addEventListener('drop', e=>{
+  if(e.dataTransfer && e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+});
+window.addEventListener('paste', e=>{
+  const items = e.clipboardData && e.clipboardData.items;
+  if(!items) return;
+  const files = [];
+  for(const it of items) if(it.kind==='file'){ const f = it.getAsFile(); if(f) files.push(f); }
+  if(files.length){ e.preventDefault(); addFiles(files); }
+});
+
+els.export.addEventListener('click', doExport);
+els.exportAll.addEventListener('click', doExportAll);
+els.undo.addEventListener('click', undo);
+els.redo.addEventListener('click', redo);
+
+/* ============================ CROP DRAGGING ============================ */
+
+let drag = null;
+els.view.addEventListener('pointerdown', e=>{
+  const im = cur(); if(!im) return;
+  const g = geom(im, im.s);
+  if(g.slackX < 1 && g.slackY < 1) return;
+  drag = {x:e.clientX, y:e.clientY, ox:im.s.offX, oy:im.s.offY, g, rect:els.view.getBoundingClientRect()};
+  els.view.setPointerCapture(e.pointerId);
+  els.view.classList.add('grabbing');
+});
+els.view.addEventListener('pointermove', e=>{
+  if(!drag) return;
+  const im = cur(); if(!im) return;
+  /* Screen pixels → crop offset percent, so the photo tracks the cursor. */
+  const scale = drag.g.cw / drag.rect.width;
+  const dx = (e.clientX - drag.x) * scale;
+  const dy = (e.clientY - drag.y) * scale;
+  if(drag.g.slackX > 0.5) im.s.offX = clamp(drag.ox - (dx/drag.g.slackX)*100, -100, 100);
+  if(drag.g.slackY > 0.5) im.s.offY = clamp(drag.oy - (dy/drag.g.slackY)*100, -100, 100);
+  render();
+});
+['pointerup','pointercancel'].forEach(ev=>els.view.addEventListener(ev, e=>{
+  if(!drag) return;
+  drag = null;
+  els.view.classList.remove('grabbing');
+  pushHist(); refreshThumb();
+}));
+els.view.addEventListener('wheel', e=>{
+  const im = cur(); if(!im) return;
+  e.preventDefault();
+  im.s.zoom = Math.round(clamp(im.s.zoom * (e.deltaY < 0 ? 1.06 : 1/1.06), 100, 400));
+  showSlider('zoom'); render();
+  clearTimeout(els.view._wt);
+  els.view._wt = setTimeout(()=>{ pushHist(); refreshThumb(); }, 420);
+}, {passive:false});
+
+/* ============================ KEYBOARD ============================ */
+
+document.addEventListener('keydown', e=>{
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+  const im = cur();
+  const mod = e.metaKey || e.ctrlKey;
+
+  if(mod && e.key.toLowerCase()==='z'){ e.preventDefault(); e.shiftKey ? redo() : undo(); return; }
+  if(mod) return;
+
+  switch(e.key){
+    case 'b': case 'B':
+      if(!state.showOrig){ state.showOrig = true; els.badge.classList.add('on'); render(); }
+      e.preventDefault(); break;
+    case 'g': case 'G': els.gridToggle.click(); break;
+    case 'e': case 'E': doExport(); break;
+    case '[': rotate(-1); break;
+    case ']': rotate(1); break;
+    case 'ArrowLeft':
+      if(e.shiftKey && im){ im.s.offX = clamp(im.s.offX-2,-100,100); render(); refreshThumb(); }
+      else setActive(state.active-1);
+      e.preventDefault(); break;
+    case 'ArrowRight':
+      if(e.shiftKey && im){ im.s.offX = clamp(im.s.offX+2,-100,100); render(); refreshThumb(); }
+      else setActive(state.active+1);
+      e.preventDefault(); break;
+    case 'ArrowUp':
+      if(im){ im.s.offY = clamp(im.s.offY-2,-100,100); render(); refreshThumb(); }
+      e.preventDefault(); break;
+    case 'ArrowDown':
+      if(im){ im.s.offY = clamp(im.s.offY+2,-100,100); render(); refreshThumb(); }
+      e.preventDefault(); break;
+  }
+});
+document.addEventListener('keyup', e=>{
+  if(e.key==='b' || e.key==='B'){
+    state.showOrig = false; els.badge.classList.remove('on'); render();
+  }
+  if(/^Arrow/.test(e.key) && cur()) pushHist();
+});
+
+/* ============================ INIT ============================ */
+
+let rt;
+window.addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(renderNow, 120); });
+
+try{
+  const saved = localStorage.getItem('lk-credit');
+  if(saved) $('t-credit').value = saved;
+}catch(e){}
+
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>{ if(cur()) render(); });
+
+syncUI();
+renderStrip();
+pushHist();
+
+})();
+</script>
+</body>
+</html>
