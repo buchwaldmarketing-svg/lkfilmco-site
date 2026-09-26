@@ -62,7 +62,7 @@ fbq('init','250305885896733');fbq('track','PageView');
     <a href="/about">About</a>
     <a href="/pricing">Pricing</a>
     <a href="https://instagram.com/leekounas" target="_blank" rel="noopener" class="n-ig" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-    <a href="#contact" class="n-cta">Inquire</a>
+    <a href="/contact" class="n-cta">Inquire</a>
   </div>
   <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -147,27 +147,15 @@ fbq('init','250305885896733');fbq('track','PageView');
   <div class="lx-films-more"><a href="/films" class="lx-btn-ghost">All films</a></div>
 </section>
 
-<!-- TESTIMONIAL — full-bleed cinematic -->
-<section class="test">
-  <video class="test-vid" id="test-vid" autoplay muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture poster="/pricing-hero-poster.jpg">
-    <source data-src="/pricing-hero.mp4" type="video/mp4">
-  </video>
-  <div class="test-ov"></div>
-  <div class="inner test-c rv">
-    <span class="lbl" style="text-align:center;display:block">Kind Words</span>
-    <p class="test-q">"We just watched it like five times. It's so good. Love it. Thank you so much!!"</p>
-    <span class="test-a">Christy + Brian</span>
-    <div class="test-divider"></div>
-    <p class="test-q2">"The video is amazing! Thank you so much for all of your work on it."</p>
-    <span class="test-a">Mackenzie</span>
-  </div>
-</section>
-
-<!-- STATEMENT -->
-<section class="statement">
-  <div class="st-inner rv">
-    <p class="st-kicker">A photo holds the moment.</p>
-    <h2 class="st-line">A film holds <em>the feeling.</em></h2>
+<!-- KIND WORDS: right after the films, clean and big -->
+<section class="lx-quote">
+  <div class="lx-head rv">
+    <span class="lbl">Kind words</span>
+    <p class="lx-quote-big">&ldquo;We just watched it like five times. It&rsquo;s so good. Love it. Thank you so much!&rdquo;</p>
+    <span class="lx-quote-by">Christy + Brian</span>
+    <div class="lx-rule"></div>
+    <p class="lx-quote-small">&ldquo;The video is amazing! Thank you so much for all of your work on it.&rdquo;</p>
+    <span class="lx-quote-by">Mackenzie</span>
   </div>
 </section>
 
@@ -187,44 +175,14 @@ fbq('init','250305885896733');fbq('track','PageView');
   <div class="lx-center rv"><a href="/pricing" class="lx-btn">Explore the experience</a></div>
 </section>
 
-<!-- CONTACT — Rosemary-inspired centered form -->
-<section class="contact" id="contact">
-  <div class="inner">
-    <div class="c-top rv">
-      <span class="lbl">Inquire</span>
-      <h2>Let's talk<em>about your day</em></h2>
-      <p>Currently accepting 2026 + 2027 events. Fill out the form below, or get in touch directly.</p>
-    </div>
-    <form class="c-form rv" id="contact-form" action="https://formspree.io/f/xbdzdwar" method="POST">
-      <div class="fr">
-        <div class="fg"><label for="c-name">Your Name</label><input id="c-name" type="text" placeholder="Full name" name="name" required></div>
-        <div class="fg"><label for="c-partner">Partner's Name</label><input id="c-partner" type="text" placeholder="Partner's name" name="partner"></div>
-      </div>
-      <div class="fr">
-        <div class="fg"><label for="c-email">Email</label><input id="c-email" type="email" placeholder="your@email.com" name="email" required></div>
-        <div class="fg"><label for="c-phone">Phone</label><input id="c-phone" type="tel" placeholder="(555) 555-5555" name="phone"></div>
-      </div>
-      <div class="fr">
-        <div class="fg"><label for="c-date">Wedding Date</label><input id="c-date" type="date" name="date"></div>
-        <div class="fg"><label for="c-venue">Venue</label><input id="c-venue" type="text" placeholder="Venue name & city" name="venue"></div>
-      </div>
-      <div class="fr">
-        <div class="fg"><label for="c-guests">Estimated Guest Count</label><input id="c-guests" type="text" placeholder="Approx. number" name="guests"></div>
-        <div class="fg"><label for="c-source">How'd you find us?</label>
-          <select id="c-source" name="source"><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Wedding Planner</option><option>Venue Referral</option><option>Friend / Family</option><option>Other</option></select>
-        </div>
-      </div>
-      <div class="fg"><label for="c-budget">Estimated Budget</label>
-        <select id="c-budget" name="budget"><option value="">Select a range</option><option>$2,000 – $3,500</option><option>$3,500 – $5,000</option><option>$5,000 – $7,500</option><option>$7,500+</option></select>
-      </div>
-      <div class="fg"><label for="c-message">Tell me about your vision</label><textarea id="c-message" name="message" placeholder="The mood, the details, the moments that matter most to you."></textarea></div>
-      <button type="submit" class="c-sub">Check Availability</button>
-      <div class="form-msg" id="form-msg" aria-live="polite"></div>
-    </form>
-    <div class="c-info rv">
-      <p><a href="mailto:bookings@lkfilmco.com">bookings@lkfilmco.com</a></p>
-      <p><a href="tel:2145774801">214-577-4801</a> · feel free to text</p>
-    </div>
+<!-- CLOSING: the statement and the one call to action, together -->
+<section class="lx-close">
+  <img src="/covers/allison-ross.jpg" alt="" loading="lazy">
+  <div class="lx-close-in rv">
+    <span class="lbl">A photo holds the moment.</span>
+    <h2>A film holds<em>the feeling.</em></h2>
+    <p class="lx-close-sub">Booking 2026 + 2027 · Dallas–Fort Worth and beyond</p>
+    <a href="/contact" class="lx-btn-light">Check availability</a>
   </div>
 </section>
 
