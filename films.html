@@ -60,41 +60,67 @@ fbq('init','250305885896733');fbq('track','PageView');
 
 <div class="page-spacer"></div>
 
-<section class="films" style="background:var(--cream)">
-  <div class="inner">
-    <div class="films-head rv">
-      <span class="lbl">Portfolio</span>
-      <h1>Wedding Films</h1>
-      <p class="films-sub">Every film is a real story. No scripts. No direction. Just your day, as it happened.</p>
-    </div>
-    <div class="films-grid">
-      <div class="fc rv">
-        <div class="fc-meta"><span class="fc-tag">Highlight Film</span><span class="fc-venue">Dallas, TX</span><span class="fc-name">Christy + Brian</span></div>
-        <div class="fc-embed"><iframe src="https://galleries.vidflow.co/videos/krjjtssa" allowfullscreen webkitallowfullscreen mozallowfullscreen title="Christy + Brian Wedding Film" loading="lazy"></iframe></div>
-      </div>
-      <div class="fc rv">
-        <div class="fc-meta"><span class="fc-tag">Highlight Film</span><span class="fc-venue">Dallas, TX</span><span class="fc-name">Demi + Keaton</span></div>
-        <div class="fc-embed"><iframe src="https://galleries.vidflow.co/videos/a2988a4e" allowfullscreen webkitallowfullscreen mozallowfullscreen title="Demi + Keaton Wedding Film" loading="lazy"></iframe></div>
-      </div>
-      <div class="fc rv">
-        <div class="fc-meta"><span class="fc-tag">Highlight Film</span><span class="fc-venue">Dallas, TX</span><span class="fc-name">Allison + Ross</span></div>
-        <div class="fc-embed"><iframe src="https://galleries.vidflow.co/videos/dc2d036f" allowfullscreen webkitallowfullscreen mozallowfullscreen title="Allison + Ross Wedding Film" loading="lazy"></iframe></div>
-      </div>
-      <div class="fc rv">
-        <div class="fc-meta"><span class="fc-tag">Highlight Film</span><span class="fc-venue">Dallas, TX</span><span class="fc-name">Emma + Bryce</span></div>
-        <div class="fc-embed"><iframe src="https://galleries.vidflow.co/videos/ba576798" allowfullscreen webkitallowfullscreen mozallowfullscreen title="Emma + Bryce Wedding Film" loading="lazy"></iframe></div>
-      </div>
-      <div class="fc rv">
-        <div class="fc-meta"><span class="fc-tag">Highlight Film</span><span class="fc-venue">The Hillside Estate · Dallas</span><span class="fc-name">Meghan + Tyler</span></div>
-        <div class="fc-embed"><iframe src="https://galleries.vidflow.co/videos/rtuvtwsg" allowfullscreen webkitallowfullscreen mozallowfullscreen title="Meghan + Tyler Wedding Film" loading="lazy"></iframe></div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:40px" class="rv">
-      <a href="/contact" class="btn btn-accent">Inquire About Your Date</a>
-    </div>
+<section class="films lx-films" style="padding-top:56px">
+  <div class="films-head lx-head">
+    <span class="lbl">Portfolio</span>
+    <h1>Wedding films<em>every one a real story</em></h1>
+    <div class="lx-rule"></div>
+    <p class="lx-lede">No scripts. No direction. Just your day, as it happened.</p>
   </div>
+  <button type="button" class="lx-film" data-vid="krjjtssa" aria-label="Play the Christy + Brian wedding film">
+    <img src="/covers/christy-brian.jpg" alt="Christy + Brian wedding film" loading="eager">
+    <span class="lx-film-in">
+      <span class="lx-film-tag">Highlight film · Dallas, TX</span>
+      <span class="lx-film-name">Christy + Brian</span>
+      <span class="lx-film-play"><i>&#9654;</i> Watch the film</span>
+    </span>
+  </button>
+  <button type="button" class="lx-film" data-vid="a2988a4e" aria-label="Play the Demi + Keaton wedding film">
+    <img src="/covers/demi-keaton.jpg" alt="Demi + Keaton wedding film" loading="lazy">
+    <span class="lx-film-in">
+      <span class="lx-film-tag">Highlight film · Dallas, TX</span>
+      <span class="lx-film-name">Demi + Keaton</span>
+      <span class="lx-film-play"><i>&#9654;</i> Watch the film</span>
+    </span>
+  </button>
+  <button type="button" class="lx-film" data-vid="dc2d036f" aria-label="Play the Allison + Ross wedding film">
+    <img src="/covers/allison-ross.jpg" alt="Allison + Ross wedding film" loading="lazy">
+    <span class="lx-film-in">
+      <span class="lx-film-tag">Highlight film · Dallas, TX</span>
+      <span class="lx-film-name">Allison + Ross</span>
+      <span class="lx-film-play"><i>&#9654;</i> Watch the film</span>
+    </span>
+  </button>
+  <button type="button" class="lx-film" data-vid="ba576798" aria-label="Play the Emma + Bryce wedding film">
+    <img src="/covers/emma-bryce.jpg" alt="Emma + Bryce wedding film" loading="lazy">
+    <span class="lx-film-in">
+      <span class="lx-film-tag">Highlight film · Dallas, TX</span>
+      <span class="lx-film-name">Emma + Bryce</span>
+      <span class="lx-film-play"><i>&#9654;</i> Watch the film</span>
+    </span>
+  </button>
+  <button type="button" class="lx-film" data-vid="rtuvtwsg" aria-label="Play the Meghan + Tyler wedding film">
+    <img src="/covers/meghan-tyler.jpg" alt="Meghan + Tyler wedding film" loading="lazy">
+    <span class="lx-film-in">
+      <span class="lx-film-tag">Highlight film · The Hillside Estate · Dallas</span>
+      <span class="lx-film-name">Meghan + Tyler</span>
+      <span class="lx-film-play"><i>&#9654;</i> Watch the film</span>
+    </span>
+  </button>
 </section>
 
+
+<section class="lx-cta">
+  <div class="lx-head">
+    <span class="lbl">Booking 2026 + 2027</span>
+    <h2>Your film is next<em>let's talk about your day</em></h2>
+    <div class="lx-center"><a href="/contact" class="lx-btn">Inquire about your date</a></div>
+  </div>
+</section>
+<!-- FILM MODAL -->
+<div class="modal-ov" id="film-modal" role="dialog" aria-modal="true" aria-label="Wedding film">
+  <div class="modal-wrap"><button class="modal-close" id="film-close" aria-label="Close film">&times;</button><iframe id="film-frame" src="" allow="autoplay; fullscreen" allowfullscreen title="Wedding film"></iframe></div>
+</div>
 <footer>
   <div class="f-top">
     <div class="f-brand"><h3>LK Film Co.</h3><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
@@ -111,6 +137,12 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
+</script>
+<script>
+const fm=document.getElementById('film-modal'),ff=document.getElementById('film-frame');
+const closeFilm=()=>{fm.classList.remove('open');ff.src='';document.documentElement.style.overflow='';};
+document.querySelectorAll('.lx-film').forEach(b=>b.addEventListener('click',()=>{ff.src='https://galleries.vidflow.co/videos/'+b.dataset.vid;fm.classList.add('open');document.documentElement.style.overflow='hidden';}));
+document.getElementById('film-close').addEventListener('click',closeFilm);fm.addEventListener('click',e=>{if(e.target===fm)closeFilm();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&fm.classList.contains('open'))closeFilm();});
 </script>
 </body>
 </html>

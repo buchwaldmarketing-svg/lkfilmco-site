@@ -107,6 +107,35 @@ fbq('init','250305885896733');fbq('track','PageView');
 /* ALL PACKAGES NOTE */
 .pkg-note{max-width:620px;margin:36px auto 0;text-align:center;font-family:var(--serif);font-size:1.18rem;color:var(--fg);font-weight:400;line-height:1.8}
 .pkg-cta-wrap{text-align:center;margin-top:28px}
+
+/* LUXE PASS: packages as open columns, same layout as the Alex build */
+.lx-intro{padding-bottom:24px}
+.packages{background:#fff;padding-top:16px}
+.pkg-grid{gap:0;align-items:stretch}
+.pkg{background:transparent;border:0;padding:40px 8px;text-align:center;align-items:center}
+@media(min-width:860px){.pkg{padding:8px 36px}.pkg+.pkg{border-left:1px solid var(--rule)}}
+@media(max-width:859px){.pkg+.pkg{border-top:1px solid var(--rule)}}
+.pkg.featured{border-color:var(--rule)}
+.pkg-tag{font-family:var(--sans);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.pkg.featured .pkg-tag{color:var(--fg2)}
+.pkg-name{font-style:normal;font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(1.6rem,2.6vw,2.1rem)}
+.pkg-amount{font-size:clamp(2.2rem,3.8vw,2.8rem);font-weight:400;margin-top:14px}
+.pkg-price{color:var(--muted);font-size:.6rem;margin-bottom:26px}
+.pkg-list{width:100%;max-width:300px;flex:1}
+.pkg-list li{justify-content:center;text-align:center;border-bottom-color:var(--rule);font-family:var(--serif);font-size:1.08rem;color:var(--fg);padding:8px 0}
+.pkg-list li::before{display:none}
+.pkg-btn{margin-top:28px;display:inline-block;font-family:var(--sans);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--fg2);border:1px solid var(--fg2);padding:14px 30px;transition:.3s}
+.pkg-btn:hover,.pkg.featured .pkg-btn{background:var(--fg2);color:#fff}
+.pkg.featured .pkg-btn:hover{background:var(--accent);border-color:var(--accent)}
+.pkg-note{margin-top:56px}
+.addons,.expect,.faq{background:#fff}
+.addon-row{justify-content:center;border-bottom-color:var(--rule)}
+.addon-name{font-family:var(--serif);font-size:1.12rem;text-align:center}
+.addons-inner,.expect-inner,.faq-inner{max-width:680px}
+.expect-step,.faq-item{border-bottom-color:var(--rule)}
+.expect-title{font-style:normal;font-weight:500;font-size:1.45rem}
+.expect-num{color:var(--muted);font-size:.62rem}
+.faq-q{font-weight:500;font-size:1.3rem}
 </style>
 </head>
 <body>
@@ -125,28 +154,31 @@ fbq('init','250305885896733');fbq('track','PageView');
   <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- HERO -->
-<section class="p-hero">
-  <div class="rv">
+<!-- HERO: full-bleed cover, title centered -->
+<section class="lx-cover">
+  <img src="/covers/demi-keaton.jpg" alt="Couple exchanging vows at an outdoor altar" fetchpriority="high">
+  <div class="lx-cover-in">
     <span class="lbl">Investment</span>
-    <h1>Just the moments<br><em>that matter.</em></h1>
-    <div class="p-hero-vid">
-      <video autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture poster="/pricing-hero-poster.jpg">
-        <source src="/pricing-hero.mp4" type="video/mp4">
-      </video>
-    </div>
-    <p>Three ways to film your day. Same care, same eye, same delivery. Just different coverage.</p>
+    <h1>Just the moments<em>that matter.</em></h1>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="lx-intro">
+  <div class="lx-head rv">
+    <span class="lbl">Three collections</span>
+    <h2>Three ways to film your day<em>same care, same eye, same delivery</em></h2>
+    <div class="lx-rule"></div>
+    <p class="lx-lede">The only difference is how much of the day I'm there for. Travel within an hour of Dallas is included, and every collection can be tailored.</p>
   </div>
 </section>
 
 <!-- PACKAGES -->
 <section class="packages">
-  <div class="pkg-intro rv">
-    <span class="lbl">Pick Yours</span>
-  </div>
   <div class="pkg-grid">
 
     <div class="pkg rv">
+      <span class="pkg-tag">The start</span>
       <span class="pkg-name">The Essentials</span>
       <span class="pkg-amount">$2,000</span>
       <span class="pkg-price">4 Hours of Coverage</span>
@@ -162,10 +194,11 @@ fbq('init','250305885896733');fbq('track','PageView');
         <li>Online delivery + downloads</li>
         <li>12–16 week turnaround</li>
       </ul>
+      <a href="/contact" class="pkg-btn">Check availability</a>
     </div>
 
     <div class="pkg featured rv">
-      <span class="pkg-pop">Most Popular</span>
+      <span class="pkg-tag">Most popular</span>
       <span class="pkg-name">The Full Story</span>
       <span class="pkg-amount">$2,750</span>
       <span class="pkg-price">6 Hours of Coverage</span>
@@ -182,9 +215,11 @@ fbq('init','250305885896733');fbq('track','PageView');
         <li>Online delivery + downloads</li>
         <li>12–16 week turnaround</li>
       </ul>
+      <a href="/contact" class="pkg-btn">Check availability</a>
     </div>
 
     <div class="pkg rv">
+      <span class="pkg-tag">Everything</span>
       <span class="pkg-name">The Whole Day</span>
       <span class="pkg-amount">$3,250</span>
       <span class="pkg-price">8 Hours of Coverage</span>
@@ -201,6 +236,7 @@ fbq('init','250305885896733');fbq('track','PageView');
         <li>Online delivery + downloads</li>
         <li>12–16 week turnaround</li>
       </ul>
+      <a href="/contact" class="pkg-btn">Check availability</a>
     </div>
 
   </div>
@@ -212,8 +248,8 @@ fbq('init','250305885896733');fbq('track','PageView');
 <section class="addons">
   <div class="addons-inner">
     <div class="rv">
-      <span class="lbl">Add-Ons</span>
-      <h2 style="font-family:var(--serif);font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:300;color:var(--fg2);margin-top:4px;margin-bottom:28px">Make it yours.</h2>
+      <div class="lx-head" style="margin-bottom:32px"><span class="lbl">Add-ons</span>
+      <h2>Make it yours<em>add what matters to you</em></h2></div>
     </div>
     <div class="rv">
       <div class="addon-row">
@@ -248,8 +284,8 @@ fbq('init','250305885896733');fbq('track','PageView');
 <section class="expect">
   <div class="expect-inner">
     <div class="rv">
-      <span class="lbl">What to Expect</span>
-      <h2 style="font-family:var(--serif);font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:300;color:var(--fg2);margin-top:4px;margin-bottom:12px">From inquiry to delivery.</h2>
+      <div class="lx-head" style="margin-bottom:24px"><span class="lbl">What to expect</span>
+      <h2>From inquiry<em>to delivery</em></h2></div>
     </div>
 
     <div class="expect-step rv">
@@ -300,13 +336,13 @@ fbq('init','250305885896733');fbq('track','PageView');
 <section class="faq">
   <div class="faq-inner">
     <div class="rv">
-      <span class="lbl">FAQ</span>
-      <h2 style="font-family:var(--serif);font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:300;color:var(--fg2);margin-top:4px;margin-bottom:20px">Common questions.</h2>
+      <div class="lx-head" style="margin-bottom:24px"><span class="lbl">FAQ</span>
+      <h2>Common questions<em>straight answers</em></h2></div>
     </div>
 
     <div class="faq-item rv">
       <div class="faq-q">What do we get with every package?</div>
-      <div class="faq-a">Every couple gets a cinematic highlight film, a 60-second social teaser, a speeches & toasts edit, and drone coverage. Plus professional color grading, two camera setup, lighting, and audio. The difference between packages comes down to hours of coverage, and the longer the day, the longer your highlight film.</div>
+      <div class="faq-a">Every couple gets a cinematic highlight film, a 60-second social teaser, and drone coverage. The Full Story and The Whole Day add a speeches & toasts edit. Plus professional color grading, two camera setup, lighting, and audio. The difference between packages comes down to hours of coverage, and the longer the day, the longer your highlight film.</div>
     </div>
 
     <div class="faq-item rv">
