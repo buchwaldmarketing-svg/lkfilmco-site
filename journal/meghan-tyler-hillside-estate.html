@@ -95,13 +95,13 @@ fbq('init','250305885896733');fbq('track','PageView');
   <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<section class="post-hero">
+<section class="post-hero" data-studio-section="meghan-post-header" data-studio-section-label="Post header">
   <div class="meta">Wedding Story · 4 min read</div>
   <h1>Meghan + Tyler — The Hillside Estate</h1>
   <p class="deck">An October evening with golden light and real tears. A Dallas wedding story from behind the lens.</p>
 </section>
 
-<article class="post-body">
+<article class="post-body" data-studio-section="meghan-post-body" data-studio-section-label="Post body">
 <div class="post-inner">
 
 <div class="details-card">
@@ -156,7 +156,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </div>
 </article>
 
-<section class="post-cta">
+<section class="post-cta" data-studio-section="meghan-post-cta" data-studio-section-label="Call to action">
   <h2>Want your story told like this?</h2>
   <p>Tell me your date and venue. I reply personally within 24 hours — no auto-responders, no sales pitch.</p>
   <a href="/contact" class="btn btn-accent">Send an Inquiry</a>
@@ -178,5 +178,6 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

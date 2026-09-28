@@ -93,13 +93,13 @@ fbq('init','250305885896733');fbq('track','PageView');
   <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<section class="post-hero">
+<section class="post-hero" data-studio-section="lookfor-post-header" data-studio-section-label="Post header">
   <div class="meta">Guide · 6 min read · Updated April 2026</div>
   <h1>What to Look for in a Dallas Wedding Videographer</h1>
   <p class="deck">Most couples ask about price and style. That's fine, but there are ten other questions that separate a good booking from a regret. Here's what they are.</p>
 </section>
 
-<article class="post-body">
+<article class="post-body" data-studio-section="lookfor-post-body" data-studio-section-label="Post body">
 <div class="post-inner">
 
 <p>Hiring a wedding videographer in Dallas is like hiring any vendor — except the thing you're buying won't exist until months after you've paid for it. You're buying trust, a process, and the ability to execute on the most chaotic day of your life.</p>
@@ -182,7 +182,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </div>
 </article>
 
-<section class="post-cta">
+<section class="post-cta" data-studio-section="lookfor-post-cta" data-studio-section-label="Call to action">
   <h2>Still comparing?</h2>
   <p>Drop me your date and venue. I'll send availability, pricing, and a few recent films from weddings like yours.</p>
   <a href="/contact" class="btn btn-accent">Send an Inquiry</a>
@@ -204,5 +204,6 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

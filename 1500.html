@@ -108,7 +108,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </nav>
 
 <!-- HERO -->
-<section class="p-hero">
+<section class="p-hero" data-studio-section="open-date-header" data-studio-section-label="Open Date header">
   <div class="rv">
     <span class="lbl">The Open Date</span>
     <h1>Remaining<br><em>2026 dates.</em></h1>
@@ -122,7 +122,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- PACKAGE -->
-<section class="packages">
+<section class="packages" data-studio-section="open-date-package" data-studio-section-label="The package">
   <div class="pkg-grid">
     <div class="pkg featured rv">
       <span class="pkg-pop">Select 2026 Dates</span>
@@ -148,7 +148,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- SAMPLE FILM -->
-<section class="sample">
+<section class="sample" data-studio-section="open-date-sample" data-studio-section-label="Watch one">
   <div class="sample-inner">
     <div class="rv">
       <span class="lbl">Watch One</span>
@@ -162,7 +162,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="expect">
+<section class="expect" data-studio-section="open-date-steps" data-studio-section-label="How it works">
   <div class="expect-inner">
     <div class="rv">
       <span class="lbl">How It Works</span>
@@ -190,7 +190,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- CTA -->
-<section class="p-cta" id="book">
+<section class="p-cta" id="book" data-studio-section="open-date-cta" data-studio-section-label="Call to action">
   <div class="rv">
     <span class="lbl">Next Step</span>
     <h2>Your date might be open.<br><em>Let's find out.</em></h2>
@@ -249,5 +249,6 @@ if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('op
 
 document.querySelectorAll('a.btn-accent, a.n-cta').forEach(a=>a.addEventListener('click',()=>{if(window.fbq)fbq('track','Contact',{content_name:document.title});if(window.gtag)gtag('event','cta_click',{link_text:a.textContent.trim()});}));
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

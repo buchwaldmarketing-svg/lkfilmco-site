@@ -60,7 +60,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 
 <div class="page-spacer"></div>
 
-<section class="films lx-films" style="padding-top:56px">
+<section class="films lx-films" style="padding-top:56px" data-studio-section="films-list" data-studio-section-label="Films">
   <div class="films-head lx-head">
     <span class="lbl">Portfolio</span>
     <h1>Wedding films<em>every one a real story</em></h1>
@@ -110,7 +110,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 
-<section class="lx-cta">
+<section class="lx-cta" data-studio-section="films-cta" data-studio-section-label="Call to action">
   <div class="lx-head">
     <span class="lbl">Booking 2026 + 2027</span>
     <h2>Your film is next<em>let's talk about your day</em></h2>
@@ -144,5 +144,6 @@ const closeFilm=()=>{fm.classList.remove('open');ff.src='';document.documentElem
 document.querySelectorAll('.lx-film').forEach(b=>b.addEventListener('click',()=>{ff.src='https://galleries.vidflow.co/videos/'+b.dataset.vid;fm.classList.add('open');document.documentElement.style.overflow='hidden';}));
 document.getElementById('film-close').addEventListener('click',closeFilm);fm.addEventListener('click',e=>{if(e.target===fm)closeFilm();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&fm.classList.contains('open'))closeFilm();});
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

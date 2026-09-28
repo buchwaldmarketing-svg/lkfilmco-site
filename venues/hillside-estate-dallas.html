@@ -123,7 +123,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </nav>
 
 <!-- HERO -->
-<section class="vp-hero">
+<section class="vp-hero" data-studio-section="hillside-header" data-studio-section-label="Venue header">
   <div class="rv">
     <span class="lbl">Venue</span>
     <h1><em>The Hillside Estate</em></h1>
@@ -137,7 +137,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </div>
 
 <!-- INTRO -->
-<section class="vp-intro">
+<section class="vp-intro" data-studio-section="hillside-intro" data-studio-section-label="About this venue">
   <div class="vp-intro-inner rv">
     <span class="lbl">About This Venue</span>
     <h2>Filming at <em>The Hillside Estate</em></h2>
@@ -148,7 +148,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- FILM EMBED -->
-<section class="vp-film">
+<section class="vp-film" data-studio-section="hillside-film" data-studio-section-label="Featured film">
   <div class="vp-film-inner rv">
     <span class="lbl">Featured Film</span>
     <span class="vp-film-label">Filmed at The Hillside Estate</span>
@@ -160,7 +160,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- VENUE DETAILS -->
-<section class="vp-details">
+<section class="vp-details" data-studio-section="hillside-details" data-studio-section-label="Venue at a glance">
   <div class="vp-details-inner rv">
     <span class="lbl">Quick Details</span>
     <h2>Venue at a Glance</h2>
@@ -190,7 +190,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- CTA -->
-<section class="vp-cta">
+<section class="vp-cta" data-studio-section="hillside-cta" data-studio-section-label="Call to action">
   <div class="rv">
     <span class="lbl">Next Step</span>
     <h2>Planning your wedding at<br><em>The Hillside Estate?</em></h2>
@@ -200,7 +200,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- MORE VENUES -->
-<section class="vp-more">
+<section class="vp-more" data-studio-section="hillside-more" data-studio-section-label="More venues">
   <div class="rv">
     <span class="lbl">More Dallas Venues</span>
     <h3>Coming Soon</h3>
@@ -247,5 +247,6 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open)});}
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

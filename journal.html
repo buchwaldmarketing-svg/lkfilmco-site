@@ -77,7 +77,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 
 <div class="page-spacer"></div>
 
-<section class="journal-hero">
+<section class="journal-hero" data-studio-section="journal-header" data-studio-section-label="Journal header">
   <div class="inner rv">
     <span class="lbl">Journal</span>
     <h1>Stories from the day.</h1>
@@ -85,7 +85,7 @@ fbq('init','250305885896733');fbq('track','PageView');
   </div>
 </section>
 
-<section class="journal-grid-section">
+<section class="journal-grid-section" data-studio-section="journal-posts" data-studio-section-label="Posts">
   <div class="journal-grid">
 
     <a href="/journal/what-to-look-for-dallas-wedding-videographer" class="j-card rv">
@@ -118,7 +118,7 @@ fbq('init','250305885896733');fbq('track','PageView');
   </div>
 </section>
 
-<section class="journal-cta">
+<section class="journal-cta" data-studio-section="journal-cta" data-studio-section-label="Call to action">
   <div class="inner rv">
     <h2>Want your wedding story told?</h2>
     <a href="/contact" class="btn btn-accent">Get in Touch</a>
@@ -141,5 +141,6 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

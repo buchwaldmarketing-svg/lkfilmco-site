@@ -185,7 +185,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </nav>
 
 <!-- HERO: full-bleed cover, title centered -->
-<section class="lx-cover">
+<section class="lx-cover" data-studio-section="pricing-header" data-studio-section-label="Pricing header">
   <img src="/covers/demi-keaton.jpg" alt="Couple exchanging vows at an outdoor altar" fetchpriority="high">
   <div class="lx-cover-in">
     <span class="lbl">Investment</span>
@@ -194,7 +194,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- INTRO + POSITIONING -->
-<section class="lx-intro">
+<section class="lx-intro" data-studio-section="pricing-intro" data-studio-section-label="The collections intro">
   <div class="lx-head rv">
     <span class="lbl">The collections</span>
     <h2>Three ways to keep the day<em>made with the same eye</em></h2>
@@ -205,7 +205,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- COLLECTIONS: editorial rows, the Signature is the natural focal point -->
-<section class="cl-wrap">
+<section class="cl-wrap" data-studio-section="pricing-collections" data-studio-section-label="Collections">
 
   <article class="cl rv" id="film-collection">
     <div class="cl-head">
@@ -281,7 +281,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- DESTINATION + MULTI-DAY: custom, no fixed price -->
-<section class="cl-custom">
+<section class="cl-custom" data-studio-section="pricing-custom" data-studio-section-label="Destination + multi-day">
   <div class="lx-head rv">
     <span class="lbl">Destination + multi-day celebrations</span>
     <h2>Custom commissioned</h2>
@@ -292,7 +292,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- ADD-ONS -->
-<section class="addons">
+<section class="addons" data-studio-section="pricing-addons" data-studio-section-label="Add-ons">
   <div class="addons-inner">
     <div class="rv">
       <div class="lx-head" style="margin-bottom:32px"><span class="lbl">Refinements</span>
@@ -313,7 +313,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- WHAT TO EXPECT -->
-<section class="expect">
+<section class="expect" data-studio-section="pricing-expect" data-studio-section-label="What to expect">
   <div class="expect-inner">
     <div class="rv">
       <div class="lx-head" style="margin-bottom:24px"><span class="lbl">What to expect</span>
@@ -365,7 +365,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- FAQ -->
-<section class="faq">
+<section class="faq" data-studio-section="pricing-faq" data-studio-section-label="Pricing FAQ">
   <div class="faq-inner">
     <div class="rv">
       <div class="lx-head" style="margin-bottom:24px"><span class="lbl">FAQ</span>
@@ -410,7 +410,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- CTA -->
-<section class="p-cta" id="book">
+<section class="p-cta" id="book" data-studio-section="pricing-cta" data-studio-section-label="Call to action">
   <div class="rv">
     <span class="lbl">Next Step</span>
     <h2>Like what you see?<br><em>Let's talk.</em></h2>
@@ -467,5 +467,6 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open)});}
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

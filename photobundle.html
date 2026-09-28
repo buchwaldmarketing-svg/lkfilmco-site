@@ -110,7 +110,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </nav>
 
 <!-- HERO: film on the left, photographs on the right -->
-<section class="pb-hero">
+<section class="pb-hero" data-studio-section="bundle-header" data-studio-section-label="Photo + film header">
   <figure><img src="/covers/meghan-tyler.jpg" alt="Bride with a paper parasol walking with her groom on a terrace, from a wedding film by LK Film Co." fetchpriority="high" style="object-position:62% 50%"></figure>
   <figure><img src="/bundle/kortney-couple-modern.jpg" alt="Bride and groom walking hand in hand across a lawn in front of a modern stone building, photographed by Kortney Boyett" fetchpriority="high" style="object-position:55% 60%"></figure>
   <div class="pb-hero-in">
@@ -122,7 +122,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- INTRO -->
-<section class="lx-intro">
+<section class="lx-intro" data-studio-section="bundle-intro" data-studio-section-label="Intro">
   <div class="lx-head rv">
     <span class="lbl">The photo + film collection</span>
     <h2>One day, kept two ways<em>by two teams who plan it together</em></h2>
@@ -133,7 +133,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- THE TWO TEAMS -->
-<section class="pb-duo">
+<section class="pb-duo" data-studio-section="bundle-duo" data-studio-section-label="The film + the photos">
   <div class="rv">
     <figure><img src="/covers/christy-brian.jpg" alt="Groom and bride holding hands on a lawn at dusk, from a wedding film by LK Film Co." loading="lazy" style="object-position:50% 50%"></figure>
     <span class="lbl">The film</span>
@@ -149,7 +149,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- STRIP: both sides of the same kind of day -->
-<section class="pb-strip" aria-label="Photographs and film stills">
+<section class="pb-strip" aria-label="Photographs and film stills" data-studio-section="bundle-strip" data-studio-section-label="Photo strip">
   <figure class="rv"><img src="/bundle/kortney-glasshouse.jpg" alt="Bride seated in a glasshouse framed by dried florals" loading="lazy"><figcaption>Photograph &middot; Kortney</figcaption></figure>
   <figure class="rv"><img src="/covers/demi-keaton.jpg" alt="Couple exchanging vows at an outdoor altar" loading="lazy" style="object-position:40% 50%"><figcaption>Film still &middot; LK</figcaption></figure>
   <figure class="rv"><img src="/bundle/kortney-arched-doors.jpg" alt="Couple kissing in front of tall arched doors" loading="lazy"><figcaption>Photograph &middot; Kortney</figcaption></figure>
@@ -157,7 +157,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- WHY TOGETHER -->
-<section class="pb-why">
+<section class="pb-why" data-studio-section="bundle-why" data-studio-section-label="Why book together">
   <div class="lx-head rv">
     <span class="lbl">Why book together</span>
     <h2>Planned once<em>for both cameras</em></h2>
@@ -177,7 +177,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- REAL WORDS FROM EACH SIDE -->
-<section class="pb-quotes">
+<section class="pb-quotes" data-studio-section="bundle-quotes" data-studio-section-label="Kind words">
   <div class="rv">
     <p>&ldquo;We just watched it like five times. It&rsquo;s so good. Love it.&rdquo;</p>
     <span>Christy + Brian &middot; on their LK film</span>
@@ -189,7 +189,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- CTA -->
-<section class="p-cta" id="book">
+<section class="p-cta" id="book" data-studio-section="bundle-cta" data-studio-section-label="Call to action">
   <div class="rv">
     <span class="lbl">Next step</span>
     <h2>Check your date<br><em>with both of us.</em></h2>
@@ -240,5 +240,6 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open)});}
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

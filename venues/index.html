@@ -84,7 +84,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </nav>
 
 <!-- HERO -->
-<section class="v-hero">
+<section class="v-hero" data-studio-section="venues-header" data-studio-section-label="Venues header">
   <div class="rv">
     <span class="lbl">Venues We've Filmed</span>
     <h1>Dallas Wedding <em>Venues</em></h1>
@@ -93,7 +93,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- VENUE GRID -->
-<section class="v-grid-section">
+<section class="v-grid-section" data-studio-section="venues-list" data-studio-section-label="Venues">
   <div class="v-grid">
 
     <!-- VENUE CARD: The Hillside Estate -->
@@ -114,7 +114,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 <!-- CTA -->
-<section class="v-cta">
+<section class="v-cta" data-studio-section="venues-cta" data-studio-section-label="Call to action">
   <div class="rv">
     <span class="lbl">Your Venue</span>
     <h2>Don't see your venue?<br><em>That's fine.</em></h2>
@@ -167,5 +167,6 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open)});}
 </script>
+<script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>
