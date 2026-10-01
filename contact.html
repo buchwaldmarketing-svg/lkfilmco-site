@@ -30,19 +30,20 @@
 <link rel="stylesheet" href="/styles.css">
 <!-- Meta Pixel -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;var go=function(){s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};if(b.readyState==='complete')go();else f.addEventListener('load',go)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','250305885896733');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=250305885896733&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"LK Film Co.","url":"https://www.lkfilmco.com","telephone":"214-577-4801","email":"bookings@lkfilmco.com","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"priceRange":"$3000-$6500"}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"LK Film Co.","url":"https://www.lkfilmco.com","telephone":"214-577-4801","email":"bookings@lkfilmco.com","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"priceRange":"From $2500"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.lkfilmco.com/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://www.lkfilmco.com/contact"}]}
 </script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <nav>
   <a href="/" class="n-logo">LK Film Co.</a>
@@ -52,31 +53,35 @@ fbq('init','250305885896733');fbq('track','PageView');
     <a href="/about">About</a>
     <a href="/pricing">Pricing</a>
     <a href="https://instagram.com/leekounas" target="_blank" rel="noopener" class="n-ig" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-    <a href="/contact" class="n-cta" style="border-color:var(--accent);color:var(--fg)">Inquire</a>
+    <a href="/contact" class="n-cta is-here" aria-current="page">Inquire</a>
   </div>
   <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-spacer"></div>
+<main id="main">
 
 <section class="contact" style="background:var(--cream)" data-studio-section="contact-form" data-studio-section-label="Inquiry form">
   <div class="inner">
     <div class="c-top rv">
+      <div class="c-portrait"><img src="/lee-thumb.jpg" alt="Lee Kounas" width="96" height="96"></div>
       <span class="lbl">Inquire</span>
       <h1 class="lx-h lx-sys">Let's talk<em>about your day</em></h1>
-      <p style="font-family:var(--serif);font-size:1.05rem;color:var(--muted);font-weight:400;margin-top:12px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7">Now booking 2027 weddings. Fill out the form, or just text me at <a href="sms:+12145774801" style="color:var(--fg);border-bottom:1px solid var(--accent);text-decoration:none;white-space:nowrap">214-577-4801</a>.</p>
+      <p style="font-family:var(--serif);font-size:1.05rem;color:var(--muted);font-weight:400;margin-top:12px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7">Now booking 2027 weddings. Send me your date and I'll get back to you within 24 hours.</p>
     </div>
+    <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20My%20wedding%20date%20is%20" class="c-text rv">Text me instead &middot; 214-577-4801</a>
+    <p class="c-or">or fill out the form</p>
     <p class="c-pick" id="c-pick" hidden></p>
 
     <form class="c-form rv" id="contact-form" action="https://formspree.io/f/xbdzdwar" method="POST">
       <input type="hidden" name="collection" id="c-collection" value="">
       <div class="fr">
-        <div class="fg"><label for="c-name">Your Name</label><input id="c-name" type="text" name="name" placeholder="Full name" required></div>
+        <div class="fg"><label for="c-name">Your Name<span class="req" aria-hidden="true">*</span></label><input id="c-name" type="text" name="name" placeholder="Full name" autocomplete="name" required></div>
         <div class="fg"><label for="c-partner">Partner's Name</label><input id="c-partner" type="text" name="partner" placeholder="Partner's name"></div>
       </div>
       <div class="fr">
-        <div class="fg"><label for="c-email">Email</label><input id="c-email" type="email" name="email" placeholder="your@email.com" required></div>
-        <div class="fg"><label for="c-phone">Phone</label><input id="c-phone" type="tel" name="phone" placeholder="(555) 555-5555"></div>
+        <div class="fg"><label for="c-email">Email<span class="req" aria-hidden="true">*</span></label><input id="c-email" type="email" name="email" placeholder="your@email.com" autocomplete="email" required></div>
+        <div class="fg"><label for="c-phone">Phone</label><input id="c-phone" type="tel" name="phone" placeholder="(555) 555-5555" autocomplete="tel"></div>
       </div>
       <div class="fr">
         <div class="fg"><label for="c-date">Wedding Date</label><input id="c-date" type="date" name="date"></div>
@@ -88,13 +93,14 @@ fbq('init','250305885896733');fbq('track','PageView');
           <select id="c-source" name="source"><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Wedding Planner</option><option>Venue Referral</option><option>Friend / Family</option><option>The Knot</option><option>Other</option></select>
         </div>
       </div>
-      <div class="fg"><label for="c-budget">Estimated Budget</label>
-        <select id="c-budget" name="budget"><option value="">Select a range</option><option>$3,000 – $4,500</option><option>$4,500 – $6,500</option><option>$6,500+</option><option>Destination or multi-day (custom)</option></select>
+      <div class="fg" id="c-budget-row"><label for="c-budget">Budget for your film</label><input id="c-budget" type="text" name="budget" inputmode="text" placeholder="What feels right for you">
       </div>
-      <div class="fg"><label for="c-message">Tell me about your vision</label><textarea id="c-message" name="message" placeholder="The mood, the details, the moments that matter most to you."></textarea></div>
+      <div class="fg"><label for="c-message">Tell me about your vision</label><textarea id="c-message" name="message" placeholder="The vibe, the venue, what you want to remember most."></textarea></div>
       <button type="submit" class="c-sub">Check Availability</button>
       <div class="form-msg" id="form-msg" aria-live="polite"></div>
     </form>
+
+    <blockquote class="c-quote rv"><p>&ldquo;The video is amazing! Thank you so much for all of your work on it.&rdquo;</p><cite>Mackenzie</cite></blockquote>
 
     <div class="c-info rv">
       <p><a href="mailto:bookings@lkfilmco.com">bookings@lkfilmco.com</a></p>
@@ -105,11 +111,13 @@ fbq('init','250305885896733');fbq('track','PageView');
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="f-top">
-    <div class="f-brand"><h3>LK Film Co.</h3><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
-    <div class="f-col"><h4>Explore</h4><a href="/films">Films</a><a href="/about">About</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/journal">Journal</a><a href="/contact">Contact</a></div>
-    <div class="f-col"><h4>Follow Along</h4><a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a></div>
+    <div class="f-brand"><p class="f-name">LK Film Co.</p><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
+    <div class="f-col"><p class="f-head">Explore</p><a href="/films">Films</a><a href="/about">About</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/journal">Journal</a><a href="/contact">Contact</a></div>
+    <div class="f-col"><p class="f-head">Follow Along</p><a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a></div>
   </div>
   <div class="f-bot"><span>© 2026 LK Film Co.</span><span>Dallas, TX · Available worldwide</span></div>
 </footer>
@@ -122,7 +130,7 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
 
-(()=>{const picks={film:['The Film Collection','$3,000 – $4,500'],signature:['The Signature Collection','$4,500 – $6,500'],weekend:['The Weekend Collection','$6,500+'],custom:['a custom destination or multi-day collection','Destination or multi-day (custom)']};const k=new URLSearchParams(location.search).get('c');const p=picks[k];if(!p)return;const b=document.getElementById('c-budget');if(b){b.value=p[1];b.classList.add('has-value');}document.getElementById('c-collection').value=p[0];const note=document.getElementById('c-pick');note.innerHTML='You\'re asking about <strong>'+p[0]+'</strong>. Send your date and I\'ll confirm it\'s open.';note.hidden=false;})();
+(()=>{const picks={film:['The Film Collection'],signature:['The Signature Collection'],weekend:['The Weekend Collection'],custom:['a custom destination or multi-day collection']};const k=new URLSearchParams(location.search).get('c');const p=picks[k];if(!p)return;document.getElementById('c-collection').value=p[0];const note=document.getElementById('c-pick');note.innerHTML='You\'re asking about <strong>'+p[0]+'</strong>. Send your date and I\'ll confirm it\'s open.';note.hidden=false;})();
 (()=>{const d=document.getElementById('c-date');if(d){const t=new Date();d.min=new Date(t-t.getTimezoneOffset()*6e4).toISOString().slice(0,10);}})();
 document.querySelectorAll('.fg select').forEach(sel=>{sel.addEventListener('change',function(){this.classList.toggle('has-value',this.value!=='');});});
 
@@ -130,6 +138,7 @@ const form=document.getElementById('contact-form');
 const msg=document.getElementById('form-msg');
 if(form&&msg){form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('.c-sub');btn.textContent='Sending...';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();if(window.fbq)fbq('track','Lead',{content_name:'Contact Form'});if(window.gtag)gtag('event','generate_lead',{method:'contact_form'});msg.textContent="Got it. I'll be in touch within 24 hours.";msg.className='form-msg success';btn.textContent='Sent';}else{throw new Error();}}catch{msg.textContent='Something went wrong. Email me directly at bookings@lkfilmco.com';msg.className='form-msg error';btn.textContent='Check Availability';btn.disabled=false;}});}
 </script>
+<script src="/site.js" defer></script>
 <script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

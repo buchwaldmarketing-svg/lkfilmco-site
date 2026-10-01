@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/styles.css">
 <!-- Meta Pixel -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;var go=function(){s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};if(b.readyState==='complete')go();else f.addEventListener('load',go)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','250305885896733');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=250305885896733&ev=PageView&noscript=1"/></noscript>
@@ -61,6 +61,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <nav>
   <a href="/" class="n-logo">LK Film Co.</a>
@@ -76,6 +77,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 </nav>
 
 <div class="page-spacer"></div>
+<main id="main">
 
 <section class="journal-hero" data-studio-section="journal-header" data-studio-section-label="Journal header">
   <div class="inner rv">
@@ -125,11 +127,13 @@ fbq('init','250305885896733');fbq('track','PageView');
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="f-top">
-    <div class="f-brand"><h3>LK Film Co.</h3><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
-    <div class="f-col"><h4>Explore</h4><a href="/films">Films</a><a href="/about">About</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/journal">Journal</a><a href="/contact">Contact</a></div>
-    <div class="f-col"><h4>Follow Along</h4><a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a></div>
+    <div class="f-brand"><p class="f-name">LK Film Co.</p><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
+    <div class="f-col"><p class="f-head">Explore</p><a href="/films">Films</a><a href="/about">About</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/journal">Journal</a><a href="/contact">Contact</a></div>
+    <div class="f-col"><p class="f-head">Follow Along</p><a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a></div>
   </div>
   <div class="f-bot"><span>&copy; 2026 LK Film Co.</span><span>Dallas, TX &middot; Available worldwide</span></div>
 </footer>
@@ -141,6 +145,7 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
 </script>
+<script src="/site.js" defer></script>
 <script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

@@ -26,7 +26,7 @@
 <meta property="og:url" content="https://www.lkfilmco.com/">
 <meta property="og:image" content="https://www.lkfilmco.com/hero-poster.jpg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"LK Film Co.","description":"Cinematic, documentary-style wedding filmmaker based in Dallas, Texas. Wedding film collections from $3,000.","url":"https://www.lkfilmco.com","telephone":"214-577-4801","email":"bookings@lkfilmco.com","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":32.7767,"longitude":-96.7970},"priceRange":"$3000-$6500","areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":32.7767,"longitude":-96.7970},"geoRadius":"100000"},"founder":{"@type":"Person","name":"Lee Kounas"},"foundingDate":"2020","sameAs":["https://www.instagram.com/leekounas","https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ"]}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"LK Film Co.","description":"Cinematic, documentary-style wedding filmmaker based in Dallas, Texas. Wedding film collections from $2,500.","url":"https://www.lkfilmco.com","telephone":"214-577-4801","email":"bookings@lkfilmco.com","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":32.7767,"longitude":-96.7970},"priceRange":"From $2500","areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":32.7767,"longitude":-96.7970},"geoRadius":"100000"},"founder":{"@type":"Person","name":"Lee Kounas"},"foundingDate":"2020","sameAs":["https://www.instagram.com/leekounas","https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ"]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"LK Film Co.","url":"https://www.lkfilmco.com"}
@@ -37,19 +37,20 @@
 <link rel="stylesheet" href="/styles.css">
 <!-- Meta Pixel -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;var go=function(){s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};if(b.readyState==='complete')go();else f.addEventListener('load',go)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','250305885896733');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=250305885896733&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel -->
 <style>
-  .hero-cred{position:absolute;bottom:3vh;left:0;right:0;text-align:center;z-index:4;font-family:'Karla',sans-serif;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(253,251,248,.55);font-weight:300;padding:0 20px}
+  .hero-cred{position:absolute;bottom:3vh;left:0;right:0;text-align:center;z-index:4;font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(253,251,248,.82);font-weight:400;padding:0 64px;text-shadow:0 1px 10px rgba(0,0,0,.4)}
   .hero-cred span{color:#E4DED4}
   .hero-vid{background:#000}
   .hero-mp4{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <div class="ld" id="ld"><span>LK Film Co.</span></div>
 
@@ -66,15 +67,16 @@ fbq('init','250305885896733');fbq('track','PageView');
   </div>
   <button class="n-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
+<main id="main">
 
 <!-- HERO -->
 <section class="hero" data-studio-section="hero" data-studio-section-label="Hero">
   <div class="hero-vid">
-    <video class="hero-mp4" id="hero-mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture poster="/hero-poster-wide.jpg">
+    <video class="hero-mp4" id="hero-mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture>
       <source src="/hero-wide.mp4" type="video/mp4" media="(orientation: landscape)">
       <source src="/hero-tall.mp4" type="video/mp4">
     </video>
-    <script>if(matchMedia('(orientation: portrait)').matches)document.getElementById('hero-mp4').poster='/hero-poster-tall.jpg';</script>
+    <script>(()=>{const v=document.getElementById('hero-mp4');v.poster=matchMedia('(orientation: portrait)').matches?'/hero-poster-tall.jpg':'/hero-poster-wide.jpg';if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.preload='none';v.pause();}})();</script>
   </div>
   <div class="hero-ov"></div>
   <div class="hero-c">
@@ -82,7 +84,8 @@ fbq('init','250305885896733');fbq('track','PageView');
     <p class="hero-sub" data-studio="subhead">Dallas wedding filmmaker · Now booking 2027</p>
     <div class="hero-btn"><a href="/films" data-studio="cta" data-studio-label="Hero button">See the Films</a></div>
   </div>
-  <div class="hero-cred"><span>◆</span> Filming Since 2020 &nbsp; <span>◆</span> Dallas–Fort Worth &nbsp; <span>◆</span> Now booking 2027</div>
+  <div class="hero-cred"><span>◆</span> Filming since 2020 &nbsp; <span>◆</span> Dallas–Fort Worth</div>
+  <button type="button" class="hero-pause" id="hero-pause" aria-label="Pause background video"></button>
 </section>
 
 <!-- APPROACH -->
@@ -113,15 +116,13 @@ fbq('init','250305885896733');fbq('track','PageView');
 <!-- COLLECTIONS: prices up front, one tap to check a date -->
 <section class="lk-col" id="collections" data-studio-section="collections" data-studio-section-label="Collections">
   <div class="lx-head rv">
-    <span class="lbl" data-studio="label">The collections</span>
-    <h2 data-studio="headline" data-studio-type="richtext">Wedding films<em>begin at $3,000</em></h2>
+        <h2 data-studio="headline" data-studio-type="richtext">Wedding films<em>begin at $2,500</em></h2>
   </div>
   <div class="lk-col-row">
     <article class="lk-col-item rv">
       <div class="lk-col-top"><span class="lk-col-no">I</span></div>
       <h3 class="lk-col-name">The Film Collection</h3>
-      <p class="lk-col-price">$3,000</p>
-      <ul class="lk-col-list">
+            <ul class="lk-col-list">
         <li>6 hours &middot; 1 filmmaker</li>
         <li>4&ndash;5 minute wedding film</li>
         <li>60-second vertical teaser</li>
@@ -131,8 +132,7 @@ fbq('init','250305885896733');fbq('track','PageView');
     <article class="lk-col-item lk-col-sig rv">
       <div class="lk-col-top"><span class="lk-col-no">II</span><span class="lk-col-mark">Chosen by most couples</span></div>
       <h3 class="lk-col-name">The Signature Collection</h3>
-      <p class="lk-col-price">$4,500</p>
-      <ul class="lk-col-list">
+            <ul class="lk-col-list">
         <li>8 hours &middot; 2 filmmakers</li>
         <li>6&ndash;8 minute film + teaser</li>
         <li>Full ceremony + toasts films</li>
@@ -142,8 +142,7 @@ fbq('init','250305885896733');fbq('track','PageView');
     <article class="lk-col-item rv">
       <div class="lk-col-top"><span class="lk-col-no">III</span></div>
       <h3 class="lk-col-name">The Weekend Collection</h3>
-      <p class="lk-col-price">$6,500</p>
-      <ul class="lk-col-list">
+            <ul class="lk-col-list">
         <li>Up to 10&ndash;12 hours &middot; 2 filmmakers</li>
         <li>8&ndash;10 minute film + teaser</li>
         <li>Rehearsal dinner or welcome party</li>
@@ -160,17 +159,18 @@ fbq('init','250305885896733');fbq('track','PageView');
 <!-- FILMS: full-bleed covers, names over the footage -->
 <section class="films lx-films" id="films-preview" data-studio-section="films" data-studio-section-label="Recent films">
   <div class="films-head lx-head rv">
-    <span class="lbl">The films</span>
     <h2>Recent work<em>real days, exactly how they felt</em></h2>
   </div>
     <button type="button" class="lx-film" data-vid="krjjtssa" aria-label="Play the Christy + Brian wedding film">
       <img src="/covers/christy-brian.jpg" alt="Christy + Brian wedding film" loading="lazy">
+      <video class="lx-film-loop" muted loop playsinline preload="none" aria-hidden="true"><source data-src="/clips/christy-ceremony.mp4" type="video/mp4"></video>
       <span class="lx-film-in">
         <span class="lx-film-tag">Highlight film · Dallas, TX</span>
         <span class="lx-film-name">Christy + Brian</span>
         <span class="lx-film-play"><i>&#9654;</i> Watch the film</span>
       </span>
     </button>
+    <blockquote class="lx-film-quote rv"><p>&ldquo;We just watched it like five times. It&rsquo;s so good. Love it. Thank you so much!&rdquo;</p><cite>Christy + Brian</cite></blockquote>
     <button type="button" class="lx-film" data-vid="a2988a4e" aria-label="Play the Demi + Keaton wedding film">
       <img src="/covers/demi-keaton.jpg" alt="Demi + Keaton wedding film" loading="lazy">
       <span class="lx-film-in">
@@ -190,18 +190,6 @@ fbq('init','250305885896733');fbq('track','PageView');
   <div class="lx-films-more"><a href="/films" class="lx-btn-ghost">All films</a></div>
 </section>
 
-<!-- KIND WORDS: right after the films, clean and big -->
-<section class="lx-quote" data-studio-section="kind-words" data-studio-section-label="Kind words">
-  <div class="lx-head rv">
-    <span class="lbl">Kind words</span>
-    <p class="lx-quote-big">&ldquo;We just watched it like five times. It&rsquo;s so good. Love it. Thank you so much!&rdquo;</p>
-    <span class="lx-quote-by">Christy + Brian</span>
-    <div class="lx-rule"></div>
-    <p class="lx-quote-small">&ldquo;The video is amazing! Thank you so much for all of your work on it.&rdquo;</p>
-    <span class="lx-quote-by">Mackenzie</span>
-  </div>
-</section>
-
 <!-- MEET LEE: heading above the photo -->
 <section class="about lx-lee" id="about-preview" data-studio-section="meet-lee" data-studio-section-label="Meet Lee">
   <div class="inner">
@@ -209,8 +197,8 @@ fbq('init','250305885896733');fbq('track','PageView');
       <span class="lbl">Behind the camera</span>
       <h2 class="lx-h" style="font-size:clamp(1.75rem,4.6vw,3rem)">Lee Kounas<em style="display:block;text-transform:none;letter-spacing:0;font-style:italic;font-weight:400;font-size:.9em;margin-top:.12em">Dallas wedding filmmaker</em></h2>
     </div>
-    <div class="about-wrap">
-      <div class="about-img rv"><img src="/lee.jpg" loading="lazy" alt="Lee Kounas filming at a wedding reception, camera and light in hand" style="width:100%;height:100%;object-fit:cover;object-position:center"><img class="about-inset" src="/lee-family.jpg" loading="lazy" alt="Lee with his wife and two sons at Disney World"></div>
+    <div class="about-wrap has-full">
+      <div class="about-img about-full rv"><img src="/lee.jpg" width="1800" height="1200" loading="lazy" alt="Lee Kounas filming at a wedding reception, camera and light in hand" style="width:100%;height:100%;object-fit:cover;object-position:center"><img class="about-inset" src="/lee-family.jpg" loading="lazy" alt="Lee with his wife and two sons at Disney World"></div>
       <div class="about-txt rv">
         <p>Marketing grad from UT Dallas, self-taught filmmaker, husband, dad of two.</p>
         <p>I started filming my own kids and realized video holds something a photo can't: the voices, the movement, the way a moment actually felt. That's what pulled me into weddings.</p>
@@ -228,18 +216,16 @@ fbq('init','250305885896733');fbq('track','PageView');
     <h2>From hello<em>to your finished film</em></h2>
   </div>
   <ol class="lx-steps rv">
-    <li><span class="n">01</span><div><h3>Reach out</h3><p>Send me your date, venue, and anything you want me to know about your day. I'll get back to you within a few hours.</p></div></li>
-    <li><span class="n">02</span><div><h3>Let's connect</h3><p>We'll chat over text or email, whatever's easiest. Your day, your vibe, what matters most to you. No sales pitch, just a real conversation.</p></div></li>
-    <li><span class="n">03</span><div><h3>Pre-wedding planning</h3><p>About a month out we go over your timeline together, and I coordinate with your planner and photographer so the day runs smooth.</p></div></li>
-    <li><span class="n">04</span><div><h3>Your wedding day</h3><p>I show up early, crack a joke to break the tension, and capture everything: the first look nerves, the ugly-cry toasts, the dance floor chaos.</p></div></li>
-    <li><span class="n">05</span><div><h3>Your film</h3><p>Built from scratch in the edit, never a template. Delivered to a private gallery to stream, download, and share. Yours forever.</p></div></li>
+    <li><span class="n">01</span><div><h3>Reach out</h3><p>Send me your date and venue, or just text me. I'll get back to you within 24 hours.</p></div></li>
+    <li><span class="n">02</span><div><h3>Your wedding day</h3><p>I show up early, crack a joke to break the tension, and capture everything: the first look nerves, the ugly-cry toasts, the dance floor chaos.</p></div></li>
+    <li><span class="n">03</span><div><h3>Your film</h3><p>Built from scratch in the edit, never a template. Delivered to a private gallery to stream, download, and share. Yours forever.</p></div></li>
   </ol>
   <div class="lx-center rv"><a href="/contact" class="lx-btn">Check availability</a></div>
 </section>
 
 <!-- CLOSING: the statement and the one call to action, together -->
 <section class="lx-close" data-studio-section="closing" data-studio-section-label="Closing call to action">
-  <img src="/covers/allison-ross.jpg" alt="" loading="lazy">
+  <img src="/covers/orchard-arches.jpg" alt="" loading="lazy">
   <div class="lx-close-in rv">
     <span class="lbl">A photo holds the moment.</span>
     <h2>A film holds<em>the feeling.</em></h2>
@@ -247,6 +233,8 @@ fbq('init','250305885896733');fbq('track','PageView');
     <a href="/contact" class="lx-btn-light">Check availability</a>
   </div>
 </section>
+
+</main>
 
 <!-- FILM MODAL -->
 <div class="modal-ov" id="film-modal" role="dialog" aria-modal="true" aria-label="Wedding film">
@@ -256,11 +244,11 @@ fbq('init','250305885896733');fbq('track','PageView');
 <footer>
   <div class="f-top">
     <div class="f-brand">
-      <h3>LK Film Co.</h3>
+      <p class="f-name">LK Film Co.</p>
       <p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p>
     </div>
     <div class="f-col">
-      <h4>Explore</h4>
+      <p class="f-head">Explore</p>
       <a href="/films">Films</a>
       <a href="/about">About</a>
       <a href="/pricing">Pricing</a>
@@ -270,7 +258,7 @@ fbq('init','250305885896733');fbq('track','PageView');
       <a href="/contact">Contact</a>
     </div>
     <div class="f-col">
-      <h4>Follow Along</h4>
+      <p class="f-head">Follow Along</p>
       <a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a>
     </div>
@@ -284,12 +272,12 @@ fbq('init','250305885896733');fbq('track','PageView');
 <script>
 // Loader — fade out on DOMContentLoaded, don't wait for video
 const hideLoader=()=>{const ld=document.getElementById('ld');if(ld)ld.classList.add('out');};
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>setTimeout(hideLoader,400));}else{setTimeout(hideLoader,400);}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>setTimeout(hideLoader,120));}else{setTimeout(hideLoader,120);}
 setTimeout(hideLoader,2000); // hard fallback
 
 // Force hero video to play (iOS Safari autoplay fix)
 const heroVid=document.getElementById('hero-mp4');
-if(heroVid){heroVid.muted=true;heroVid.setAttribute('muted','');heroVid.playsInline=true;const tryPlay=()=>heroVid.play().catch(()=>{});tryPlay();document.addEventListener('touchstart',tryPlay,{once:true,passive:true});document.addEventListener('click',tryPlay,{once:true});}
+if(heroVid&&!matchMedia('(prefers-reduced-motion: reduce)').matches){heroVid.muted=true;heroVid.setAttribute('muted','');heroVid.playsInline=true;const tryPlay=()=>heroVid.play().catch(()=>{});tryPlay();document.addEventListener('touchstart',tryPlay,{once:true,passive:true});document.addEventListener('click',tryPlay,{once:true});}
 
 // Transparent nav over hero — solidify after scrolling past the hero
 const siteNav=document.getElementById('site-nav');
@@ -335,12 +323,9 @@ if(promoClose){promoClose.addEventListener('click',()=>{document.body.classList.
 // Form async submit
 const form=document.getElementById('contact-form');
 const msg=document.getElementById('form-msg');
-if(form&&msg){form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('.c-sub');btn.textContent='Sending...';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();msg.textContent="Got it \u2014 I'll be in touch within 24 hours.";msg.className='form-msg success';btn.textContent='Sent';}else{throw new Error();}}catch{msg.textContent='Something went wrong. Email me directly at bookings@lkfilmco.com';msg.className='form-msg error';btn.textContent='Check Availability';btn.disabled=false;}});}
+if(form&&msg){form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('.c-sub');btn.textContent='Sending...';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();msg.textContent="Got it. I'll be in touch within 24 hours.";msg.className='form-msg success';btn.textContent='Sent';}else{throw new Error();}}catch{msg.textContent='Something went wrong. Email me directly at bookings@lkfilmco.com';msg.className='form-msg error';btn.textContent='Check Availability';btn.disabled=false;}});}
 </script>
-<script>
-// Approach loops: load when near the screen, play only while visible (poster still without JS or with reduced motion).
-(()=>{const clips=document.querySelectorAll('video.lk-clip');const calm=matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData);if(!clips.length||calm||!('IntersectionObserver' in window))return;const io=new IntersectionObserver(es=>es.forEach(({target:v,isIntersecting:on})=>{const src=v.querySelector('source[data-src]');if(on&&src){src.src=src.dataset.src;src.removeAttribute('data-src');v.load();}if(on)v.play().catch(()=>{});else v.pause();}),{rootMargin:'200px 0px'});clips.forEach(v=>io.observe(v));})();
-</script>
+<script src="/site.js" defer></script>
 <script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>

@@ -30,19 +30,20 @@
 <link rel="stylesheet" href="/styles.css">
 <!-- Meta Pixel -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;var go=function(){s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};if(b.readyState==='complete')go();else f.addEventListener('load',go)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','250305885896733');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=250305885896733&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"LK Film Co.","url":"https://www.lkfilmco.com","telephone":"214-577-4801","email":"bookings@lkfilmco.com","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"priceRange":"$3000-$6500"}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"LK Film Co.","url":"https://www.lkfilmco.com","telephone":"214-577-4801","email":"bookings@lkfilmco.com","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"priceRange":"From $2500"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.lkfilmco.com/"},{"@type":"ListItem","position":2,"name":"Films","item":"https://www.lkfilmco.com/films"}]}
 </script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- NAV -->
 <nav>
@@ -59,16 +60,18 @@ fbq('init','250305885896733');fbq('track','PageView');
 </nav>
 
 <div class="page-spacer"></div>
+<main id="main">
 
 <section class="films lx-films" style="padding-top:56px" data-studio-section="films-list" data-studio-section-label="Films">
   <div class="films-head lx-head">
     <span class="lbl">Portfolio</span>
     <h1>Wedding films<em>every one a real story</em></h1>
     <div class="lx-rule"></div>
-    <p class="lx-lede">No scripts. No direction. Just your day, as it happened.</p>
+    <p class="lx-lede">Nothing staged. Just your day, as it happened.</p>
   </div>
   <button type="button" class="lx-film" data-vid="krjjtssa" aria-label="Play the Christy + Brian wedding film">
     <img src="/covers/christy-brian.jpg" alt="Christy + Brian wedding film" loading="eager">
+    <video class="lx-film-loop" muted loop playsinline preload="none" aria-hidden="true"><source data-src="/clips/christy-ceremony.mp4" type="video/mp4"></video>
     <span class="lx-film-in">
       <span class="lx-film-tag">Highlight film · Dallas, TX</span>
       <span class="lx-film-name">Christy + Brian</span>
@@ -117,15 +120,17 @@ fbq('init','250305885896733');fbq('track','PageView');
     <div class="lx-center"><a href="/contact" class="lx-btn">Inquire about your date</a></div>
   </div>
 </section>
+</main>
+
 <!-- FILM MODAL -->
 <div class="modal-ov" id="film-modal" role="dialog" aria-modal="true" aria-label="Wedding film">
   <div class="modal-wrap"><button class="modal-close" id="film-close" aria-label="Close film">&times;</button><iframe id="film-frame" src="" allow="autoplay; fullscreen" allowfullscreen title="Wedding film"></iframe></div>
 </div>
 <footer>
   <div class="f-top">
-    <div class="f-brand"><h3>LK Film Co.</h3><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
-    <div class="f-col"><h4>Explore</h4><a href="/films">Films</a><a href="/about">About</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/journal">Journal</a><a href="/contact">Contact</a></div>
-    <div class="f-col"><h4>Follow Along</h4><a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a></div>
+    <div class="f-brand"><p class="f-name">LK Film Co.</p><p>Cinematic wedding films rooted in authenticity. Dallas, Texas.</p></div>
+    <div class="f-col"><p class="f-head">Explore</p><a href="/films">Films</a><a href="/about">About</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/journal">Journal</a><a href="/contact">Contact</a></div>
+    <div class="f-col"><p class="f-head">Follow Along</p><a href="https://instagram.com/leekounas" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCyyj2EeDJZ0M06EAOXSO6uQ" target="_blank" rel="noopener">YouTube</a></div>
   </div>
   <div class="f-bot"><span>© 2026 LK Film Co.</span><span>Dallas, TX · Available worldwide</span></div>
 </footer>
@@ -144,6 +149,7 @@ const closeFilm=()=>{fm.classList.remove('open');ff.src='';document.documentElem
 document.querySelectorAll('.lx-film').forEach(b=>b.addEventListener('click',()=>{ff.src='https://galleries.vidflow.co/videos/'+b.dataset.vid;fm.classList.add('open');document.documentElement.style.overflow='hidden';}));
 document.getElementById('film-close').addEventListener('click',closeFilm);fm.addEventListener('click',e=>{if(e.target===fm)closeFilm();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&fm.classList.contains('open'))closeFilm();});
 </script>
+<script src="/site.js" defer></script>
 <script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
 </html>
