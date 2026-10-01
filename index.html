@@ -70,9 +70,11 @@ fbq('init','250305885896733');fbq('track','PageView');
 <!-- HERO -->
 <section class="hero" data-studio-section="hero" data-studio-section-label="Hero">
   <div class="hero-vid">
-    <video class="hero-mp4" id="hero-mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture poster="/hero-poster.jpg">
-      <source src="/hero.mp4" type="video/mp4">
+    <video class="hero-mp4" id="hero-mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture poster="/hero-poster-wide.jpg">
+      <source src="/hero-wide.mp4" type="video/mp4" media="(orientation: landscape)">
+      <source src="/hero-tall.mp4" type="video/mp4">
     </video>
+    <script>if(matchMedia('(orientation: portrait)').matches)document.getElementById('hero-mp4').poster='/hero-poster-tall.jpg';</script>
   </div>
   <div class="hero-ov"></div>
   <div class="hero-c">
@@ -105,25 +107,6 @@ fbq('init','250305885896733');fbq('track','PageView');
       </video>
       <figcaption class="craft-cap">Latest film &middot; Stonebriar</figcaption>
     </figure>
-  </div>
-</section>
-
-<!-- MEET LEE: heading above the photo -->
-<section class="about lx-lee" id="about-preview" data-studio-section="meet-lee" data-studio-section-label="Meet Lee">
-  <div class="inner">
-    <div class="lx-head rv">
-      <span class="lbl">Behind the camera</span>
-      <h2 class="lx-h" style="font-size:clamp(1.75rem,4.6vw,3rem)">Lee Kounas<em style="display:block;text-transform:none;letter-spacing:0;font-style:italic;font-weight:400;font-size:.9em;margin-top:.12em">Dallas wedding filmmaker</em></h2>
-    </div>
-    <div class="about-wrap">
-      <div class="about-img rv"><img src="/lee.jpg" loading="lazy" alt="Lee Kounas, Dallas wedding filmmaker, with his family" style="width:100%;height:100%;object-fit:cover;object-position:center"></div>
-      <div class="about-txt rv">
-        <p>Marketing grad from UT Dallas, self-taught filmmaker, husband, dad of two.</p>
-        <p>I started filming my own kids and realized video holds something a photo can't: the voices, the movement, the way a moment actually felt. That's what pulled me into weddings.</p>
-        <p>Couples say working with me feels natural. And fun. I'm not a fly on the wall. I'm personable, I'll make you laugh, and I know how to get what I need without making it weird. Based in Dallas, powered by espresso over ice.</p>
-        <a href="/about" class="tl">More about Lee</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -160,6 +143,53 @@ fbq('init','250305885896733');fbq('track','PageView');
   <div class="lx-films-more"><a href="/films" class="lx-btn-ghost">All films</a></div>
 </section>
 
+<!-- COLLECTIONS: prices up front, one tap to check a date -->
+<section class="lk-col" id="collections" data-studio-section="collections" data-studio-section-label="Collections">
+  <div class="lx-head rv">
+    <span class="lbl" data-studio="label">The collections</span>
+    <h2 data-studio="headline" data-studio-type="richtext">Wedding films<em>begin at $3,000</em></h2>
+  </div>
+  <div class="lk-col-row">
+    <article class="lk-col-item rv">
+      <div class="lk-col-top"><span class="lk-col-no">I</span></div>
+      <h3 class="lk-col-name">The Film Collection</h3>
+      <p class="lk-col-price">$3,000</p>
+      <ul class="lk-col-list">
+        <li>6 hours &middot; 1 filmmaker</li>
+        <li>4&ndash;5 minute wedding film</li>
+        <li>60-second vertical teaser</li>
+      </ul>
+      <a href="/contact?c=film" class="lk-col-cta">Check availability</a>
+    </article>
+    <article class="lk-col-item lk-col-sig rv">
+      <div class="lk-col-top"><span class="lk-col-no">II</span><span class="lk-col-mark">Chosen by most couples</span></div>
+      <h3 class="lk-col-name">The Signature Collection</h3>
+      <p class="lk-col-price">$4,500</p>
+      <ul class="lk-col-list">
+        <li>8 hours &middot; 2 filmmakers</li>
+        <li>6&ndash;8 minute film + teaser</li>
+        <li>Full ceremony + toasts films</li>
+      </ul>
+      <a href="/contact?c=signature" class="lk-col-cta">Check availability</a>
+    </article>
+    <article class="lk-col-item rv">
+      <div class="lk-col-top"><span class="lk-col-no">III</span></div>
+      <h3 class="lk-col-name">The Weekend Collection</h3>
+      <p class="lk-col-price">$6,500</p>
+      <ul class="lk-col-list">
+        <li>Up to 10&ndash;12 hours &middot; 2 filmmakers</li>
+        <li>8&ndash;10 minute film + teaser</li>
+        <li>Rehearsal dinner or welcome party</li>
+      </ul>
+      <a href="/contact?c=weekend" class="lk-col-cta">Check availability</a>
+    </article>
+  </div>
+  <div class="lk-col-foot rv">
+    <a href="/pricing" class="lk-col-link">Compare everything included</a>
+    <a href="/contact?c=custom" class="lk-col-link">Destination or multi-day? Ask for a custom collection</a>
+  </div>
+</section>
+
 <!-- KIND WORDS: right after the films, clean and big -->
 <section class="lx-quote" data-studio-section="kind-words" data-studio-section-label="Kind words">
   <div class="lx-head rv">
@@ -169,6 +199,25 @@ fbq('init','250305885896733');fbq('track','PageView');
     <div class="lx-rule"></div>
     <p class="lx-quote-small">&ldquo;The video is amazing! Thank you so much for all of your work on it.&rdquo;</p>
     <span class="lx-quote-by">Mackenzie</span>
+  </div>
+</section>
+
+<!-- MEET LEE: heading above the photo -->
+<section class="about lx-lee" id="about-preview" data-studio-section="meet-lee" data-studio-section-label="Meet Lee">
+  <div class="inner">
+    <div class="lx-head rv">
+      <span class="lbl">Behind the camera</span>
+      <h2 class="lx-h" style="font-size:clamp(1.75rem,4.6vw,3rem)">Lee Kounas<em style="display:block;text-transform:none;letter-spacing:0;font-style:italic;font-weight:400;font-size:.9em;margin-top:.12em">Dallas wedding filmmaker</em></h2>
+    </div>
+    <div class="about-wrap">
+      <div class="about-img rv"><img src="/lee.jpg" loading="lazy" alt="Lee Kounas, Dallas wedding filmmaker, with his family" style="width:100%;height:100%;object-fit:cover;object-position:center"></div>
+      <div class="about-txt rv">
+        <p>Marketing grad from UT Dallas, self-taught filmmaker, husband, dad of two.</p>
+        <p>I started filming my own kids and realized video holds something a photo can't: the voices, the movement, the way a moment actually felt. That's what pulled me into weddings.</p>
+        <p>Couples say working with me feels natural. And fun. I'm not a fly on the wall. I'm personable, I'll make you laugh, and I know how to get what I need without making it weird. Based in Dallas, powered by espresso over ice.</p>
+        <a href="/about" class="tl">More about Lee</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -185,7 +234,7 @@ fbq('init','250305885896733');fbq('track','PageView');
     <li><span class="n">04</span><div><h3>Your wedding day</h3><p>I show up early, crack a joke to break the tension, and capture everything: the first look nerves, the ugly-cry toasts, the dance floor chaos.</p></div></li>
     <li><span class="n">05</span><div><h3>Your film</h3><p>Built from scratch in the edit, never a template. Delivered to a private gallery to stream, download, and share. Yours forever.</p></div></li>
   </ol>
-  <div class="lx-center rv"><a href="/pricing" class="lx-btn">Explore the experience</a></div>
+  <div class="lx-center rv"><a href="/contact" class="lx-btn">Check availability</a></div>
 </section>
 
 <!-- CLOSING: the statement and the one call to action, together -->

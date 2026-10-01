@@ -64,10 +64,12 @@ fbq('init','250305885896733');fbq('track','PageView');
     <div class="c-top rv">
       <span class="lbl">Inquire</span>
       <h1 class="lx-h lx-sys">Let's talk<em>about your day</em></h1>
-      <p style="font-family:var(--serif);font-size:1.05rem;color:var(--muted);font-weight:400;margin-top:12px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7">Now booking 2027 weddings. Fill out the form below, or reach out directly at <a href="mailto:bookings@lkfilmco.com" style="color:var(--fg);border-bottom:1px solid var(--accent);text-decoration:none">bookings@lkfilmco.com</a></p>
+      <p style="font-family:var(--serif);font-size:1.05rem;color:var(--muted);font-weight:400;margin-top:12px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7">Now booking 2027 weddings. Fill out the form, or just text me at <a href="sms:+12145774801" style="color:var(--fg);border-bottom:1px solid var(--accent);text-decoration:none;white-space:nowrap">214-577-4801</a>.</p>
     </div>
+    <p class="c-pick" id="c-pick" hidden></p>
 
     <form class="c-form rv" id="contact-form" action="https://formspree.io/f/xbdzdwar" method="POST">
+      <input type="hidden" name="collection" id="c-collection" value="">
       <div class="fr">
         <div class="fg"><label for="c-name">Your Name</label><input id="c-name" type="text" name="name" placeholder="Full name" required></div>
         <div class="fg"><label for="c-partner">Partner's Name</label><input id="c-partner" type="text" name="partner" placeholder="Partner's name"></div>
@@ -120,6 +122,7 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
 
+(()=>{const picks={film:['The Film Collection','$3,000 – $4,500'],signature:['The Signature Collection','$4,500 – $6,500'],weekend:['The Weekend Collection','$6,500+'],custom:['a custom destination or multi-day collection','Destination or multi-day (custom)']};const k=new URLSearchParams(location.search).get('c');const p=picks[k];if(!p)return;const b=document.getElementById('c-budget');if(b){b.value=p[1];b.classList.add('has-value');}document.getElementById('c-collection').value=p[0];const note=document.getElementById('c-pick');note.innerHTML='You\'re asking about <strong>'+p[0]+'</strong>. Send your date and I\'ll confirm it\'s open.';note.hidden=false;})();
 (()=>{const d=document.getElementById('c-date');if(d){const t=new Date();d.min=new Date(t-t.getTimezoneOffset()*6e4).toISOString().slice(0,10);}})();
 document.querySelectorAll('.fg select').forEach(sel=>{sel.addEventListener('change',function(){this.classList.toggle('has-value',this.value!=='');});});
 
