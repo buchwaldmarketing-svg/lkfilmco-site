@@ -12,7 +12,7 @@
   gtag('config', 'G-SNGG62VWD3');
 </script>
 <title>Dallas Wedding Filmmaker | Cinematic Wedding Films | LK Film Co.</title>
-<meta name="description" content="LK Film Co. creates cinematic, documentary-style wedding films in Dallas, Texas. Filmmaker Lee Kounas captures your day naturally. Booking 2026 + 2027.">
+<meta name="description" content="LK Film Co. creates cinematic, documentary-style wedding films in Dallas, Texas. Filmmaker Lee Kounas captures your day naturally. Now booking 2027.">
 <meta name="keywords" content="Dallas wedding filmmaker, wedding videographer Dallas TX, cinematic wedding films, The Hillside Estate wedding film, Texas wedding filmmaker">
 <link rel="canonical" href="https://www.lkfilmco.com/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -21,7 +21,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#4A3B30">
 <meta property="og:title" content="Dallas Wedding Filmmaker | Cinematic Wedding Films | LK Film Co.">
-<meta property="og:description" content="Cinematic, documentary-style wedding films in Dallas, TX. Currently booking 2026 + 2027.">
+<meta property="og:description" content="Cinematic, documentary-style wedding films in Dallas, TX. Now booking 2027.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.lkfilmco.com/">
 <meta property="og:image" content="https://www.lkfilmco.com/hero-poster.jpg">
@@ -77,10 +77,10 @@ fbq('init','250305885896733');fbq('track','PageView');
   <div class="hero-ov"></div>
   <div class="hero-c">
     <h1 data-studio="headline" data-studio-type="richtext">THE DAY,<br>EXACTLY HOW IT FELT.</h1>
-    <p class="hero-sub" data-studio="subhead">Dallas wedding filmmaker · Booking 2026 + 2027</p>
+    <p class="hero-sub" data-studio="subhead">Dallas wedding filmmaker · Now booking 2027</p>
     <div class="hero-btn"><a href="/films" data-studio="cta" data-studio-label="Hero button">See the Films</a></div>
   </div>
-  <div class="hero-cred"><span>◆</span> Filming Since 2020 &nbsp; <span>◆</span> Dallas–Fort Worth &nbsp; <span>◆</span> Booking 2026 + 2027</div>
+  <div class="hero-cred"><span>◆</span> Filming Since 2020 &nbsp; <span>◆</span> Dallas–Fort Worth &nbsp; <span>◆</span> Now booking 2027</div>
 </section>
 
 <!-- APPROACH -->
@@ -92,6 +92,19 @@ fbq('init','250305885896733');fbq('track','PageView');
       <p>Your day moves fast. I move with it. I'll crack a joke to loosen you up, give you a small prompt if I need to, and get exactly what I need without making anything feel forced.</p>
       <p>I'm not invisible. I'm just natural. You'll feel comfortable, you'll laugh, and when you watch the film back you'll wonder how I got all of that.</p>
     </div>
+  </div>
+  <div class="craft-clips">
+    <figure class="craft-clip craft-clip-a">
+      <video class="lk-clip" muted loop playsinline preload="none" poster="/clips/stonebriar-golden.jpg" aria-label="Golden hour portraits on the course at Stonebriar" data-studio="clip1">
+        <source data-src="/clips/stonebriar-golden.mp4" type="video/mp4">
+      </video>
+    </figure>
+    <figure class="craft-clip craft-clip-b">
+      <video class="lk-clip" muted loop playsinline preload="none" poster="/clips/stonebriar-vows.jpg" aria-label="The bride reading her vows under the floral urns at Stonebriar" data-studio="clip2">
+        <source data-src="/clips/stonebriar-vows.mp4" type="video/mp4">
+      </video>
+      <figcaption class="craft-cap">Latest film &middot; Stonebriar</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -181,7 +194,7 @@ fbq('init','250305885896733');fbq('track','PageView');
   <div class="lx-close-in rv">
     <span class="lbl">A photo holds the moment.</span>
     <h2>A film holds<em>the feeling.</em></h2>
-    <p class="lx-close-sub">Booking 2026 + 2027 · Dallas–Fort Worth and beyond</p>
+    <p class="lx-close-sub">Now booking 2027 · Dallas–Fort Worth and beyond</p>
     <a href="/contact" class="lx-btn-light">Check availability</a>
   </div>
 </section>
@@ -274,6 +287,10 @@ if(promoClose){promoClose.addEventListener('click',()=>{document.body.classList.
 const form=document.getElementById('contact-form');
 const msg=document.getElementById('form-msg');
 if(form&&msg){form.addEventListener('submit',async e=>{e.preventDefault();const btn=form.querySelector('.c-sub');btn.textContent='Sending...';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(res.ok){form.reset();msg.textContent="Got it \u2014 I'll be in touch within 24 hours.";msg.className='form-msg success';btn.textContent='Sent';}else{throw new Error();}}catch{msg.textContent='Something went wrong. Email me directly at bookings@lkfilmco.com';msg.className='form-msg error';btn.textContent='Check Availability';btn.disabled=false;}});}
+</script>
+<script>
+// Approach loops: load when near the screen, play only while visible (poster still without JS or with reduced motion).
+(()=>{const clips=document.querySelectorAll('video.lk-clip');const calm=matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData);if(!clips.length||calm||!('IntersectionObserver' in window))return;const io=new IntersectionObserver(es=>es.forEach(({target:v,isIntersecting:on})=>{const src=v.querySelector('source[data-src]');if(on&&src){src.src=src.dataset.src;src.removeAttribute('data-src');v.load();}if(on)v.play().catch(()=>{});else v.pause();}),{rootMargin:'200px 0px'});clips.forEach(v=>io.observe(v));})();
 </script>
 <script src="https://site-studio-kappa.vercel.app/studio.js" data-site="lk-film-co" defer></script>
 </body>
