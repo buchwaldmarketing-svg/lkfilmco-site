@@ -75,34 +75,9 @@ fbq('init','250305885896733');fbq('track','PageView');
       <input type="hidden" name="wedding_date" id="cq-date-summary" value="">
 
       <fieldset class="cq-screen" data-name="when">
-        <legend class="cq-q">When's the wedding?<em>Just the year and month is perfect.</em></legend>
-        <div class="cq-opts cq-opts-4" role="radiogroup" aria-label="Year">
-          <label class="cq-opt"><input type="radio" name="year" value="2026"><span>2026</span></label>
-          <label class="cq-opt"><input type="radio" name="year" value="2027"><span>2027</span></label>
-          <label class="cq-opt"><input type="radio" name="year" value="2028"><span>2028</span></label>
-          <label class="cq-opt"><input type="radio" name="year" value="Not set yet"><span>Not set yet</span></label>
-        </div>
-        <div class="cq-months" id="cq-months" hidden>
-          <p class="cq-sub">Which month?</p>
-          <div class="cq-opts cq-opts-6" role="radiogroup" aria-label="Month">
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="January"><span>Jan</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="February"><span>Feb</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="March"><span>Mar</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="April"><span>Apr</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="May"><span>May</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="June"><span>Jun</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="July"><span>Jul</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="August"><span>Aug</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="September"><span>Sep</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="October"><span>Oct</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="November"><span>Nov</span></label>
-            <label class="cq-opt cq-sm"><input type="radio" name="month" value="December"><span>Dec</span></label>
-          </div>
-          <details class="cq-exact">
-            <summary>Have the exact day?</summary>
-            <label><span class="sr">Exact date</span><input class="cq-input" type="date" name="exact_date" id="cq-day"></label>
-          </details>
-        </div>
+        <legend class="cq-q"><label for="cq-day">What's your wedding date?</label><em>The exact day, so I can check my calendar.</em></legend>
+        <input class="cq-input cq-date" type="date" name="exact_date" id="cq-day" required>
+        <p class="cq-help">Still picking a date? Reach out once it's set and I'll check it right away.</p>
         <p class="cq-err" id="err-when" role="alert"></p>
       </fieldset>
 

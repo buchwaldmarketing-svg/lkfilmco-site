@@ -605,3 +605,5 @@ nav.is-menu .n-links .n-cta,nav.is-menu.n-clear .n-links .n-cta{color:var(--fg2)
 @media(max-width:599px){.cq-hint{display:none}.cq-btn{margin-left:auto;flex:1;max-width:240px}}
 .cq-q{padding-bottom:26px}
 .cq-q+.cq-input{margin-top:0}
+.cq-date{max-width:420px}
+.cq-help{margin-top:14px;font-family:var(--serif);font-style:italic;font-size:1.1rem;line-height:1.5;color:var(--muted)}

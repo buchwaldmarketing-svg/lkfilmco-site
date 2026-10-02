@@ -18,30 +18,12 @@
   const pick = key && form.querySelector(`input[name="collection"][data-key="${key}"]`);
   if (pick) pick.checked = true;
 
-  // Year first; months show once a year is picked. "Not set yet" skips the month.
-  const months = $('cq-months');
-  form.querySelectorAll('input[name="year"]').forEach((r) => r.addEventListener('change', () => {
-    const unset = r.value === 'Not set yet';
-    months.hidden = unset;
-    if (unset) {
-      form.querySelectorAll('input[name="month"]').forEach((m) => { m.checked = false; });
-      $('cq-day').value = '';
-      setTimeout(next, calm ? 0 : 320);
-    }
-    $('err-when').textContent = '';
-  }));
-  form.querySelectorAll('input[name="month"]').forEach((r) => r.addEventListener('change', () => setTimeout(next, calm ? 0 : 320)));
+  // Exact date only, and never in the past.
   const day = $('cq-day');
   const t = new Date();
   day.min = new Date(t - t.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
-  day.addEventListener('change', () => {
-    if (!day.value) return;
-    const d = new Date(day.value + 'T12:00:00');
-    const y = form.querySelector(`input[name="year"][value="${d.getFullYear()}"]`);
-    const m = form.querySelector(`input[name="month"][value="${d.toLocaleString('en-US', { month: 'long' })}"]`);
-    if (y) y.checked = true;
-    if (m) m.checked = true;
-  });
+  day.addEventListener('change', () => { if (day.value) $('err-when').textContent = ''; });
+  const pretty = () => new Date(day.value + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
   // Single-tap questions move ahead after a beat; "Our planner" asks for the name instead.
   screens.filter((s) => s.hasAttribute('data-auto')).forEach((s) => {
@@ -56,7 +38,7 @@
   }));
 
   const rules = {
-    when: () => val('year') ? '' : 'Pick a year, or "Not set yet".',
+    when: () => !day.value ? 'Pick your wedding date.' : day.value < day.min ? 'That date has already passed.' : '',
     where: () => $('cq-venue').value.trim() ? '' : 'A venue or city is plenty.',
     names: () => $('cq-names').value.trim() ? '' : 'Add your names so I know who I\'m writing to.',
     reach: () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('cq-email').value.trim()) ? '' : 'Add an email I can reply to.',
@@ -107,13 +89,7 @@
   form.addEventListener('focusin', () => { if (!started) { started = true; track('form_start', { form: 'inquiry' }); } });
   form.addEventListener('change', () => { if (!started) { started = true; track('form_start', { form: 'inquiry' }); } });
 
-  const whenText = () => {
-    const y = val('year');
-    if (!y || y === 'Not set yet') return 'No date yet';
-    const m = val('month');
-    const base = m ? `${m} ${y}` : y;
-    return day.value ? `${base} (${new Date(day.value + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })})` : base;
-  };
+  const whenText = () => pretty();
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -128,17 +104,12 @@
     try {
       const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error();
-      const dateKnown = val('year') && val('year') !== 'Not set yet' ? 'yes' : 'no';
       if (window.fbq) fbq('track', 'Lead', { content_name: 'Contact Form' });
-      track('generate_lead', { method: 'contact_form', collection: val('collection') || 'none', source: val('source') || 'none', date_known: dateKnown });
+      track('generate_lead', { method: 'contact_form', collection: val('collection') || 'none', source: val('source') || 'none' });
 
       const first = $('cq-names').value.trim().split(/\s+/)[0];
-      const m = val('month');
-      const when = dateKnown === 'yes' ? (m ? `${m} ${val('year')}` : val('year')) : '';
       $('cq-done-h').textContent = `Got it, ${first}.`;
-      $('cq-done-p').textContent = when
-        ? `I'm checking ${when} now and will email you from bookings@lkfilmco.com within 24 hours.`
-        : 'I\'ll email you from bookings@lkfilmco.com within 24 hours with my collections.';
+      $('cq-done-p').textContent = `I'm checking ${pretty()} now and will email you from bookings@lkfilmco.com within 24 hours.`;
       form.hidden = true;
       document.querySelector('.cq-top').hidden = true;
       document.querySelector('.cq-bar').hidden = true;
