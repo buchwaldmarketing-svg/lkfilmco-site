@@ -595,3 +595,7 @@ nav.is-menu .n-links .n-cta,nav.is-menu.n-clear .n-links .n-cta{color:var(--fg2)
 .iq-film{margin-top:14px;aspect-ratio:16/9;background:#1d1915}
 .iq-film iframe{width:100%;height:100%;border:0;display:block}
 .iq-follow{display:inline-flex;align-items:center;min-height:44px;margin-top:18px;font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--fg2);text-decoration:none;border-bottom:1px solid var(--fg2)}
+.photo-credit{position:absolute;left:0;top:100%;margin-top:12px;font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.photo-credit a{color:var(--fg2);text-decoration:none;border-bottom:1px solid var(--rule);display:inline-block;padding:10px 0;margin:-10px 0}
+.photo-credit a:hover{border-color:var(--fg2)}
+@media(max-width:679px){.about-img.about-full{margin-bottom:56px}}
