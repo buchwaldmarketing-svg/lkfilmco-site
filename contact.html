@@ -61,150 +61,135 @@ fbq('init','250305885896733');fbq('track','PageView');
 <div class="page-spacer"></div>
 <main id="main">
 
-<section class="iq" data-studio-section="contact-form" data-studio-section-label="Inquiry form">
-  <div class="iq-wrap">
-
-    <aside class="iq-side">
-      <div class="iq-intro rv">
-        <span class="lbl">Now booking 2027</span>
-        <h1 class="iq-h" data-studio="headline">Check<em>your date.</em></h1>
-        <div class="iq-me">
-          <img src="/lee-thumb.jpg" alt="Lee Kounas" width="64" height="64">
-          <p data-studio="intro">Hey, I'm Lee. Every inquiry comes straight to me, and I'll tell you honestly if your date is open.</p>
-        </div>
-        <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20My%20wedding%20date%20is%20" class="iq-text">Rather text? 214-577-4801</a>
-      </div>
-
-      <div class="iq-more rv">
-        <ol class="iq-steps">
-          <li><span>01</span><p>Send me your date and where you're getting married.</p></li>
-          <li><span>02</span><p>I check my calendar and email you my collections within 24 hours.</p></li>
-          <li><span>03</span><p>We chat over text or a quick call. A simple contract and a 30% retainer lock in your date.</p></li>
-        </ol>
-        <blockquote class="iq-quote"><p>&ldquo;We just watched it like five times. It&rsquo;s so good. Love it. Thank you so much!&rdquo;</p><cite>Christy + Brian</cite></blockquote>
-        <p class="iq-fallback">Or email <a href="mailto:bookings@lkfilmco.com">bookings@lkfilmco.com</a></p>
-      </div>
-    </aside>
-
-    <div class="iq-main">
-      <form class="iq-form" id="contact-form" action="https://formspree.io/f/xbdzdwar" method="POST" novalidate>
-        <input type="hidden" name="_subject" id="iq-subject" value="New inquiry from lkfilmco.com">
-        <input type="hidden" name="wedding_date" id="iq-date-summary" value="">
-
-        <fieldset class="iq-step" id="iq-step-1" data-step="1">
-          <legend class="iq-steplabel"><span class="iq-count">Step 1 of 2</span> The day</legend>
-
-          <div class="iq-q" id="q-when">
-            <p class="iq-label" id="when-label">When's the wedding?</p>
-            <div class="iq-when" role="group" aria-labelledby="when-label">
-              <label class="iq-sel"><span class="sr">Month</span>
-                <select name="month" id="iq-month" aria-describedby="err-when">
-                  <option value="">Month</option>
-                  <option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option>
-                </select>
-              </label>
-              <label class="iq-sel"><span class="sr">Year</span>
-                <select name="year" id="iq-year" aria-describedby="err-when">
-                  <option value="">Year</option><option>2026</option><option>2027</option><option>2028</option>
-                </select>
-              </label>
-            </div>
-            <label class="iq-check"><input type="checkbox" name="no_date" id="iq-nodate" value="No date yet"><span>No date yet</span></label>
-            <details class="iq-exact" id="iq-exact">
-              <summary>Have the exact day?</summary>
-              <label class="iq-field"><span class="sr">Exact date</span><input type="date" name="exact_date" id="iq-day"></label>
-            </details>
-            <p class="iq-err" id="err-when" role="alert"></p>
-          </div>
-
-          <div class="iq-q">
-            <label class="iq-label" for="iq-venue">Where are you getting married?</label>
-            <input class="iq-input" type="text" name="venue" id="iq-venue" placeholder="Venue or city" autocomplete="off" required aria-describedby="help-venue err-venue">
-            <p class="iq-help" id="help-venue">Still looking is a fine answer.</p>
-            <p class="iq-err" id="err-venue" role="alert"></p>
-          </div>
-
-          <fieldset class="iq-q">
-            <legend class="iq-label">Which collection are you leaning toward? <i>(optional)</i></legend>
-            <div class="iq-chips">
-              <label class="iq-chip"><input type="radio" name="collection" value="The Film Collection" data-key="film"><span>The Film</span></label>
-              <label class="iq-chip"><input type="radio" name="collection" value="The Signature Collection" data-key="signature"><span>The Signature</span></label>
-              <label class="iq-chip"><input type="radio" name="collection" value="The Weekend Collection" data-key="weekend"><span>The Weekend</span></label>
-              <label class="iq-chip"><input type="radio" name="collection" value="Destination or multi-day" data-key="custom"><span>Destination or multi-day</span></label>
-              <label class="iq-chip"><input type="radio" name="collection" value="Not sure yet"><span>Not sure yet</span></label>
-            </div>
-            <p class="iq-help">Collections start at $2,500. <a href="/pricing" target="_blank" rel="noopener">See what's in each</a></p>
-          </fieldset>
-
-          <div class="iq-actions">
-            <button type="button" class="iq-btn" id="iq-next">Next</button>
-          </div>
-        </fieldset>
-
-        <fieldset class="iq-step" id="iq-step-2" data-step="2">
-          <legend class="iq-steplabel"><span class="iq-count">Step 2 of 2</span> You two</legend>
-
-          <div class="iq-q">
-            <label class="iq-label" for="iq-names">Your names</label>
-            <input class="iq-input" type="text" name="name" id="iq-names" placeholder="You and your partner" autocomplete="name" required aria-describedby="err-names">
-            <p class="iq-err" id="err-names" role="alert"></p>
-          </div>
-
-          <div class="iq-q">
-            <label class="iq-label" for="iq-email">Email</label>
-            <input class="iq-input" type="email" name="email" id="iq-email" placeholder="you@email.com" autocomplete="email" inputmode="email" required aria-describedby="err-email">
-            <p class="iq-err" id="err-email" role="alert"></p>
-          </div>
-
-          <div class="iq-q">
-            <label class="iq-label" for="iq-phone">Phone <i>(optional)</i></label>
-            <input class="iq-input" type="tel" name="phone" id="iq-phone" placeholder="(555) 555-5555" autocomplete="tel" inputmode="tel" aria-describedby="help-phone">
-            <p class="iq-help" id="help-phone">If you'd rather text.</p>
-          </div>
-
-          <div class="iq-q">
-            <label class="iq-label" for="iq-budget">Budget for your film <i>(optional)</i></label>
-            <input class="iq-input" type="text" name="budget" id="iq-budget" placeholder="What feels right for you" aria-describedby="help-budget">
-            <p class="iq-help" id="help-budget">Just helps me point you to the right collection.</p>
-          </div>
-
-          <fieldset class="iq-q">
-            <legend class="iq-label">How'd you find me? <i>(optional)</i></legend>
-            <div class="iq-chips">
-              <label class="iq-chip"><input type="radio" name="source" value="Instagram"><span>Instagram</span></label>
-              <label class="iq-chip"><input type="radio" name="source" value="A friend"><span>A friend</span></label>
-              <label class="iq-chip"><input type="radio" name="source" value="Our planner" id="iq-src-planner"><span>Our planner</span></label>
-              <label class="iq-chip"><input type="radio" name="source" value="Our venue"><span>Our venue</span></label>
-              <label class="iq-chip"><input type="radio" name="source" value="Google"><span>Google</span></label>
-              <label class="iq-chip"><input type="radio" name="source" value="Another vendor"><span>Another vendor</span></label>
-            </div>
-            <label class="iq-field iq-planner" id="iq-planner-row" hidden><span class="sr">Planner's name</span><input class="iq-input" type="text" name="planner" placeholder="Your planner's name"></label>
-          </fieldset>
-
-          <div class="iq-q">
-            <label class="iq-label" for="iq-message">Anything else? <i>(optional)</i></label>
-            <textarea class="iq-input iq-area" name="message" id="iq-message" rows="3" placeholder="The plan, the vibe, a film of mine you liked."></textarea>
-          </div>
-
-          <div class="iq-actions">
-            <button type="button" class="iq-back" id="iq-back">Back</button>
-            <button type="submit" class="iq-btn" id="iq-submit">Check my date</button>
-          </div>
-          <p class="iq-promise">I read every one of these myself and reply within 24 hours.</p>
-          <p class="iq-err iq-err-send" id="err-send" role="alert"></p>
-        </fieldset>
-      </form>
-
-      <div class="iq-done" id="iq-done" tabindex="-1" hidden>
-        <span class="lbl">Sent</span>
-        <p class="iq-done-h" id="iq-done-h">Got it.</p>
-        <p class="iq-done-p" id="iq-done-p">I'm checking your date now and will email you from bookings@lkfilmco.com within 24 hours.</p>
-        <p class="iq-done-sub">While you wait, here's one of my favorites.</p>
-        <div class="iq-film" id="iq-film"></div>
-        <a class="iq-follow" href="https://instagram.com/leekounas" target="_blank" rel="noopener">Follow along @leekounas</a>
-      </div>
+<section class="cq" data-studio-section="contact-form" data-studio-section-label="Inquiry form">
+  <h1 class="sr">Check your date with LK Film Co.</h1>
+  <div class="cq-card">
+    <div class="cq-top">
+      <span>Check your date</span>
+      <span class="cq-count" id="cq-count" aria-live="polite"></span>
     </div>
+    <div class="cq-bar" aria-hidden="true"><i id="cq-bar"></i></div>
 
+    <form class="cq-form" id="contact-form" action="https://formspree.io/f/xbdzdwar" method="POST" novalidate>
+      <input type="hidden" name="_subject" id="cq-subject" value="New inquiry from lkfilmco.com">
+      <input type="hidden" name="wedding_date" id="cq-date-summary" value="">
+
+      <fieldset class="cq-screen" data-name="when">
+        <legend class="cq-q">When's the wedding?<em>Just the year and month is perfect.</em></legend>
+        <div class="cq-opts cq-opts-4" role="radiogroup" aria-label="Year">
+          <label class="cq-opt"><input type="radio" name="year" value="2026"><span>2026</span></label>
+          <label class="cq-opt"><input type="radio" name="year" value="2027"><span>2027</span></label>
+          <label class="cq-opt"><input type="radio" name="year" value="2028"><span>2028</span></label>
+          <label class="cq-opt"><input type="radio" name="year" value="Not set yet"><span>Not set yet</span></label>
+        </div>
+        <div class="cq-months" id="cq-months" hidden>
+          <p class="cq-sub">Which month?</p>
+          <div class="cq-opts cq-opts-6" role="radiogroup" aria-label="Month">
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="January"><span>Jan</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="February"><span>Feb</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="March"><span>Mar</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="April"><span>Apr</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="May"><span>May</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="June"><span>Jun</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="July"><span>Jul</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="August"><span>Aug</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="September"><span>Sep</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="October"><span>Oct</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="November"><span>Nov</span></label>
+            <label class="cq-opt cq-sm"><input type="radio" name="month" value="December"><span>Dec</span></label>
+          </div>
+          <details class="cq-exact">
+            <summary>Have the exact day?</summary>
+            <label><span class="sr">Exact date</span><input class="cq-input" type="date" name="exact_date" id="cq-day"></label>
+          </details>
+        </div>
+        <p class="cq-err" id="err-when" role="alert"></p>
+      </fieldset>
+
+      <fieldset class="cq-screen" data-name="where">
+        <legend class="cq-q"><label for="cq-venue">Where are you getting married?</label><em>Still looking is a fine answer.</em></legend>
+        <input class="cq-input" type="text" name="venue" id="cq-venue" placeholder="Venue or city" autocomplete="off" required>
+        <p class="cq-err" id="err-where" role="alert"></p>
+      </fieldset>
+
+      <fieldset class="cq-screen" data-name="collection" data-auto>
+        <legend class="cq-q">Which collection are you leaning toward?<em>Collections start at $2,500. <a href="/pricing" target="_blank" rel="noopener">See what's in each</a></em></legend>
+        <div class="cq-opts cq-opts-list">
+          <label class="cq-opt"><input type="radio" name="collection" value="The Film Collection" data-key="film"><span>The Film Collection</span></label>
+          <label class="cq-opt"><input type="radio" name="collection" value="The Signature Collection" data-key="signature"><span>The Signature Collection</span></label>
+          <label class="cq-opt"><input type="radio" name="collection" value="The Weekend Collection" data-key="weekend"><span>The Weekend Collection</span></label>
+          <label class="cq-opt"><input type="radio" name="collection" value="Destination or multi-day" data-key="custom"><span>Destination or multi-day</span></label>
+          <label class="cq-opt"><input type="radio" name="collection" value="Not sure yet"><span>Not sure yet</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="cq-screen" data-name="names">
+        <legend class="cq-q"><label for="cq-names">What are your names?</label><em>You and your partner.</em></legend>
+        <input class="cq-input" type="text" name="name" id="cq-names" placeholder="Maria and Jake" autocomplete="name" required>
+        <p class="cq-err" id="err-names" role="alert"></p>
+      </fieldset>
+
+      <fieldset class="cq-screen" data-name="reach">
+        <legend class="cq-q">Where should I send your answer?<em>I reply within 24 hours.</em></legend>
+        <label class="cq-fl" for="cq-email">Email</label>
+        <input class="cq-input" type="email" name="email" id="cq-email" placeholder="you@email.com" autocomplete="email" inputmode="email" required>
+        <p class="cq-err" id="err-reach" role="alert"></p>
+        <label class="cq-fl" for="cq-phone">Phone <i>(optional, if you'd rather text)</i></label>
+        <input class="cq-input" type="tel" name="phone" id="cq-phone" placeholder="(555) 555-5555" autocomplete="tel" inputmode="tel">
+      </fieldset>
+
+      <fieldset class="cq-screen" data-name="found" data-auto>
+        <legend class="cq-q">How'd you find me?<em>Optional.</em></legend>
+        <div class="cq-opts cq-opts-2">
+          <label class="cq-opt"><input type="radio" name="source" value="Instagram"><span>Instagram</span></label>
+          <label class="cq-opt"><input type="radio" name="source" value="A friend"><span>A friend</span></label>
+          <label class="cq-opt"><input type="radio" name="source" value="Our planner" id="cq-src-planner"><span>Our planner</span></label>
+          <label class="cq-opt"><input type="radio" name="source" value="Our venue"><span>Our venue</span></label>
+          <label class="cq-opt"><input type="radio" name="source" value="Google"><span>Google</span></label>
+          <label class="cq-opt"><input type="radio" name="source" value="Another vendor"><span>Another vendor</span></label>
+        </div>
+        <label class="cq-planner" id="cq-planner-row" hidden><span class="sr">Planner's name</span><input class="cq-input" type="text" name="planner" placeholder="Your planner's name"></label>
+      </fieldset>
+
+      <fieldset class="cq-screen" data-name="last">
+        <legend class="cq-q">Anything else I should know?<em>Both optional.</em></legend>
+        <label class="cq-fl" for="cq-budget">Budget for your film</label>
+        <input class="cq-input" type="text" name="budget" id="cq-budget" placeholder="What feels right for you">
+        <label class="cq-fl" for="cq-message">The plan, the vibe, a film of mine you liked</label>
+        <textarea class="cq-input cq-area" name="message" id="cq-message" rows="3" placeholder="Tell me anything"></textarea>
+        <p class="cq-err" id="err-send" role="alert"></p>
+      </fieldset>
+
+      <div class="cq-nav">
+        <button type="button" class="cq-back" id="cq-back">Back</button>
+        <span class="cq-hint" id="cq-hint">or press Enter</span>
+        <button type="button" class="cq-btn" id="cq-next">Next</button>
+        <button type="submit" class="cq-btn cq-send" id="cq-send">Check my date</button>
+      </div>
+    </form>
+
+    <div class="cq-done" id="cq-done" tabindex="-1" hidden>
+      <span class="lbl">Sent</span>
+      <p class="cq-done-h" id="cq-done-h">Got it.</p>
+      <p class="cq-done-p" id="cq-done-p">I'll email you from bookings@lkfilmco.com within 24 hours.</p>
+      <p class="cq-done-sub">While you wait, here's one of my favorites.</p>
+      <div class="cq-film" id="cq-film"></div>
+      <a class="cq-link" href="https://instagram.com/leekounas" target="_blank" rel="noopener">Follow along @leekounas</a>
+    </div>
+  </div>
+
+  <div class="cq-more">
+    <div class="cq-me">
+      <img src="/lee-thumb.jpg" alt="Lee Kounas" width="56" height="56">
+      <p>Hey, I'm Lee. Every inquiry comes straight to me, and I'll tell you honestly if your date is open.</p>
+    </div>
+    <ol class="cq-steps">
+      <li><span>01</span><p>Send me your date and where you're getting married.</p></li>
+      <li><span>02</span><p>I check my calendar and email you my collections within 24 hours.</p></li>
+      <li><span>03</span><p>We chat over text or a quick call. A simple contract and a 30% retainer lock in your date.</p></li>
+    </ol>
+    <blockquote class="cq-quote"><p>&ldquo;We just watched it like five times. It&rsquo;s so good. Love it. Thank you so much!&rdquo;</p><cite>Christy + Brian</cite></blockquote>
+    <p class="cq-alt">Rather skip the form? Text <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20My%20wedding%20date%20is%20">214-577-4801</a> or email <a href="mailto:bookings@lkfilmco.com">bookings@lkfilmco.com</a></p>
   </div>
 </section>
 
