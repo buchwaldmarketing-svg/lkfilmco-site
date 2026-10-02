@@ -61,110 +61,97 @@ fbq('init','250305885896733');fbq('track','PageView');
 <div class="page-spacer"></div>
 <main id="main">
 
-<section class="cq" data-studio-section="contact-form" data-studio-section-label="Inquiry form">
-  <h1 class="sr">Check your date with LK Film Co.</h1>
-  <div class="cq-card">
-    <div class="cq-top">
-      <span>Check your date</span>
-      <span class="cq-count" id="cq-count" aria-live="polite"></span>
+<section class="sf" data-studio-section="contact-form" data-studio-section-label="Inquiry form">
+  <div class="sf-in">
+    <div class="sf-head rv">
+      <span class="lbl">Now booking 2027</span>
+      <h1 class="sf-h" data-studio="headline">Check<em>your date.</em></h1>
+      <p class="sf-sub" data-studio="intro">Send me your date and a few details. I'll get back to you within 24 hours. Rather text? <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20My%20wedding%20date%20is%20">214-577-4801</a></p>
     </div>
-    <div class="cq-bar" aria-hidden="true"><i id="cq-bar"></i></div>
 
-    <form class="cq-form" id="contact-form" action="https://formspree.io/f/xbdzdwar" method="POST" novalidate>
-      <input type="hidden" name="_subject" id="cq-subject" value="New inquiry from lkfilmco.com">
-      <input type="hidden" name="wedding_date" id="cq-date-summary" value="">
+    <form class="sf-form" id="contact-form" action="https://formspree.io/f/xbdzdwar" method="POST" novalidate>
+      <input type="hidden" name="_subject" id="sf-subject" value="New inquiry from lkfilmco.com">
+      <input type="hidden" name="wedding_date" id="sf-date-summary" value="">
 
-      <fieldset class="cq-screen" data-name="when">
-        <legend class="cq-q"><label for="cq-day">What's your wedding date?</label><em>The exact day, so I can check my calendar.</em></legend>
-        <input class="cq-input cq-date" type="date" name="exact_date" id="cq-day" required>
-        <p class="cq-help">Still picking a date? Reach out once it's set and I'll check it right away.</p>
-        <p class="cq-err" id="err-when" role="alert"></p>
-      </fieldset>
-
-      <fieldset class="cq-screen" data-name="where">
-        <legend class="cq-q"><label for="cq-venue">Where are you getting married?</label><em>Still looking is a fine answer.</em></legend>
-        <input class="cq-input" type="text" name="venue" id="cq-venue" placeholder="Venue or city" autocomplete="off" required>
-        <p class="cq-err" id="err-where" role="alert"></p>
-      </fieldset>
-
-      <fieldset class="cq-screen" data-name="collection" data-auto>
-        <legend class="cq-q">Which collection are you leaning toward?<em>Collections start at $2,500. <a href="/pricing" target="_blank" rel="noopener">See what's in each</a></em></legend>
-        <div class="cq-opts cq-opts-list">
-          <label class="cq-opt"><input type="radio" name="collection" value="The Film Collection" data-key="film"><span>The Film Collection</span></label>
-          <label class="cq-opt"><input type="radio" name="collection" value="The Signature Collection" data-key="signature"><span>The Signature Collection</span></label>
-          <label class="cq-opt"><input type="radio" name="collection" value="The Weekend Collection" data-key="weekend"><span>The Weekend Collection</span></label>
-          <label class="cq-opt"><input type="radio" name="collection" value="Destination or multi-day" data-key="custom"><span>Destination or multi-day</span></label>
-          <label class="cq-opt"><input type="radio" name="collection" value="Not sure yet"><span>Not sure yet</span></label>
+      <div class="sf-row">
+        <div class="sf-f">
+          <label for="sf-names">Your names <span class="sf-req" aria-hidden="true">*</span></label>
+          <input type="text" id="sf-names" name="name" placeholder="You and your partner" autocomplete="name" required aria-describedby="err-names">
+          <p class="sf-err" id="err-names" role="alert"></p>
         </div>
-      </fieldset>
-
-      <fieldset class="cq-screen" data-name="names">
-        <legend class="cq-q"><label for="cq-names">What are your names?</label><em>You and your partner.</em></legend>
-        <input class="cq-input" type="text" name="name" id="cq-names" placeholder="Maria and Jake" autocomplete="name" required>
-        <p class="cq-err" id="err-names" role="alert"></p>
-      </fieldset>
-
-      <fieldset class="cq-screen" data-name="reach">
-        <legend class="cq-q">Where should I send your answer?<em>I reply within 24 hours.</em></legend>
-        <label class="cq-fl" for="cq-email">Email</label>
-        <input class="cq-input" type="email" name="email" id="cq-email" placeholder="you@email.com" autocomplete="email" inputmode="email" required>
-        <p class="cq-err" id="err-reach" role="alert"></p>
-        <label class="cq-fl" for="cq-phone">Phone <i>(optional, if you'd rather text)</i></label>
-        <input class="cq-input" type="tel" name="phone" id="cq-phone" placeholder="(555) 555-5555" autocomplete="tel" inputmode="tel">
-      </fieldset>
-
-      <fieldset class="cq-screen" data-name="found" data-auto>
-        <legend class="cq-q">How'd you find me?<em>Optional.</em></legend>
-        <div class="cq-opts cq-opts-2">
-          <label class="cq-opt"><input type="radio" name="source" value="Instagram"><span>Instagram</span></label>
-          <label class="cq-opt"><input type="radio" name="source" value="A friend"><span>A friend</span></label>
-          <label class="cq-opt"><input type="radio" name="source" value="Our planner" id="cq-src-planner"><span>Our planner</span></label>
-          <label class="cq-opt"><input type="radio" name="source" value="Our venue"><span>Our venue</span></label>
-          <label class="cq-opt"><input type="radio" name="source" value="Google"><span>Google</span></label>
-          <label class="cq-opt"><input type="radio" name="source" value="Another vendor"><span>Another vendor</span></label>
+        <div class="sf-f">
+          <label for="sf-email">Email <span class="sf-req" aria-hidden="true">*</span></label>
+          <input type="email" id="sf-email" name="email" placeholder="you@email.com" autocomplete="email" inputmode="email" required aria-describedby="err-email">
+          <p class="sf-err" id="err-email" role="alert"></p>
         </div>
-        <label class="cq-planner" id="cq-planner-row" hidden><span class="sr">Planner's name</span><input class="cq-input" type="text" name="planner" placeholder="Your planner's name"></label>
-      </fieldset>
-
-      <fieldset class="cq-screen" data-name="last">
-        <legend class="cq-q">Anything else I should know?<em>Both optional.</em></legend>
-        <label class="cq-fl" for="cq-budget">Budget for your film</label>
-        <input class="cq-input" type="text" name="budget" id="cq-budget" placeholder="What feels right for you">
-        <label class="cq-fl" for="cq-message">The plan, the vibe, a film of mine you liked</label>
-        <textarea class="cq-input cq-area" name="message" id="cq-message" rows="3" placeholder="Tell me anything"></textarea>
-        <p class="cq-err" id="err-send" role="alert"></p>
-      </fieldset>
-
-      <div class="cq-nav">
-        <button type="button" class="cq-back" id="cq-back">Back</button>
-        <span class="cq-hint" id="cq-hint">or press Enter</span>
-        <button type="button" class="cq-btn" id="cq-next">Next</button>
-        <button type="submit" class="cq-btn cq-send" id="cq-send">Check my date</button>
       </div>
+
+      <div class="sf-row">
+        <div class="sf-f">
+          <label for="sf-date">Wedding date <span class="sf-req" aria-hidden="true">*</span></label>
+          <input type="date" id="sf-date" name="exact_date" required aria-describedby="err-date">
+          <p class="sf-err" id="err-date" role="alert"></p>
+        </div>
+        <div class="sf-f">
+          <label for="sf-venue">Venue or city <span class="sf-req" aria-hidden="true">*</span></label>
+          <input type="text" id="sf-venue" name="venue" placeholder="Where you're getting married" required aria-describedby="err-venue">
+          <p class="sf-err" id="err-venue" role="alert"></p>
+        </div>
+      </div>
+
+      <div class="sf-row">
+        <div class="sf-f">
+          <label for="sf-phone">Phone <i>(optional)</i></label>
+          <input type="tel" id="sf-phone" name="phone" placeholder="If you'd rather text" autocomplete="tel" inputmode="tel">
+        </div>
+        <div class="sf-f">
+          <label for="sf-collection">Collection <i>(optional)</i></label>
+          <select id="sf-collection" name="collection">
+            <option value="">Not sure yet</option>
+            <option value="The Film Collection" data-key="film">The Film Collection</option>
+            <option value="The Signature Collection" data-key="signature">The Signature Collection</option>
+            <option value="The Weekend Collection" data-key="weekend">The Weekend Collection</option>
+            <option value="Destination or multi-day" data-key="custom">Destination or multi-day</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sf-row">
+        <div class="sf-f">
+          <label for="sf-budget">Budget for your film <i>(optional)</i></label>
+          <input type="text" id="sf-budget" name="budget" placeholder="What feels right for you">
+        </div>
+        <div class="sf-f">
+          <label for="sf-source">How'd you find me? <i>(optional)</i></label>
+          <select id="sf-source" name="source">
+            <option value="">Select</option>
+            <option>Instagram</option><option>A friend</option><option>Our planner</option><option>Our venue</option><option>Google</option><option>Another vendor</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sf-f">
+        <label for="sf-message">Anything else? <i>(optional)</i></label>
+        <textarea id="sf-message" name="message" rows="4" placeholder="The plan, the vibe, a film of mine you liked."></textarea>
+      </div>
+
+      <div class="sf-send">
+        <button type="submit" class="sf-btn" id="sf-btn">Check my date</button>
+        <p class="sf-note">I read every one myself and reply within 24 hours.</p>
+      </div>
+      <p class="sf-err sf-err-send" id="err-send" role="alert"></p>
     </form>
 
-    <div class="cq-done" id="cq-done" tabindex="-1" hidden>
+    <div class="sf-done" id="sf-done" tabindex="-1" hidden>
       <span class="lbl">Sent</span>
-      <p class="cq-done-h" id="cq-done-h">Got it.</p>
-      <p class="cq-done-p" id="cq-done-p">I'll email you from bookings@lkfilmco.com within 24 hours.</p>
-      <p class="cq-done-sub">While you wait, here's one of my favorites.</p>
-      <div class="cq-film" id="cq-film"></div>
-      <a class="cq-link" href="https://instagram.com/leekounas" target="_blank" rel="noopener">Follow along @leekounas</a>
+      <p class="sf-done-h" id="sf-done-h">Got it.</p>
+      <p class="sf-done-p" id="sf-done-p">I'll email you from bookings@lkfilmco.com within 24 hours.</p>
+      <p class="sf-done-sub">While you wait, here's one of my favorites.</p>
+      <div class="sf-film" id="sf-film"></div>
     </div>
-  </div>
 
-  <div class="cq-more">
-    <div class="cq-me">
-      <img src="/lee-thumb.jpg" alt="Lee Kounas" width="56" height="56">
-      <p>Hey, I'm Lee. Every inquiry comes straight to me, and I'll tell you honestly if your date is open.</p>
-    </div>
-    <ol class="cq-steps">
-      <li><span>01</span><p>Send me your date and where you're getting married.</p></li>
-      <li><span>02</span><p>I check my calendar and email you my collections within 24 hours.</p></li>
-      <li><span>03</span><p>We chat over text or a quick call. A simple contract and a 30% retainer lock in your date.</p></li>
-    </ol>
-    <blockquote class="cq-quote"><p>&ldquo;We just watched it like five times. It&rsquo;s so good. Love it. Thank you so much!&rdquo;</p><cite>Christy + Brian</cite></blockquote>
-    <p class="cq-alt">Rather skip the form? Text <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20My%20wedding%20date%20is%20">214-577-4801</a> or email <a href="mailto:bookings@lkfilmco.com">bookings@lkfilmco.com</a></p>
+    <blockquote class="sf-quote rv"><p>&ldquo;We just watched it like five times. It&rsquo;s so good. Love it. Thank you so much!&rdquo;</p><cite>Christy + Brian</cite></blockquote>
+    <p class="sf-alt">Or email <a href="mailto:bookings@lkfilmco.com">bookings@lkfilmco.com</a></p>
   </div>
 </section>
 
