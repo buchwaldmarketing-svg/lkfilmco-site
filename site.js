@@ -14,7 +14,7 @@
   if (READY_BAR && !['/ready', '/1500', '/photobundle'].includes(path) && store((s) => s.getItem('rbClosed')) !== '1') {
     const bar = document.createElement('div');
     bar.className = 'rb';
-    bar.innerHTML = '<a class="rb-link" href="/ready"><span class="rb-long">Ready to book this week? <u>Ask for special pricing</u></span><span class="rb-short">Booking this week? <u>Get special pricing</u></span></a><button class="rb-x" type="button" aria-label="Close">&times;</button>';
+    bar.innerHTML = '<a class="rb-link" href="/ready"><span class="rb-long">Ready to book this week? <u>Ask for special pricing</u></span><span class="rb-short">Booking this week? <u>Special pricing</u></span></a><button class="rb-x" type="button" aria-label="Close">&times;</button>';
     document.body.prepend(bar);
     document.body.classList.add('has-rb');
     requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('rb-anim')));

@@ -560,7 +560,7 @@ nav.is-menu .n-links .n-cta,nav.is-menu.n-clear .n-links .n-cta{color:var(--fg2)
 /* READY-TO-BOOK BAR (added by site.js, links to /ready) */
 :root{--rb-h:40px;--rb-gold:#9C7A1F}
 .rb{position:fixed;top:0;left:0;right:0;z-index:101;height:var(--rb-h);display:flex;align-items:center;justify-content:center;background:#fff;border-bottom:1px solid rgba(156,122,31,.28)}
-.rb-link{font-family:var(--sans);font-size:.8rem;letter-spacing:.03em;color:var(--rb-gold);text-decoration:none;font-weight:500;padding:0 48px;line-height:var(--rb-h);white-space:nowrap}
+.rb-link{font-family:var(--sans);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rb-gold);text-decoration:none;font-weight:500;padding:0 48px;line-height:var(--rb-h);white-space:nowrap}
 .rb-link u{text-decoration:none;border-bottom:1px solid rgba(156,122,31,.5);padding-bottom:1px}
 .rb-link:hover u{border-bottom-color:var(--rb-gold)}
 .rb-short{display:none}
@@ -572,5 +572,5 @@ body.rb-anim nav{transition:top .35s ease,background .4s ease,border-color .4s e
 body.has-rb .page-spacer{height:calc(64px + var(--rb-h))}
 body.rb-up .rb{transform:translateY(-100%)}
 body.rb-up nav{top:0}
-@media(max-width:600px){.rb-long{display:none}.rb-short{display:inline}.rb-link{padding:0 44px 0 16px}}
+@media(max-width:600px){.rb-long{display:none}.rb-short{display:inline}.rb-link{padding:0 44px 0 16px;font-size:12px;letter-spacing:.16em}}
 @media(prefers-reduced-motion:reduce){body.rb-anim .rb,body.rb-anim nav{transition:none}}
