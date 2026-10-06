@@ -6,6 +6,30 @@
   const ham = document.querySelector('.n-ham');
   const links = document.querySelector('.n-links');
 
+  // Ready-to-book bar: every page except the offer pages, closable, slides away on scroll.
+  // To turn it off site-wide, set READY_BAR to false.
+  const READY_BAR = true;
+  const path = location.pathname.replace(/\.html$/, '');
+  const store = (fn) => { try { return fn(sessionStorage); } catch { return null; } };
+  if (READY_BAR && !['/ready', '/1500', '/photobundle'].includes(path) && store((s) => s.getItem('rbClosed')) !== '1') {
+    const bar = document.createElement('div');
+    bar.className = 'rb';
+    bar.innerHTML = '<a class="rb-link" href="/ready"><span class="rb-long">Ready to book this week? <u>Ask for special pricing</u></span><span class="rb-short">Booking this week? <u>Get special pricing</u></span></a><button class="rb-x" type="button" aria-label="Close">&times;</button>';
+    document.body.prepend(bar);
+    document.body.classList.add('has-rb');
+    requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('rb-anim')));
+    const onScroll = () => document.body.classList.toggle('rb-up', scrollY > 60);
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    bar.querySelector('.rb-link').addEventListener('click', () => { if (window.gtag) gtag('event', 'ready_bar_click', { page: path || '/' }); });
+    bar.querySelector('.rb-x').addEventListener('click', () => {
+      bar.remove();
+      document.body.classList.remove('has-rb', 'rb-up');
+      removeEventListener('scroll', onScroll);
+      store((s) => s.setItem('rbClosed', '1'));
+    });
+  }
+
   // Phone menu: solid bar while open, focus moves in, Escape closes and returns focus.
   // The page's own script toggles .open; this listener runs after it.
   if (nav && ham && links) {
@@ -13,7 +37,7 @@
       const open = links.classList.contains('open');
       nav.classList.toggle('is-menu', open);
       if (open) {
-        links.style.top = nav.offsetHeight + 'px';
+        links.style.top = nav.getBoundingClientRect().bottom + 'px';
         links.querySelector('a')?.focus();
       } else {
         links.style.top = '';

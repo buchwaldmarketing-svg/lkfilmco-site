@@ -316,11 +316,6 @@ if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('op
 // Select color shift
 document.querySelectorAll('.fg select').forEach(sel=>{sel.addEventListener('change',function(){this.classList.toggle('has-value',this.value!=='');});});
 
-// Promo bar dismiss
-const promoBar=document.getElementById('promo-bar');
-const promoClose=document.getElementById('promo-close');
-if(sessionStorage.getItem('promoClosed')==='1'){document.body.classList.remove('promo-visible');if(promoBar)promoBar.style.display='none';}
-if(promoClose){promoClose.addEventListener('click',()=>{document.body.classList.remove('promo-visible');promoBar.style.display='none';sessionStorage.setItem('promoClosed','1');});}
 
 // Form async submit
 const form=document.getElementById('contact-form');
