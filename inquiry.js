@@ -31,6 +31,7 @@
     email: [$('sf-email'), () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('sf-email').value.trim()) ? '' : 'Add an email I can reply to.'],
     date: [date, () => !date.value ? 'Pick your wedding date.' : date.value < date.min ? 'That date has already passed.' : ''],
     venue: [$('sf-venue'), () => $('sf-venue').value.trim() ? '' : 'A venue or city is plenty.'],
+    phone: [$('sf-phone'), () => $('sf-phone').value.replace(/\D/g, '').length >= 10 ? '' : 'Add a number I can text.'],
   };
   if (ready) {
     const budget = $('sf-budget');
@@ -59,8 +60,8 @@
     if (bad.length) { rules[bad[0]][0].focus(); return; }
     $('sf-date-summary').value = pretty();
     $('sf-subject').value = ready
-      ? `READY TO BOOK THIS WEEK: ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-budget').value.trim()}`
-      : `New inquiry: ${$('sf-names').value.trim()} · ${pretty()}`;
+      ? `READY TO BOOK THIS WEEK: ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-budget').value.trim()} · ${$('sf-phone').value.trim()}`
+      : `New inquiry: ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-phone').value.trim()}`;
     const btn = $('sf-btn');
     btn.textContent = 'Sending…';
     btn.disabled = true;
@@ -73,8 +74,8 @@
       const first = $('sf-names').value.trim().split(/\s+/)[0];
       $('sf-done-h').textContent = `Got it, ${first}.`;
       $('sf-done-p').textContent = ready
-        ? `I'll send your special pricing for ${pretty()} from bookings@lkfilmco.com within 24 hours.`
-        : `I'm checking ${pretty()} now and will email you from bookings@lkfilmco.com within 24 hours.`;
+        ? `I'll text you special pricing for ${pretty()} within 24 hours.`
+        : `I'm checking ${pretty()} now and will text you within 24 hours.`;
       form.hidden = true;
       const done = $('sf-done');
       done.hidden = false;

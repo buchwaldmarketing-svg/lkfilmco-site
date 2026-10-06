@@ -66,7 +66,7 @@ fbq('init','250305885896733');fbq('track','PageView');
     <div class="sf-head rv">
       <span class="lbl">Booking this week</span>
       <h1 class="sf-h" data-studio="headline">Ready to book?<em>Ask for special pricing.</em></h1>
-      <p class="sf-sub" data-studio="intro">If you're ready to lock in your date this week, send me your details and a real budget. I'll send you special pricing within 24 hours. Rather text? <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20My%20wedding%20date%20is%20">214-577-4801</a></p>
+      <p class="sf-sub" data-studio="intro">If you're ready to lock in your date this week, send me your details and a real budget. I'll text you special pricing within 24 hours. Rather text me first? <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20My%20wedding%20date%20is%20">214-577-4801</a></p>
     </div>
 
     <form class="sf-form" id="contact-form" data-kind="ready" action="https://formspree.io/f/xbdzdwar" method="POST" novalidate>
@@ -102,16 +102,17 @@ fbq('init','250305885896733');fbq('track','PageView');
 
       <div class="sf-row">
         <div class="sf-f">
-          <label for="sf-phone">Best number to text <i>(optional)</i></label>
-          <input type="tel" id="sf-phone" name="phone" placeholder="If you'd rather text" autocomplete="tel" inputmode="tel">
+          <label for="sf-phone">Phone <i>(I'll text you)</i> <span class="sf-req" aria-hidden="true">*</span></label>
+          <input type="tel" id="sf-phone" name="phone" placeholder="Best number to text" autocomplete="tel" inputmode="tel" required aria-describedby="err-phone">
+          <p class="sf-err" id="err-phone" role="alert"></p>
         </div>
         <div class="sf-f">
           <label for="sf-collection">Collection <i>(optional)</i></label>
           <select id="sf-collection" name="collection">
             <option value="">Not sure yet</option>
-            <option value="The Film Collection" data-key="film">The Film Collection</option>
-            <option value="The Signature Collection" data-key="signature">The Signature Collection</option>
-            <option value="The Weekend Collection" data-key="weekend">The Weekend Collection</option>
+            <option value="The Film Collection (6 hours)" data-key="film">The Film Collection (6 hours)</option>
+            <option value="The Signature Collection (8 hours)" data-key="signature">The Signature Collection (8 hours)</option>
+            <option value="The Weekend Collection (10–12 hours)" data-key="weekend">The Weekend Collection (10–12 hours)</option>
             <option value="Destination or multi-day" data-key="custom">Destination or multi-day</option>
           </select>
         </div>
@@ -127,7 +128,7 @@ fbq('init','250305885896733');fbq('track','PageView');
           <label for="sf-source">How'd you find me? <i>(optional)</i></label>
           <select id="sf-source" name="source">
             <option value="">Select</option>
-            <option>Instagram</option><option>A friend</option><option>Our planner</option><option>Our venue</option><option>Google</option><option>Another vendor</option>
+            <option>Instagram</option><option>Instagram ad</option><option>A friend</option><option>Our planner</option><option>Our venue</option><option>Google</option><option>Another vendor</option>
           </select>
         </div>
       </div>
@@ -139,7 +140,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 
       <div class="sf-send">
         <button type="submit" class="sf-btn" id="sf-btn">Send me special pricing</button>
-        <p class="sf-note">For couples ready to book this week. I reply within 24 hours.</p>
+        <p class="sf-note">For couples ready to book this week. I'll text you within 24 hours.</p>
       </div>
       <p class="sf-err sf-err-send" id="err-send" role="alert"></p>
     </form>
@@ -147,7 +148,7 @@ fbq('init','250305885896733');fbq('track','PageView');
     <div class="sf-done" id="sf-done" tabindex="-1" hidden>
       <span class="lbl">Sent</span>
       <p class="sf-done-h" id="sf-done-h">Got it.</p>
-      <p class="sf-done-p" id="sf-done-p">I'll send your special pricing from bookings@lkfilmco.com within 24 hours.</p>
+      <p class="sf-done-p" id="sf-done-p">I'll text you special pricing within 24 hours.</p>
       <p class="sf-done-sub">While you wait, here's one of my favorites.</p>
       <div class="sf-film" id="sf-film"></div>
     </div>
