@@ -9,6 +9,7 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/pricing", "destination": "/pricing.html" },
+    { "source": "/packages", "destination": "/pricing.html" },
     { "source": "/faq", "destination": "/faq.html" },
     { "source": "/journal", "destination": "/journal.html" },
     { "source": "/journal/wedding-videographer-cost-dallas", "destination": "/journal/wedding-videographer-cost-dallas.html" },
