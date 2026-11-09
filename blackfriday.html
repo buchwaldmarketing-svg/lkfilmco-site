@@ -24,7 +24,7 @@
 <meta property="og:description" content="4 hours $1,000. 6 hours $1,500. 8 hours $1,750. Five spots.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.lkfilmco.com/blackfriday">
-<meta property="og:image" content="https://www.lkfilmco.com/hero-poster.jpg">
+<meta property="og:image" content="https://www.lkfilmco.com/bf-hero-poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -38,17 +38,25 @@ fbq('init','250305885896733');fbq('track','PageView');
 <!-- End Meta Pixel -->
 <style>
 /* BLACK FRIDAY OFFER PAGE */
-.bf-hero{position:relative;height:84svh;min-height:520px;overflow:hidden;background:#1d1915}
-.bf-hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.bf-hero .hero-ov{z-index:1}
-.bf-hero-c{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 20px 9vh;text-align:center;color:#fff}
-.bf-kick{font-family:var(--sans);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 1px 18px rgba(0,0,0,.35)}
-.bf-hero h1{margin-top:12px;font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,8vw,5rem);line-height:1.04;letter-spacing:.04em;text-shadow:0 2px 24px rgba(0,0,0,.3)}
-.bf-hero h1 em{display:block;font-style:italic;letter-spacing:0}
-.bf-hero p{margin-top:14px;font-family:var(--serif);font-size:1.25rem;color:rgba(255,255,255,.9);text-shadow:0 1px 18px rgba(0,0,0,.35)}
-.bf-rates span{white-space:nowrap}.bf-rates span+span::before{content:"\00b7";margin:0 10px}
-@media(max-width:599px){.bf-rates span{display:block}.bf-rates span+span::before{content:none}}
-.bf-hero .hero-btn{opacity:1;animation:none}
+/* Hero: Lee's TikTok (caption burned in), so no text on top of it.
+   Phone: video full screen, text below. Desktop: text left, video right. */
+.bf-hero{background:#fff;padding:64px 0 0}
+.bf-hero-in{display:flex;flex-direction:column}
+.bf-vid{position:relative;width:100%;aspect-ratio:9/16;max-height:calc(100svh - 64px);overflow:hidden;background:#1d1915}
+.bf-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bf-hero-c{padding:44px 20px 8px;text-align:center}
+.bf-kick{font-family:var(--sans);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent)}
+.bf-hero h1{margin-top:12px;font-family:var(--serif);font-weight:300;color:var(--fg2);font-size:clamp(2.6rem,8vw,4.4rem);line-height:1.04}
+.bf-hero h1 em{display:block;font-style:italic}
+.bf-rates{margin-top:16px;font-family:var(--serif);font-size:1.3rem;line-height:1.5;color:var(--fg)}
+.bf-rates span{display:block}
+.bf-hero-c .btn{margin-top:24px}
+@media(min-width:900px){
+  .bf-hero{padding:120px 40px 72px}
+  .bf-hero-in{flex-direction:row-reverse;align-items:center;justify-content:center;gap:72px;max-width:1080px;margin:0 auto}
+  .bf-vid{width:min(380px,40vw);max-height:none;flex-shrink:0;box-shadow:0 14px 40px rgba(42,37,33,.14)}
+  .bf-hero-c{text-align:left;padding:0;max-width:440px}
+}
 
 .bf-sec{padding:clamp(56px,8vw,104px) 20px;background:#fff}
 .bf-sec.gray{background:#f4f4f2}
@@ -112,17 +120,18 @@ fbq('init','250305885896733');fbq('track','PageView');
 
 <!-- HERO -->
 <section class="bf-hero" data-studio-section="bf-hero" data-studio-section-label="Black Friday header">
-  <video id="bf-vid" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture>
-    <source src="/hero-wide.mp4" type="video/mp4" media="(orientation: landscape)">
-    <source src="/hero-tall.mp4" type="video/mp4">
-  </video>
-  <script>(()=>{const v=document.getElementById('bf-vid');v.poster=matchMedia('(orientation: portrait)').matches?'/hero-poster-tall.jpg':'/hero-poster-wide.jpg';if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();}})();</script>
-  <div class="hero-ov"></div>
-  <div class="bf-hero-c">
-    <span class="bf-kick">Black Friday &middot; 5 spots</span>
-    <h1>Your wedding film<em>for less.</em></h1>
-    <p class="bf-rates"><span>4 hours $1,000</span><span>6 hours $1,500</span><span>8 hours $1,750</span></p>
-    <div class="hero-btn"><a href="#packages">See the packages</a></div>
+  <div class="bf-hero-in">
+    <div class="bf-vid">
+      <video id="bf-vid" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture poster="/bf-hero-poster.jpg">
+        <source src="/bf-hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="bf-hero-c">
+      <span class="bf-kick">Black Friday &middot; 5 spots</span>
+      <h1>Your wedding film<em>for less.</em></h1>
+      <p class="bf-rates"><span>4 hours $1,000</span><span>6 hours $1,500</span><span>8 hours $1,750</span></p>
+      <a href="#packages" class="btn btn-accent">See the packages</a>
+    </div>
   </div>
 </section>
 
