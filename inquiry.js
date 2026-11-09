@@ -9,6 +9,8 @@
   const date = $('sf-date');
   // /ready is the "booking this week" form: budget is required and must be one number.
   const ready = form.dataset.kind === 'ready';
+  // /blackfriday is the sale claim form: package is required.
+  const bf = form.dataset.kind === 'bf';
   const btnLabel = $('sf-btn').textContent;
 
   // Exact date only, never in the past.
@@ -42,6 +44,10 @@
       return '';
     }];
   }
+  if (bf) {
+    rules.collection = [$('sf-collection'), () => $('sf-collection').value ? '' : 'Pick your hours.'];
+    rules.pay = [$('sf-pay'), () => $('sf-pay').value ? '' : 'Pick deposit or pay in full.'];
+  }
   const check = (k) => {
     const [el, rule] = rules[k];
     const msg = rule();
@@ -59,7 +65,9 @@
     const bad = Object.keys(rules).filter((k) => !check(k));
     if (bad.length) { rules[bad[0]][0].focus(); return; }
     $('sf-date-summary').value = pretty();
-    $('sf-subject').value = ready
+    $('sf-subject').value = bf
+      ? `BLACK FRIDAY CLAIM: ${$('sf-collection').value} · ${$('sf-pay').value} · ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-phone').value.trim()}`
+      : ready
       ? `READY TO BOOK THIS WEEK: ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-budget').value.trim()} · ${$('sf-phone').value.trim()}`
       : `New inquiry: ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-phone').value.trim()}`;
     const btn = $('sf-btn');
@@ -69,11 +77,13 @@
     try {
       const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error();
-      if (window.fbq) fbq('track', 'Lead', { content_name: ready ? 'Ready To Book' : 'Contact Form' });
-      track('generate_lead', { method: ready ? 'ready_form' : 'contact_form', collection: $('sf-collection').value || 'none', source: $('sf-source').value || 'none' });
+      if (window.fbq) fbq('track', 'Lead', { content_name: bf ? 'Black Friday' : ready ? 'Ready To Book' : 'Contact Form' });
+      track('generate_lead', { method: bf ? 'blackfriday_form' : ready ? 'ready_form' : 'contact_form', collection: $('sf-collection').value || 'none', source: $('sf-source').value || 'none' });
       const first = $('sf-names').value.trim().split(/\s+/)[0];
       $('sf-done-h').textContent = `Got it, ${first}.`;
-      $('sf-done-p').textContent = ready
+      $('sf-done-p').textContent = bf
+        ? `Your spot is held. I'm checking ${pretty()} now and will text you within 24 hours.`
+        : ready
         ? `I'll text you special pricing for ${pretty()} within 24 hours.`
         : `I'm checking ${pretty()} now and will text you within 24 hours.`;
       form.hidden = true;
