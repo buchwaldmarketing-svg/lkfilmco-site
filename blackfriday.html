@@ -54,7 +54,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 @media(max-width:899px){
   .bf-vid::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,17,14,0) 38%,rgba(20,17,14,.62) 78%,rgba(20,17,14,.78) 100%)}
   .bf-hero-c{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 20px 36px;color:#fff}
-  .bf-hero-c .bf-kick{color:rgba(255,255,255,.88)}
+  .bf-hero-c .bf-kick{color:rgba(255,255,255,.88);font-size:.66rem;letter-spacing:.2em}
   .bf-hero-c h1{color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.3)}
   .bf-hero-c .bf-rates{color:rgba(255,255,255,.92);font-size:1.2rem}
   .bf-hero-c .btn{background:transparent;border:1px solid rgba(255,255,255,.6);min-height:46px;padding:15px 32px;font-size:.66rem}
@@ -80,6 +80,9 @@ fbq('init','250305885896733');fbq('track','PageView');
 .bf-hrs small{font-size:.42em;font-style:italic;margin-left:6px;color:var(--muted)}
 .bf-price{font-family:var(--serif);font-weight:400;color:var(--fg2);font-size:clamp(2rem,5.6vw,3rem);line-height:1;text-align:right}
 .bf-cover{grid-column:1/-1;font-family:var(--serif);font-size:1.15rem;line-height:1.55;color:var(--muted);margin-top:6px}
+.bf-get{grid-column:1/-1;list-style:none;margin:8px 0 4px;padding:0}
+.bf-get li{font-family:var(--serif);font-size:1.12rem;line-height:1.5;color:var(--fg);padding:7px 0;border-top:1px solid var(--rule)}
+.bf-get li:first-child{border-top:0}
 .bf-up{grid-column:1/-1;font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-top:2px}
 .bf-pick{grid-column:1/-1;justify-self:start;margin-top:10px;font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--fg2);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--fg2)}
 .bf-pick:hover{color:var(--accent);border-color:var(--accent)}
@@ -150,7 +153,7 @@ fbq('init','250305885896733');fbq('track','PageView');
       </video>
     </div>
     <div class="bf-hero-c">
-      <span class="bf-kick">Black Friday &middot; 5 spots &middot; Ends Nov 30</span>
+      <span class="bf-kick">Black Friday &middot; 5 spots &middot; <span style="white-space:nowrap">Ends Nov 30</span></span>
       <h1>Your wedding film<em>for less.</em></h1>
       <p class="bf-rates"><span>4 hours $1,000</span><span>6 hours $1,500</span><span>8 hours $1,750</span></p>
       <a href="#packages" class="btn btn-accent">See the packages</a>
@@ -170,6 +173,7 @@ fbq('init','250305885896733');fbq('track','PageView');
         <div class="bf-hrs">4<small>hours</small></div>
         <div class="bf-price">$1,000</div>
         <p class="bf-cover">The ceremony, portraits, and the start of the party. Great for smaller weddings and courthouse days.</p>
+        <ul class="bf-get"><li>3 to 4 minute highlight film</li><li>Vows and toasts audio woven into the film</li><li>Private online gallery to watch and download</li></ul>
         <p class="bf-up">Pay in full: get 5 hours for $1,000</p>
         <a href="#claim" class="bf-pick" data-pick="4">Claim 4 hours</a>
       </div>
@@ -177,6 +181,7 @@ fbq('init','250305885896733');fbq('track','PageView');
         <div class="bf-hrs">6<small>hours</small></div>
         <div class="bf-price">$1,500</div>
         <p class="bf-cover">Getting ready through the toasts and first dance. Covers most of the day.</p>
+        <ul class="bf-get"><li>4 to 5 minute highlight film</li><li>60 second vertical teaser for social</li><li>Speeches and toasts edit</li><li>Private online gallery to watch and download</li></ul>
         <p class="bf-up">Pay in full: get 7 hours for $1,500</p>
         <a href="#claim" class="bf-pick" data-pick="6">Claim 6 hours</a>
       </div>
@@ -184,13 +189,14 @@ fbq('init','250305885896733');fbq('track','PageView');
         <div class="bf-hrs">8<small>hours</small></div>
         <div class="bf-price">$1,750</div>
         <p class="bf-cover">The whole day. Getting ready all the way to the send off.</p>
+        <ul class="bf-get"><li>5 to 7 minute highlight film</li><li>60 second vertical teaser for social</li><li>Full ceremony film</li><li>Speeches and toasts edit</li><li>Private online gallery to watch and download</li></ul>
         <p class="bf-up">Pay in full: get 9 hours for $1,750</p>
         <a href="#claim" class="bf-pick" data-pick="8">Claim 8 hours</a>
       </div>
     </div>
 
     <p class="bf-incl rv"><strong style="font-weight:500;color:var(--fg2)">$250 locks your date.</strong> Or pay in full and get an extra hour free.</p>
-    <p class="bf-incl rv" style="margin-top:12px">Every package comes with a cinematic film of your day, delivered in a private online gallery you can watch and download. Travel within an hour of Dallas is included. Want something added? Just ask in the form.</p>
+    <p class="bf-incl rv" style="margin-top:12px">Films are delivered in 12 to 16 weeks. Travel within an hour of Dallas is included. Want drone or something else added? Just ask in the form.</p>
     <p class="bf-was rv">My regular collections start at $2,500</p>
   </div>
 </section>
@@ -333,7 +339,7 @@ fbq('init','250305885896733');fbq('track','PageView');
     <div class="bf-q rv">
       <details><summary>Do I have to pay today?</summary><p>No. Claiming holds your spot while I confirm your date. Nothing is due until you sign, then a $250 deposit locks it in.</p></details>
       <details><summary>What does paying in full get me?</summary><p>One extra hour, free. Pay in full for 4 hours and I film 5. Pay for 6 and I film 7. Pay for 8 and I film 9.</p></details>
-      <details><summary>What do we actually get?</summary><p>A cinematic film of your day, delivered in a private online gallery you can watch, download, and share. Want speeches, a teaser for social, or drone? Ask in the form and I'll tell you what's possible.</p></details>
+      <details><summary>What do we actually get?</summary><p>Every package gets a cinematic highlight film in a private online gallery you can watch, download, and share. 6 hours adds a teaser for social and a speeches edit. 8 hours adds the full ceremony film too. Films are ready in 12 to 16 weeks.</p></details>
       <details><summary>Which dates does this work for?</summary><p>Any open date. Send me yours and I'll confirm it within 24 hours.</p></details>
       <details><summary>We're outside Dallas. Can you still come?</summary><p>Travel within an hour of Dallas is included. Farther than that, ask and I'll give you a number.</p></details>
       <details><summary>Can we add more hours later?</summary><p>Yes. Start with what you need, add hours any time before the wedding.</p></details>
