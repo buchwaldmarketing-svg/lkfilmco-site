@@ -108,6 +108,39 @@ fbq('init','250305885896733');fbq('track','PageView');
 .bf-q a,.bf-lead a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--accent)}
 
 #claim{scroll-margin-top:72px}
+/* CLAIM FORM: one column, tap-to-pick, soft fields */
+.bf-form{margin-top:clamp(28px,4vw,44px);background:#fff;padding:clamp(22px,4vw,44px);max-width:560px;margin-left:auto;margin-right:auto}
+.bf-form [hidden]{display:none!important}
+.bf-group{border:0;margin:0 0 32px;padding:0;min-width:0}
+.bf-group legend{padding:0;margin-bottom:14px;font-family:var(--serif);font-size:1.5rem;font-weight:400;color:#1d1915}
+.bf-opt{display:flex;align-items:center;gap:14px;min-height:60px;padding:0 18px;margin-bottom:10px;background:#f4f4f2;border:1px solid transparent;cursor:pointer;transition:border-color .2s,background-color .2s}
+.bf-opt input{width:20px;height:20px;margin:0;flex-shrink:0;accent-color:#1d1915}
+.bf-opt-l{flex:1;font-family:var(--sans);font-size:1rem;color:#1d1915;line-height:1.25;padding:10px 0}
+.bf-opt-l small{display:block;font-size:.84rem;color:var(--muted);margin-top:2px}
+.bf-opt-r{font-family:var(--serif);font-size:1.35rem;color:#1d1915}
+.bf-opt:has(input:checked){background:#fff;border-color:#1d1915}
+.bf-opt:has(input:focus-visible){outline:2px solid #1d1915;outline-offset:2px}
+.bf-f{margin-bottom:18px}
+.bf-f>label:not(.bf-check){display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px;font-family:var(--sans);font-size:.88rem;font-weight:500;color:#1d1915}
+.bf-f>label:not(.bf-check) i{font-style:normal;font-weight:400;color:var(--muted);font-size:.82rem}
+.bf-f input[type=text],.bf-f input[type=tel],.bf-f input[type=email],.bf-f input[type=date],.bf-f textarea{display:block;width:100%;min-height:54px;padding:14px 16px;border:1px solid transparent;border-radius:0;background:#f4f4f2;font-family:var(--sans);font-size:16px;color:#1d1915;-webkit-appearance:none;appearance:none;transition:border-color .2s,background-color .2s}
+.bf-f input::placeholder,.bf-f textarea::placeholder{color:#9A968F}
+.bf-f input:focus,.bf-f textarea:focus{outline:none;background:#fff;border-color:#1d1915}
+.bf-f [aria-invalid="true"]{border-color:#a84a3d;background:#fff}
+.bf-f input[type=date]{text-align:left}
+.bf-f input[type=date]::-webkit-date-and-time-value{text-align:left}
+.bf-f input[type=date]:disabled{opacity:.4}
+.bf-f textarea{min-height:96px;resize:vertical;line-height:1.5}
+.bf-check{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:6px;font-family:var(--sans);font-size:.95rem;color:#1d1915;cursor:pointer}
+.bf-check input{width:20px;height:20px;margin:0;accent-color:#1d1915}
+.bf-group [aria-invalid="true"]{outline:none}
+.bf-submit{display:block;width:100%;min-height:58px;border:0;border-radius:0;background:#1d1915;color:#fff;font-family:var(--sans);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;-webkit-appearance:none;transition:opacity .2s}
+.bf-submit:hover{opacity:.88}
+.bf-submit:disabled{opacity:.6;cursor:wait}
+.bf-fine{margin-top:12px;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.08rem;color:var(--muted)}
+#claim .sf-done{max-width:560px;margin-left:auto;margin-right:auto}
+#claim .sf-err{margin-top:6px}
+
 .bf-bar{display:none}
 @media(max-width:899px){
   .bf-bar{display:flex;align-items:center;justify-content:center;gap:6px;position:fixed;left:0;right:0;bottom:0;z-index:90;min-height:56px;padding:0 20px calc(env(safe-area-inset-bottom));background:#1d1915;color:#fff;font-family:var(--sans);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;transform:translateY(110%);transition:transform .3s ease}
@@ -248,84 +281,74 @@ fbq('init','250305885896733');fbq('track','PageView');
       <p class="sf-sub">Nothing is due today. $250 locks it once I confirm your date. Rather text me first? <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20I%20saw%20the%20Black%20Friday%20deal.%20My%20wedding%20date%20is%20">214-577-4801</a></p>
     </div>
 
-    <form class="sf-form" id="contact-form" data-kind="bf" action="https://formspree.io/f/xbdzdwar" method="POST" novalidate style="background:#fff">
+    <form class="bf-form" id="contact-form" data-kind="bf" action="https://formspree.io/f/xbdzdwar" method="POST" novalidate>
       <input type="hidden" name="_subject" id="sf-subject" value="BLACK FRIDAY CLAIM from lkfilmco.com">
       <input type="hidden" name="intent" value="Black Friday sale claim">
       <input type="hidden" name="wedding_date" id="sf-date-summary" value="">
       <input type="hidden" name="source" id="sf-source" value="TikTok (Black Friday page)">
+      <input type="hidden" id="sf-collection" value="">
+      <input type="hidden" id="sf-pay" value="">
 
-      <div class="sf-f">
-        <label for="sf-collection">Package <span class="sf-req" aria-hidden="true">*</span></label>
-        <select id="sf-collection" name="package" required aria-describedby="err-collection">
-          <option value="">Pick your hours</option>
-          <option value="4 hours ($1,000)" data-key="4">4 hours &middot; $1,000</option>
-          <option value="6 hours ($1,500)" data-key="6">6 hours &middot; $1,500</option>
-          <option value="8 hours ($1,750)" data-key="8">8 hours &middot; $1,750</option>
-        </select>
+      <fieldset class="bf-group">
+        <legend>Pick your package</legend>
+        <label class="bf-opt"><input type="radio" name="package" value="4 hours ($1,000)" data-key="4" aria-describedby="err-collection"><span class="bf-opt-l">4 hours</span><span class="bf-opt-r">$1,000</span></label>
+        <label class="bf-opt"><input type="radio" name="package" value="6 hours ($1,500)" data-key="6"><span class="bf-opt-l">6 hours</span><span class="bf-opt-r">$1,500</span></label>
+        <label class="bf-opt"><input type="radio" name="package" value="8 hours ($1,750)" data-key="8"><span class="bf-opt-l">8 hours</span><span class="bf-opt-r">$1,750</span></label>
         <p class="sf-err" id="err-collection" role="alert"></p>
-      </div>
+      </fieldset>
 
-      <div class="sf-f">
-        <label for="sf-pay">How do you want to pay? <span class="sf-req" aria-hidden="true">*</span></label>
-        <select id="sf-pay" name="payment" required aria-describedby="err-pay">
-          <option value="">Pick one</option>
-          <option value="$250 deposit">$250 deposit, rest later</option>
-          <option value="Pay in full (+1 free hour)">Pay in full, get 1 extra hour free</option>
-        </select>
+      <fieldset class="bf-group">
+        <legend>How do you want to pay?</legend>
+        <label class="bf-opt"><input type="radio" name="payment" value="$250 deposit" aria-describedby="err-pay"><span class="bf-opt-l">$250 deposit<small>Rest due 2 weeks before</small></span></label>
+        <label class="bf-opt"><input type="radio" name="payment" value="Pay in full (+1 free hour)"><span class="bf-opt-l">Pay in full<small>Get 1 extra hour free</small></span></label>
         <p class="sf-err" id="err-pay" role="alert"></p>
-      </div>
+      </fieldset>
 
-      <div class="sf-row">
-        <div class="sf-f">
-          <label for="sf-names">Your names <span class="sf-req" aria-hidden="true">*</span></label>
+      <fieldset class="bf-group">
+        <legend>About you</legend>
+        <div class="bf-f">
+          <label for="sf-names">Your names</label>
           <input type="text" id="sf-names" name="name" placeholder="You and your partner" autocomplete="name" required aria-describedby="err-names">
           <p class="sf-err" id="err-names" role="alert"></p>
         </div>
-        <div class="sf-f">
-          <label for="sf-phone">Phone <i>(I'll text you)</i> <span class="sf-req" aria-hidden="true">*</span></label>
-          <input type="tel" id="sf-phone" name="phone" placeholder="Best number to text" autocomplete="tel" inputmode="tel" required aria-describedby="err-phone">
+        <div class="bf-f">
+          <label for="sf-phone">Phone <i>I'll text you here</i></label>
+          <input type="tel" id="sf-phone" name="phone" placeholder="(214) 555-0123" autocomplete="tel" inputmode="tel" required aria-describedby="err-phone">
           <p class="sf-err" id="err-phone" role="alert"></p>
         </div>
-      </div>
-
-      <div class="sf-row">
-        <div class="sf-f">
-          <label for="sf-date">Wedding date <span class="sf-req" aria-hidden="true">*</span></label>
+        <div class="bf-f">
+          <label for="sf-date">Wedding date</label>
           <input type="date" id="sf-date" name="exact_date" required aria-describedby="err-date">
-          <label class="bf-nodate"><input type="checkbox" id="sf-nodate" name="no_date_yet" value="yes"> No date yet</label>
+          <label class="bf-check"><input type="checkbox" id="sf-nodate" name="no_date_yet" value="yes"><span>No date yet</span></label>
           <p class="sf-err" id="err-date" role="alert"></p>
         </div>
-        <div class="sf-f">
-          <label for="sf-venue">Venue or city <span class="sf-req" aria-hidden="true">*</span></label>
+        <div class="bf-f">
+          <label for="sf-venue">Venue or city</label>
           <input type="text" id="sf-venue" name="venue" placeholder="Where you're getting married" required aria-describedby="err-venue">
           <p class="sf-err" id="err-venue" role="alert"></p>
         </div>
-      </div>
+        <div class="bf-f">
+          <label for="sf-email">Email <i>Optional</i></label>
+          <input type="email" id="sf-email" name="email" placeholder="you@email.com" autocomplete="email" inputmode="email" aria-describedby="err-email">
+          <p class="sf-err" id="err-email" role="alert"></p>
+        </div>
+        <div class="bf-f">
+          <label for="sf-message">Anything I should know? <i>Optional</i></label>
+          <textarea id="sf-message" name="message" rows="3" placeholder="Need something different? Tell me and I'll make it happen."></textarea>
+        </div>
+      </fieldset>
 
-      <div class="sf-f">
-        <label for="sf-email">Email <i>(optional)</i></label>
-        <input type="email" id="sf-email" name="email" placeholder="you@email.com" autocomplete="email" inputmode="email" aria-describedby="err-email">
-        <p class="sf-err" id="err-email" role="alert"></p>
-      </div>
-
-      <div class="sf-f">
-        <label for="sf-message">Questions? <i>(optional)</i></label>
-        <textarea id="sf-message" name="message" rows="4" placeholder="Need something different? Tell me and I'll make it happen."></textarea>
-      </div>
-
-      <div class="sf-send">
-        <button type="submit" class="sf-btn" id="sf-btn">Claim my spot</button>
-        <p class="sf-note">I'll text you within 24 hours.</p>
-      </div>
+      <button type="submit" class="bf-submit" id="sf-btn">Claim my spot</button>
+      <p class="bf-fine">Nothing due today.<br>I'll text you within 24 hours.</p>
       <p class="sf-err sf-err-send" id="err-send" role="alert"></p>
     </form>
 
-    <div class="sf-done" id="sf-done" tabindex="-1" hidden style="background:#fff">
+    <div class="sf-done" id="sf-done" tabindex="-1" hidden style="background:#fff;border:0">
       <span class="lbl">Spot held</span>
       <p class="sf-done-h" id="sf-done-h">Got it.</p>
       <p class="sf-done-p" id="sf-done-p">I'll text you within 24 hours.</p>
       <p class="sf-done-p" style="margin-top:22px;font-size:1.15rem;color:var(--muted)">Ready to lock it in right now? Text me and I'll send the contract and payment tonight.</p>
-      <a class="sf-btn" id="sf-lock" href="sms:+12145774801" style="display:inline-flex;align-items:center;justify-content:center;margin-top:14px;text-decoration:none">Text me to lock it in</a>
+      <a class="sf-btn" id="sf-lock" href="sms:+12145774801" style="background:#1d1915;display:inline-flex;align-items:center;justify-content:center;margin-top:14px;text-decoration:none">Text me to lock it in</a>
       <p class="sf-done-sub">While you wait, here's one of my favorites.</p>
       <div class="sf-film" id="sf-film"></div>
     </div>
@@ -347,7 +370,7 @@ fbq('init','250305885896733');fbq('track','PageView');
       <details><summary>When does the sale end?</summary><p>Monday, November 30, or when the 5 spots are claimed, whichever comes first. After that, pricing goes back to my regular collections.</p></details>
     </div>
     <p class="bf-lead rv" style="margin-top:28px">Still have a question? Text me at <a href="sms:+12145774801">214-577-4801</a>.</p>
-    <div class="rv" style="margin-top:28px"><a href="#claim" class="btn btn-accent">Claim a spot</a></div>
+    <div class="rv" style="margin-top:28px"><a href="#claim" class="btn btn-accent" style="background:#1d1915">Claim a spot</a></div>
   </div>
 </section>
 
@@ -382,11 +405,15 @@ new IntersectionObserver(([e])=>{pastHero=!e.isIntersecting&&e.boundingClientRec
 new IntersectionObserver(([e])=>{atForm=e.isIntersecting;set();},{threshold:0.05}).observe(claim);
 bar.addEventListener('click',()=>{if(window.gtag)gtag('event','bf_bar_click');});})();
 
+// Tap-to-pick choices feed the hidden fields the form script reads.
+const syncPick=(name,id,err)=>{const c=document.querySelector(`input[name="${name}"]:checked`);document.getElementById(id).value=c?c.value:'';if(c){document.getElementById(err).textContent='';}};
+document.querySelectorAll('input[name="package"]').forEach(r=>r.addEventListener('change',()=>syncPick('package','sf-collection','err-collection')));
+document.querySelectorAll('input[name="payment"]').forEach(r=>r.addEventListener('change',()=>syncPick('payment','sf-pay','err-pay')));
+
 // "Claim 6 hours" pre-picks that package in the form.
 document.querySelectorAll('[data-pick]').forEach(a=>a.addEventListener('click',()=>{
-  const s=document.getElementById('sf-collection');
-  const o=s.querySelector(`option[data-key="${a.dataset.pick}"]`);
-  if(o){o.selected=true;s.dispatchEvent(new Event('change'));document.getElementById('err-collection').textContent='';s.setAttribute('aria-invalid','false');}
+  const r=document.querySelector(`input[name="package"][data-key="${a.dataset.pick}"]`);
+  if(r){r.checked=true;syncPick('package','sf-collection','err-collection');}
   if(window.gtag)gtag('event','bf_pick',{hours:a.dataset.pick});
 }));
 </script>

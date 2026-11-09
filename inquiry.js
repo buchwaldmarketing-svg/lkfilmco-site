@@ -52,8 +52,9 @@
     }];
   }
   if (bf) {
-    rules.collection = [$('sf-collection'), () => $('sf-collection').value ? '' : 'Pick your hours.'];
-    rules.pay = [$('sf-pay'), () => $('sf-pay').value ? '' : 'Pick deposit or pay in full.'];
+    // Package + payment are tap-to-pick radios; errors and focus land on the first option.
+    rules.collection = [form.querySelector('input[name="package"]'), () => $('sf-collection').value ? '' : 'Pick your hours.'];
+    rules.pay = [form.querySelector('input[name="payment"]'), () => $('sf-pay').value ? '' : 'Pick deposit or pay in full.'];
   }
   const check = (k) => {
     const [el, rule] = rules[k];
@@ -70,6 +71,8 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const bad = Object.keys(rules).filter((k) => !check(k));
+    // Jump to the first problem from the top of the form.
+    bad.sort((x, y) => (rules[x][0].compareDocumentPosition(rules[y][0]) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
     if (bad.length) { rules[bad[0]][0].focus(); return; }
     $('sf-date-summary').value = pretty();
     $('sf-subject').value = bf
