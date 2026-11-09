@@ -16,7 +16,14 @@
   // Exact date only, never in the past.
   const t = new Date();
   date.min = new Date(t - t.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
-  const pretty = () => new Date(date.value + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  // Black Friday form has a "No date yet" box.
+  const nodate = $('sf-nodate');
+  const noDate = () => Boolean(nodate && nodate.checked);
+  if (nodate) nodate.addEventListener('change', () => {
+    date.disabled = nodate.checked;
+    if (nodate.checked) { date.value = ''; $('err-date').textContent = ''; date.setAttribute('aria-invalid', 'false'); }
+  });
+  const pretty = () => noDate() ? 'No date yet' : new Date(date.value + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
   // A collection link (/contact?c=signature) pre-picks that collection.
   const key = new URLSearchParams(location.search).get('c');
@@ -30,8 +37,8 @@
 
   const rules = {
     names: [$('sf-names'), () => $('sf-names').value.trim() ? '' : 'Add your names so I know who I\'m writing to.'],
-    email: [$('sf-email'), () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('sf-email').value.trim()) ? '' : 'Add an email I can reply to.'],
-    date: [date, () => !date.value ? 'Pick your wedding date.' : date.value < date.min ? 'That date has already passed.' : ''],
+    email: [$('sf-email'), () => (bf && !$('sf-email').value.trim()) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('sf-email').value.trim()) ? '' : 'Add an email I can reply to.'],
+    date: [date, () => noDate() ? '' : !date.value ? 'Pick your wedding date.' : date.value < date.min ? 'That date has already passed.' : ''],
     venue: [$('sf-venue'), () => $('sf-venue').value.trim() ? '' : 'A venue or city is plenty.'],
     phone: [$('sf-phone'), () => $('sf-phone').value.replace(/\D/g, '').length >= 10 ? '' : 'Add a number I can text.'],
   };
@@ -82,10 +89,17 @@
       const first = $('sf-names').value.trim().split(/\s+/)[0];
       $('sf-done-h').textContent = `Got it, ${first}.`;
       $('sf-done-p').textContent = bf
-        ? `Your spot is held. I'm checking ${pretty()} now and will text you within 24 hours.`
+        ? (noDate() ? `Your spot is held. I'll text you within 24 hours.` : `Your spot is held. I'm checking ${pretty()} now and will text you within 24 hours.`)
         : ready
         ? `I'll text you special pricing for ${pretty()} within 24 hours.`
         : `I'm checking ${pretty()} now and will text you within 24 hours.`;
+      const lock = $('sf-lock');
+      if (bf && lock) {
+        const full = /full/i.test($('sf-pay').value);
+        const body = `Hi Lee, it's ${first}. I just claimed ${$('sf-collection').value}${noDate() ? '' : ` for ${pretty()}`}. I'm ready to ${full ? 'pay in full' : 'pay the $250 deposit'}.`;
+        lock.href = `sms:+12145774801?&body=${encodeURIComponent(body)}`;
+        lock.addEventListener('click', () => track('bf_lock_click', { pay: full ? 'full' : 'deposit' }));
+      }
       form.hidden = true;
       const done = $('sf-done');
       done.hidden = false;

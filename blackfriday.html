@@ -12,7 +12,7 @@
   gtag('config', 'G-SNGG62VWD3');
 </script>
 <title>Black Friday Wedding Films | LK Film Co.</title>
-<meta name="description" content="Black Friday wedding film pricing. 4 hours $1,000, 6 hours $1,500, 8 hours $1,750. Five spots.">
+<meta name="description" content="Black Friday wedding film pricing. 4 hours $1,000, 6 hours $1,500, 8 hours $1,750. Five spots, ends Nov 30.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://www.lkfilmco.com/blackfriday">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -105,6 +105,21 @@ fbq('init','250305885896733');fbq('track','PageView');
 .bf-q a,.bf-lead a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--accent)}
 
 #claim{scroll-margin-top:72px}
+.bf-bar{display:none}
+@media(max-width:899px){
+  .bf-bar{display:flex;align-items:center;justify-content:center;gap:6px;position:fixed;left:0;right:0;bottom:0;z-index:90;min-height:56px;padding:0 20px calc(env(safe-area-inset-bottom));background:#1d1915;color:#fff;font-family:var(--sans);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;transform:translateY(110%);transition:transform .3s ease}
+  .bf-bar span{letter-spacing:.12em;opacity:.75;text-transform:none;font-family:var(--serif);font-size:1rem;font-style:italic}
+  .bf-bar.on{transform:none}
+  body{padding-bottom:0}
+}
+.bf-lee{padding-top:0}
+.bf-lee-in{display:grid;gap:28px}
+.bf-lee-img{aspect-ratio:3/2;overflow:hidden;background:#f4f4f2}
+.bf-lee-img img{width:100%;height:100%;object-fit:cover;display:block}
+@media(min-width:768px){.bf-lee-in{grid-template-columns:1fr 1fr;align-items:center;gap:48px}}
+.sf-f .bf-nodate{display:flex;align-items:center;gap:10px;margin-top:12px;font-family:var(--serif);font-size:1.1rem;letter-spacing:0;text-transform:none;color:var(--fg);cursor:pointer;min-height:44px}
+.sf-f .bf-nodate input{width:20px;height:20px;min-height:0;margin:0;padding:0;border:1px solid #A9A49D;-webkit-appearance:auto;appearance:auto;accent-color:#1d1915}
+.sf-f input[type="date"]:disabled{opacity:.35}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -135,7 +150,7 @@ fbq('init','250305885896733');fbq('track','PageView');
       </video>
     </div>
     <div class="bf-hero-c">
-      <span class="bf-kick">Black Friday &middot; 5 spots</span>
+      <span class="bf-kick">Black Friday &middot; 5 spots &middot; Ends Nov 30</span>
       <h1>Your wedding film<em>for less.</em></h1>
       <p class="bf-rates"><span>4 hours $1,000</span><span>6 hours $1,500</span><span>8 hours $1,750</span></p>
       <a href="#packages" class="btn btn-accent">See the packages</a>
@@ -180,6 +195,18 @@ fbq('init','250305885896733');fbq('track','PageView');
   </div>
 </section>
 
+<!-- MEET LEE -->
+<section class="bf-sec bf-lee" data-studio-section="bf-lee" data-studio-section-label="Meet Lee">
+  <div class="bf-in bf-lee-in">
+    <div class="bf-lee-img rv"><img src="/lee.jpg" width="1800" height="1200" loading="lazy" alt="Lee Kounas filming at a wedding reception, camera and light in hand"></div>
+    <div class="rv">
+      <span class="lbl">Who's filming</span>
+      <h2 class="bf-h2">I'm Lee.</h2>
+      <p class="bf-lead">I've filmed weddings around Dallas since 2020. I'm at every wedding myself, I stay out of the way, and I make films you'll actually rewatch. Dad of two, so I know what a big day means to a family.</p>
+    </div>
+  </div>
+</section>
+
 <!-- WATCH ONE -->
 <section class="bf-sec gray" data-studio-section="bf-film" data-studio-section-label="Watch one">
   <div class="bf-in">
@@ -209,7 +236,7 @@ fbq('init','250305885896733');fbq('track','PageView');
 <section class="sf" id="claim" style="background:#f4f4f2" data-studio-section="bf-claim" data-studio-section-label="Claim form">
   <div class="sf-in">
     <div class="sf-head rv">
-      <span class="lbl">Only 5 spots</span>
+      <span class="lbl">5 spots &middot; Ends Monday, Nov 30</span>
       <h2 class="sf-h">Claim your spot.<em>I'll text you.</em></h2>
       <p class="sf-sub">Nothing is due today. $250 locks it once I confirm your date. Rather text me first? <a href="sms:+12145774801?&amp;body=Hi%20Lee!%20I%20saw%20the%20Black%20Friday%20deal.%20My%20wedding%20date%20is%20">214-577-4801</a></p>
     </div>
@@ -218,6 +245,7 @@ fbq('init','250305885896733');fbq('track','PageView');
       <input type="hidden" name="_subject" id="sf-subject" value="BLACK FRIDAY CLAIM from lkfilmco.com">
       <input type="hidden" name="intent" value="Black Friday sale claim">
       <input type="hidden" name="wedding_date" id="sf-date-summary" value="">
+      <input type="hidden" name="source" id="sf-source" value="TikTok (Black Friday page)">
 
       <div class="sf-f">
         <label for="sf-collection">Package <span class="sf-req" aria-hidden="true">*</span></label>
@@ -228,6 +256,16 @@ fbq('init','250305885896733');fbq('track','PageView');
           <option value="8 hours ($1,750)" data-key="8">8 hours &middot; $1,750</option>
         </select>
         <p class="sf-err" id="err-collection" role="alert"></p>
+      </div>
+
+      <div class="sf-f">
+        <label for="sf-pay">How do you want to pay? <span class="sf-req" aria-hidden="true">*</span></label>
+        <select id="sf-pay" name="payment" required aria-describedby="err-pay">
+          <option value="">Pick one</option>
+          <option value="$250 deposit">$250 deposit, rest later</option>
+          <option value="Pay in full (+1 free hour)">Pay in full, get 1 extra hour free</option>
+        </select>
+        <p class="sf-err" id="err-pay" role="alert"></p>
       </div>
 
       <div class="sf-row">
@@ -247,6 +285,7 @@ fbq('init','250305885896733');fbq('track','PageView');
         <div class="sf-f">
           <label for="sf-date">Wedding date <span class="sf-req" aria-hidden="true">*</span></label>
           <input type="date" id="sf-date" name="exact_date" required aria-describedby="err-date">
+          <label class="bf-nodate"><input type="checkbox" id="sf-nodate" name="no_date_yet" value="yes"> No date yet</label>
           <p class="sf-err" id="err-date" role="alert"></p>
         </div>
         <div class="sf-f">
@@ -256,29 +295,10 @@ fbq('init','250305885896733');fbq('track','PageView');
         </div>
       </div>
 
-      <div class="sf-row">
-        <div class="sf-f">
-          <label for="sf-email">Email <span class="sf-req" aria-hidden="true">*</span></label>
-          <input type="email" id="sf-email" name="email" placeholder="you@email.com" autocomplete="email" inputmode="email" required aria-describedby="err-email">
-          <p class="sf-err" id="err-email" role="alert"></p>
-        </div>
-        <div class="sf-f">
-          <label for="sf-source">How'd you find me? <i>(optional)</i></label>
-          <select id="sf-source" name="source">
-            <option value="">Select</option>
-            <option>TikTok</option><option>Instagram</option><option>A friend</option><option>Other</option>
-          </select>
-        </div>
-      </div>
-
       <div class="sf-f">
-        <label for="sf-pay">How do you want to pay? <span class="sf-req" aria-hidden="true">*</span></label>
-        <select id="sf-pay" name="payment" required aria-describedby="err-pay">
-          <option value="">Pick one</option>
-          <option value="$250 deposit">$250 deposit, rest later</option>
-          <option value="Pay in full (+1 free hour)">Pay in full, get 1 extra hour free</option>
-        </select>
-        <p class="sf-err" id="err-pay" role="alert"></p>
+        <label for="sf-email">Email <i>(optional)</i></label>
+        <input type="email" id="sf-email" name="email" placeholder="you@email.com" autocomplete="email" inputmode="email" aria-describedby="err-email">
+        <p class="sf-err" id="err-email" role="alert"></p>
       </div>
 
       <div class="sf-f">
@@ -297,6 +317,8 @@ fbq('init','250305885896733');fbq('track','PageView');
       <span class="lbl">Spot held</span>
       <p class="sf-done-h" id="sf-done-h">Got it.</p>
       <p class="sf-done-p" id="sf-done-p">I'll text you within 24 hours.</p>
+      <p class="sf-done-p" style="margin-top:22px;font-size:1.15rem;color:var(--muted)">Ready to lock it in right now? Text me and I'll send the contract and payment tonight.</p>
+      <a class="sf-btn" id="sf-lock" href="sms:+12145774801" style="display:inline-flex;align-items:center;justify-content:center;margin-top:14px;text-decoration:none">Text me to lock it in</a>
       <p class="sf-done-sub">While you wait, here's one of my favorites.</p>
       <div class="sf-film" id="sf-film"></div>
     </div>
@@ -315,7 +337,7 @@ fbq('init','250305885896733');fbq('track','PageView');
       <details><summary>Which dates does this work for?</summary><p>Any open date. Send me yours and I'll confirm it within 24 hours.</p></details>
       <details><summary>We're outside Dallas. Can you still come?</summary><p>Travel within an hour of Dallas is included. Farther than that, ask and I'll give you a number.</p></details>
       <details><summary>Can we add more hours later?</summary><p>Yes. Start with what you need, add hours any time before the wedding.</p></details>
-      <details><summary>When does the sale end?</summary><p>When the 5 spots are claimed. After that, pricing goes back to my regular collections.</p></details>
+      <details><summary>When does the sale end?</summary><p>Monday, November 30, or when the 5 spots are claimed, whichever comes first. After that, pricing goes back to my regular collections.</p></details>
     </div>
     <p class="bf-lead rv" style="margin-top:28px">Still have a question? Text me at <a href="sms:+12145774801">214-577-4801</a>.</p>
     <div class="rv" style="margin-top:28px"><a href="#claim" class="btn btn-accent">Claim a spot</a></div>
@@ -323,6 +345,8 @@ fbq('init','250305885896733');fbq('track','PageView');
 </section>
 
 </main>
+
+<a href="#claim" class="bf-bar" id="bf-bar" aria-hidden="true" tabindex="-1">Claim a spot <span>&middot; ends Nov 30</span></a>
 
 <footer>
   <div class="f-top">
@@ -343,6 +367,13 @@ const ham=document.querySelector('.n-ham');
 const nLinks=document.querySelector('.n-links');
 if(ham){ham.addEventListener('click',()=>{const open=nLinks.classList.toggle('open');ham.classList.toggle('open',open);ham.setAttribute('aria-expanded',open);});}
 nLinks.querySelectorAll('a[href="#claim"]').forEach(a=>a.addEventListener('click',()=>{nLinks.classList.remove('open');ham.classList.remove('open');ham.setAttribute('aria-expanded','false');}));
+
+// Phone claim bar: shows once the hero button scrolls past, hides while the form is on screen.
+(()=>{const bar=document.getElementById('bf-bar');const heroBtn=document.querySelector('.bf-hero-c .btn');const claim=document.getElementById('claim');let pastHero=false,atForm=false;
+const set=()=>{const on=pastHero&&!atForm;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',String(!on));bar.tabIndex=on?0:-1;};
+new IntersectionObserver(([e])=>{pastHero=!e.isIntersecting&&e.boundingClientRect.top<0;set();}).observe(heroBtn);
+new IntersectionObserver(([e])=>{atForm=e.isIntersecting;set();},{threshold:0.05}).observe(claim);
+bar.addEventListener('click',()=>{if(window.gtag)gtag('event','bf_bar_click');});})();
 
 // "Claim 6 hours" pre-picks that package in the form.
 document.querySelectorAll('[data-pick]').forEach(a=>a.addEventListener('click',()=>{
