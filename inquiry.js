@@ -99,7 +99,7 @@
       const lock = $('sf-lock');
       if (bf && lock) {
         const full = /full/i.test($('sf-pay').value);
-        const body = `Hi Lee, it's ${first}. I just claimed ${$('sf-collection').value}${noDate() ? '' : ` for ${pretty()}`}. I'm ready to ${full ? 'pay in full' : 'pay the $250 deposit'}.`;
+        const body = `Hi Lee, it's ${first}. I just claimed ${$('sf-collection').value}${noDate() ? '' : ` for ${pretty()}`}. I'm ready to ${full ? 'pay in full' : 'pay the $500 deposit'}.`;
         lock.href = `sms:+12145774801?&body=${encodeURIComponent(body)}`;
         lock.addEventListener('click', () => track('bf_lock_click', { pay: full ? 'full' : 'deposit' }));
       }
