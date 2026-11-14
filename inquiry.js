@@ -43,13 +43,11 @@
     phone: [$('sf-phone'), () => $('sf-phone').value.replace(/\D/g, '').length >= 10 ? '' : 'Add a number I can text.'],
   };
   if (ready) {
-    const budget = $('sf-budget');
-    rules.budget = [budget, () => {
-      const v = budget.value.trim();
-      if (!/\d/.test(v)) return 'Add your budget. One number is perfect.';
-      if (/\d\s*(-|–|to)\s*\$?\d/i.test(v)) return 'One number please, like $3,000.';
-      return '';
-    }];
+    // Booking form: collection, retainer payment, next step, and the 48-hour commitment are required.
+    rules.collection = [$('sf-collection'), () => $('sf-collection').value ? '' : 'Pick your collection.'];
+    rules.pay = [$('sf-pay'), () => $('sf-pay').value ? '' : 'Pick how you\'ll pay the retainer.'];
+    rules.next = [$('sf-next'), () => $('sf-next').value ? '' : 'Contract now or a quick call first?'];
+    rules.commit = [$('sf-commit'), () => $('sf-commit').checked ? '' : 'Check this box to lock in your date.'];
   }
   if (bf) {
     // Package + payment are tap-to-pick radios; errors and focus land on the first option.
@@ -64,6 +62,8 @@
     return !msg;
   };
   Object.entries(rules).forEach(([k, [el]]) => el.addEventListener('blur', () => { if (el.value) check(k); }));
+  // Picks and the checkbox clear their error as soon as they're fixed.
+  Object.entries(rules).forEach(([k, [el]]) => { if (el.tagName === 'SELECT' || el.type === 'checkbox') el.addEventListener('change', () => check(k)); });
 
   let started = false;
   form.addEventListener('focusin', () => { if (!started) { started = true; track('form_start', { form: 'inquiry' }); } });
@@ -78,7 +78,7 @@
     $('sf-subject').value = bf
       ? `BLACK FRIDAY CLAIM: ${$('sf-collection').value} · ${$('sf-pay').value} · ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-phone').value.trim()}`
       : ready
-      ? `READY TO BOOK THIS WEEK: ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-budget').value.trim()} · ${$('sf-phone').value.trim()}`
+      ? `BOOKING: ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-collection').value} · ${$('sf-pay').value} · ${$('sf-next').value} · ${$('sf-phone').value.trim()}`
       : `New inquiry: ${$('sf-names').value.trim()} · ${pretty()} · ${$('sf-phone').value.trim()}`;
     const btn = $('sf-btn');
     btn.textContent = 'Sending…';
@@ -94,7 +94,7 @@
       $('sf-done-p').textContent = bf
         ? (noDate() ? `Your spot is held. I'll text you within 24 hours.` : `Your spot is held. I'm checking ${pretty()} now and will text you within 24 hours.`)
         : ready
-        ? `I'll text you special pricing for ${pretty()} within 24 hours.`
+        ? (/call/i.test($('sf-next').value) ? `I'm checking ${pretty()} now. I'll text you within 24 hours to set up our call.` : `I'm checking ${pretty()} now. Your contract and retainer invoice will hit your email within 24 hours.`)
         : `I'm checking ${pretty()} now and will text you within 24 hours.`;
       const lock = $('sf-lock');
       if (bf && lock) {
